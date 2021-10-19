@@ -56,7 +56,11 @@ def EvalDevQuery(query_embedding2id,
         qids_to_raw_sequences[query_id] = inputs
 
         for idx, score in zip(selected_ann_idx, selected_ann_score):
-            pred_pid = offset2pid[idx]
+            try:
+                pred_pid = offset2pid[idx]
+                print("correct idx")
+            except:
+                print("incorrect idx:", idx, "length of offset2pid", len(offset2pid))
 
             if not pred_pid in seen_pid:
                 qids_to_ranked_candidate_passages[query_id][rank] = (pred_pid,
@@ -76,13 +80,15 @@ def EvalDevQuery(query_embedding2id,
         for line in f:
             qid, query = line.strip().split("\t")
             queries[qid] = query
-    collection = os.path.join(raw_data_dir, "collection.jsonl")
+    # TODO replace hardcoding
+    collection_path = "datasets/cast-shared"
+    collection = os.path.join(collection_path, "collection.jsonl")
     if not os.path.exists(collection):
-        collection = os.path.join(raw_data_dir, "collection.tsv")
+        collection = os.path.join(collection_path, "collection.tsv")
         if not os.path.exists(collection):
             raise FileNotFoundError(
                 "Neither collection.tsv nor collection.jsonl found in {}".
-                format(raw_data_dir))
+                format(collection_path))
     all_passages = load_collection(collection)
 
     # Write to file
@@ -156,77 +162,78 @@ def evaluate(args, eval_dataset, model, logger):
 
 def search_one_by_one(ann_data_dir, gpu_index, query_embedding, topN):
     merged_candidate_matrix = None
-    for block_id in range(8):
-        logger.info("Loading passage reps " + str(block_id))
-        passage_embedding = None
-        passage_embedding2id = None
-        try:
-            with open(
-                    os.path.join(
-                        ann_data_dir,
-                        "passage__emb_p__data_obj_" + str(block_id) + ".pb"),
-                    'rb') as handle:
-                passage_embedding = pickle.load(handle)
-            with open(
-                    os.path.join(
-                        ann_data_dir,
-                        "passage__embid_p__data_obj_" + str(block_id) + ".pb"),
-                    'rb') as handle:
-                passage_embedding2id = pickle.load(handle)
-        except:
-            break
-        print('passage embedding shape: ' + str(passage_embedding.shape))
-        print("query embedding shape: " + str(query_embedding.shape))
-        gpu_index.add(passage_embedding)
-        ts = time.time()
-        D, I = gpu_index.search(query_embedding, topN)
-        te = time.time()
-        elapsed_time = te - ts
-        print({
-            "total": elapsed_time,
-            "data": query_embedding.shape[0],
-            "per_query": elapsed_time / query_embedding.shape[0]
-        })
-        candidate_id_matrix = passage_embedding2id[
-            I]  # passage_idx -> passage_id
-        D = D.tolist()
-        candidate_id_matrix = candidate_id_matrix.tolist()
-        candidate_matrix = []
-        for score_list, passage_list in zip(D, candidate_id_matrix):
-            candidate_matrix.append([])
-            for score, passage in zip(score_list, passage_list):
-                candidate_matrix[-1].append((score, passage))
-            assert len(candidate_matrix[-1]) == len(passage_list)
-        assert len(candidate_matrix) == I.shape[0]
+    for block_id in range(4):
+        for part_id in range(4):
+            logger.info("Loading passage reps - block {} part {}".format(block_id, part_id))
+            passage_embedding = None
+            passage_embedding2id = None
+            try:
+                with open(
+                        os.path.join(
+                            ann_data_dir,
+                            "passage_emb_p__data_obj_{}_job_4_{}.pb".format(block_id, part_id)),
+                        'rb') as handle:
+                    passage_embedding = pickle.load(handle)
+                with open(
+                        os.path.join(
+                            ann_data_dir,
+                            "passage_embid_p__data_obj_{}_job_4_{}.pb".format(block_id, part_id)),
+                        'rb') as handle:
+                    passage_embedding2id = pickle.load(handle)
+            except:
+                break
+            print('passage embedding shape: ' + str(passage_embedding.shape))
+            print("query embedding shape: " + str(query_embedding.shape))
+            gpu_index.add(passage_embedding)
+            ts = time.time()
+            D, I = gpu_index.search(query_embedding, topN)
+            te = time.time()
+            elapsed_time = te - ts
+            print({
+                "total": elapsed_time,
+                "data": query_embedding.shape[0],
+                "per_query": elapsed_time / query_embedding.shape[0]
+            })
+            candidate_id_matrix = passage_embedding2id[
+                I]  # passage_idx -> passage_id
+            D = D.tolist()
+            candidate_id_matrix = candidate_id_matrix.tolist()
+            candidate_matrix = []
+            for score_list, passage_list in zip(D, candidate_id_matrix):
+                candidate_matrix.append([])
+                for score, passage in zip(score_list, passage_list):
+                    candidate_matrix[-1].append((score, passage))
+                assert len(candidate_matrix[-1]) == len(passage_list)
+            assert len(candidate_matrix) == I.shape[0]
 
-        gpu_index.reset()
-        del passage_embedding
-        del passage_embedding2id
+            gpu_index.reset()
+            del passage_embedding
+            del passage_embedding2id
 
-        if merged_candidate_matrix == None:
-            merged_candidate_matrix = candidate_matrix
-            continue
+            if merged_candidate_matrix == None:
+                merged_candidate_matrix = candidate_matrix
+                continue
 
-        # merge
-        merged_candidate_matrix_tmp = copy.deepcopy(merged_candidate_matrix)
-        merged_candidate_matrix = []
-        for merged_list, cur_list in zip(merged_candidate_matrix_tmp,
-                                         candidate_matrix):
-            p1, p2 = 0, 0
-            merged_candidate_matrix.append([])
-            while p1 < topN and p2 < topN:
-                if merged_list[p1][0] >= cur_list[p2][0]:
+            # merge
+            merged_candidate_matrix_tmp = copy.deepcopy(merged_candidate_matrix)
+            merged_candidate_matrix = []
+            for merged_list, cur_list in zip(merged_candidate_matrix_tmp,
+                                            candidate_matrix):
+                p1, p2 = 0, 0
+                merged_candidate_matrix.append([])
+                while p1 < topN and p2 < topN:
+                    if merged_list[p1][0] >= cur_list[p2][0]:
+                        merged_candidate_matrix[-1].append(merged_list[p1])
+                        p1 += 1
+                    else:
+                        merged_candidate_matrix[-1].append(cur_list[p2])
+                        p2 += 1
+                while p1 < topN:
                     merged_candidate_matrix[-1].append(merged_list[p1])
                     p1 += 1
-                else:
+                while p2 < topN:
                     merged_candidate_matrix[-1].append(cur_list[p2])
                     p2 += 1
-            while p1 < topN:
-                merged_candidate_matrix[-1].append(merged_list[p1])
-                p1 += 1
-            while p2 < topN:
-                merged_candidate_matrix[-1].append(cur_list[p2])
-                p2 += 1
 
     merged_D, merged_I = [], []
     for merged_list in merged_candidate_matrix:
@@ -347,6 +354,8 @@ def main():
     with open(os.path.join(args.processed_data_dir, "offset2pid.pickle"),
               "rb") as f:
         offset2pid = pickle.load(f)
+
+    print("offset2pid first 10 elements", offset2pid[:10])
 
     logger.info("Building index")
     # faiss.omp_set_num_threads(16)

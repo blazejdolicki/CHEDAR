@@ -26,5 +26,5 @@ export PYTHONPATH=${PYTHONPATH}:`pwd`
 # Activate your environment
 source activate convdr
 
-# run inference and find negative documents
-python drivers/run_convdr_inference.py  --model_path=checkpoints/ad-hoc-ance-msmarco  --eval_file=datasets/cast-19/eval_topics.jsonl  --query=target  --per_gpu_eval_batch_size=8  --ann_data_dir=/project/gpuuva006/CAST19_ANCE_embeddings  --qrels=datasets/cast-19/qrels.tsv  --processed_data_dir=/project/gpuuva006/team3/cast-tokenized/  --raw_data_dir=datasets/cast-19   --output_file=results/cast-19/manual_ance.jsonl  --output_trec_file=results/cast-19/manual_ance.trec  --model_type=rdot_nll  --output_query_type=manual  --use_gpu
+# Tokenize CAST-19
+python data/tokenizing.py  --collection=datasets/cast-shared/collection.tsv  --out_data_dir=/project/gpuuva006/team3/cast-tokenized/  --model_name_or_path=checkpoints/ad-hoc-ance-msmarco --model_type=rdot_nll
