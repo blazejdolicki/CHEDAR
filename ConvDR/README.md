@@ -153,7 +153,7 @@ Note that we follow the ANCE implementation and this step takes up a lot of memo
 
 ## ConvDR Training
 
-Now we are all prepared: we have downloaded & preprocessed data, and we have obtained document embeddings. Simply run `./drivers/run_convdr_train.py` to train a ConvDR using KD (MSE) loss:
+Now we are all prepared: we have downloaded & preprocessed data, and we have obtained document embeddings. Simply run `./drivers/run_convdr_train.py` to train a ConvDR using KD (MSE) loss (batch script: `train_basic.sh`):
 
 ```bash
 # CAsT-19, KD loss only, five-fold cross-validation
@@ -173,16 +173,17 @@ python drivers/run_convdr_train.py  --output_dir=checkpoints/convdr-kd-cast20-wa
 python drivers/run_convdr_train.py  --output_dir=checkpoints/convdr-kd-cast20  --model_name_or_path=checkpoints/convdr-kd-cast20-warmup  --teacher_model=checkpoints/ad-hoc-ance-msmarco  --train_file=datasets/cast-20/eval_topics.jsonl  --query=auto_can  --per_gpu_train_batch_size=4  --learning_rate=1e-5   --log_dir=logs/convdr_kd_cast20  --num_train_epochs=8  --model_type=rdot_nll  --cross_validate  --max_concat_length=512
 ```
 
-To use ranking loss, we need to find negative documents for each query. We use top retrieved negatives documents from the ranking results of **manual** queries. So we need to first perform retrieval using the manual queries:
+To use ranking loss, we need to find negative documents for each query. We use top retrieved negatives documents from the ranking results of **manual** queries. So we need to first perform retrieval using the manual queries (batch script: `find_negative_docs.sh`):
 
 ```bash
 # CAsT-19
+mkdir results/cast-19
 python drivers/run_convdr_inference.py  --model_path=checkpoints/ad-hoc-ance-msmarco  --eval_file=datasets/cast-19/eval_topics.jsonl  --query=target  --per_gpu_eval_batch_size=8  --ann_data_dir=datasets/cast-19/embeddings  --qrels=datasets/cast-19/qrels.tsv  --processed_data_dir=datasets/cast-19/tokenized  --raw_data_dir=datasets/cast-19   --output_file=results/cast-19/manual_ance.jsonl  --output_trec_file=results/cast-19/manual_ance.trec  --model_type=rdot_nll  --output_query_type=manual  --use_gpu
 # OR-QuAC, inference on train, set query to "target" to use manual queries directly
 python drivers/run_convdr_inference.py  --model_path=checkpoints/ad-hoc-ance-orquac.cp  --eval_file=datasets/or-quac/train.jsonl  --query=target  --per_gpu_eval_batch_size=8  --ann_data_dir=datasets/or-quac/embeddings  --qrels=datasets/or-quac/qrels.tsv  --processed_data_dir=datasets/or-quac/tokenized  --raw_data_dir=datasets/or-quac   --output_file=results/or-quac/manual_ance_train.jsonl  --output_trec_file=results/or-quac/manual_ance_train.trec  --model_type=dpr  --output_query_type=train.manual  --use_gpu
 ```
 
-After the retrieval finishes, we can select negative documents from manual runs and supplement the original training files with them:
+After the retrieval finishes, we can select negative documents from manual runs and supplement the original training files with them (batch script: `select_neg_docs.sh`):
 
 ```bash
 # CAsT-19
@@ -191,7 +192,7 @@ python data/gen_ranking_data.py  --train=datasets/cast-19/eval_topics.jsonl  --r
 python data/gen_ranking_data.py  --train=datasets/or-quac/train.jsonl  --run=results/or-quac/manual_ance_train.trec  --output=datasets/or-quac/train.rank.jsonl  --qrels=datasets/or-quac/qrels.tsv  --collection=datasets/or-quac/collection.jsonl
 ```
 
-Now we are able to use the ranking loss, with the `--ranking_task` flag on:
+Now we are able to use the ranking loss, with the `--ranking_task` flag on (batch script: `train_ranking.sh`):
 
 ```bash
 # CAsT-19, Multi-task
@@ -204,7 +205,7 @@ To disable the KD loss, simply set the `--no_mse` flag.
 
 ## ConvDR Inference
 
-Run `./drivers/run_convdr_inference.py` to get inference results. `output_file` is the [OpenMatch](https://github.com/thunlp/OpenMatch)-format file for reranking, and `output_trec_file` is the TREC-style run file which can be evaluated by the [trec_eval](https://github.com/usnistgov/trec_eval) tool.
+Run `./drivers/run_convdr_inference.py` to get inference results. `output_file` is the [OpenMatch](https://github.com/thunlp/OpenMatch)-format file for reranking, and `output_trec_file` is the TREC-style run file which can be evaluated by the [trec_eval](https://github.com/usnistgov/trec_eval) tool (batch script: `inference_results.sh`).
 
 ```bash
 # OR-QuAC
