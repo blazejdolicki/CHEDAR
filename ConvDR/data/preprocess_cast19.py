@@ -10,7 +10,7 @@ from utils.util import NUM_FOLD
 
 def parse_sim_file(filename):
     """
-    Reads the deduplicated documents file and stores the 
+    Reads the deduplicated documents file and stores the
     duplicate passage ids into a dictionary
     """
 
@@ -58,6 +58,7 @@ if __name__ == "__main__":
     out_collection_file = os.path.join(args.out_collection_dir,
                                        "collection.tsv")
 
+
     # 1. Combine TREC-CAR & MS MARCO, remove duplicate passages, assign new ids
     car_id_to_idx = {}
     car_idx_to_id = []
@@ -87,14 +88,14 @@ if __name__ == "__main__":
             print("Processing MS MARCO...")
             removed = 0
             with open(args.msmarco_collection, "r") as m:
-                for line in tqdm(m):                    
+                for line in tqdm(m):
                     marco_id, text = line.strip().split("\t")
                     if ("MARCO_" + marco_id) in sim_dict:
                         removed += 1
                         continue
                     f.write("{}\t{}\n".format(marco_id, text))
             print("Removed " + str(removed) + " passages")
-        print("Dumping id mappings...")
+        print("Dumping id mappings to {} and {}...".format(car_id_to_idx_file, car_idx_to_id_file))
         with open(car_id_to_idx_file, "wb") as f:
             pickle.dump(car_id_to_idx, f)
         with open(car_idx_to_id_file, "wb") as f:

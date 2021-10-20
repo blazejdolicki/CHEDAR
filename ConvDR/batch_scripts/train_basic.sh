@@ -36,4 +36,5 @@ python drivers/run_convdr_train.py  --output_dir=checkpoints/convdr-kd-cast19  \
                                     --log_dir=logs/convdr_kd_cast19  \
                                     --num_train_epochs=8  \
                                     --model_type=rdot_nll \
-                                    --cross_validate
+                                    --cross_validate \
+                                    --overwrite_output_dir
