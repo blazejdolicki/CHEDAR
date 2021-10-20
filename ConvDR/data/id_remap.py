@@ -13,6 +13,11 @@ if __name__ == "__main__":
         doc_idx_to_id = pickle.load(f)
 
     with open(args.convdr_trec, "r") as f, open(args.out_trec, "w") as g:
+        print("len(doc_idx_to_id)",len(doc_idx_to_id))
         for line in f:
             qid, _, pid, rank, score, label = line.strip().split()
-            g.write("{} Q0 {} {} {} {}\n".format(qid, doc_idx_to_id[int(pid)], rank, score, label))
+            try:
+                g.write("{} Q0 {} {} {} {}\n".format(qid, doc_idx_to_id[int(pid)], rank, score, label))
+            except IndexError:
+                print("index error - index {} out of range".format(pid))
+
