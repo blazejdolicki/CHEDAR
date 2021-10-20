@@ -56,11 +56,7 @@ def EvalDevQuery(query_embedding2id,
         qids_to_raw_sequences[query_id] = inputs
 
         for idx, score in zip(selected_ann_idx, selected_ann_score):
-            try:
-                pred_pid = offset2pid[idx]
-                print("correct idx")
-            except:
-                print("incorrect idx:", idx, "length of offset2pid", len(offset2pid))
+            pred_pid = offset2pid[idx]
 
             if not pred_pid in seen_pid:
                 qids_to_ranked_candidate_passages[query_id][rank] = (pred_pid,
