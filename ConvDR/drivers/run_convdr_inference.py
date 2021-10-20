@@ -163,21 +163,22 @@ def search_one_by_one(ann_data_dir, gpu_index, query_embedding, topN):
             logger.info("Loading passage reps - block {} part {}".format(block_id, part_id))
             passage_embedding = None
             passage_embedding2id = None
-            try:
-                with open(
-                        os.path.join(
-                            ann_data_dir,
-                            "passage_emb_p__data_obj_{}_job_4_{}.pb".format(block_id, part_id)),
-                        'rb') as handle:
-                    passage_embedding = pickle.load(handle)
-                with open(
-                        os.path.join(
-                            ann_data_dir,
-                            "passage_embid_p__data_obj_{}_job_4_{}.pb".format(block_id, part_id)),
-                        'rb') as handle:
-                    passage_embedding2id = pickle.load(handle)
-            except:
-                break
+            with open(
+                    os.path.join(
+                        ann_data_dir,
+                        "passage_emb_p__data_obj_{}_job_4_{}.pb".format(block_id, part_id)),
+                    'rb') as handle:
+                passage_embedding = pickle.load(handle)
+            with open(
+                    os.path.join(
+                        ann_data_dir,
+                        "passage_embid_p__data_obj_{}_job_4_{}.pb".format(block_id, part_id)),
+                    'rb') as handle:
+                passage_embedding2id = pickle.load(handle)
+                # map ids because we split the collection in 4 parts due to RAM limits
+                passage_embedding2id += int((part_id)*38429844/4)
+
+
             print('passage embedding shape: ' + str(passage_embedding.shape))
             print("query embedding shape: " + str(query_embedding.shape))
             gpu_index.add(passage_embedding)
@@ -423,6 +424,7 @@ def main():
 
             logger.info("Testing Fold #{}".format(i))
             suffix = ('-' + str(i))
+            print("args.model_path + suffix", args.model_path, args.model_path + suffix)
             config, tokenizer, model = load_model(args,
                                                   args.model_path + suffix)
 
