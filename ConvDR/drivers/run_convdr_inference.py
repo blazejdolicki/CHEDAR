@@ -417,10 +417,14 @@ def main():
 
     else:
         # K-Fold Cross Validation
-
+        init_model_path = args.model_path
         for i in range(NUM_FOLD):
             if args.fold != -1 and i != args.fold:
                 continue
+
+            # inside load_model() there's an assignment args.model_path = args.model_path + suffix,
+            # so in the second fold we get arg.model_path-0-1 instead of arg.model_path-1
+            args.model_path = init_model_path
 
             logger.info("Testing Fold #{}".format(i))
             suffix = ('-' + str(i))
