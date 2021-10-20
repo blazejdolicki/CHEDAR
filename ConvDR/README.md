@@ -216,6 +216,24 @@ python drivers/run_convdr_inference.py  --model_path=checkpoints/convdr-kd-cast1
 
 The query embedding inference always takes the first GPU. If you set the `--use_gpu` flag (recommended), the retrieval will be performed on the remaining GPUs. The retrieval process consumes a lot of GPU resources. To reduce the resource usage, we split all document embeddings into several blocks, perform searching one-by-one and finally combine the results. If you have enough GPU resources, you can modify the code to perform searching all at once.
 
+Moreover, we need to map passage ids into CAR document ids using the file obtained in the step preprocessing CAST-19 (batch script: `map_results.sh`).
+```
+python data/id_remap.py --convdr results/cast-19/multi.trec --doc_idx_to_id datasets/cast-shared/car_idx_to_id.pickle --out_trec results/cast-19/multi_mapped.trec
+```
+
+### Evaluation with `trec_eval`
+Follow this steps to obtain evaluation metrics from the TREC-style file.
+```
+# git clone the aforementioned repository
+git clone https://github.com/usnistgov/trec_eval.git
+# go to the root dir
+cd trec_eval
+# set up the repo
+make
+# run evaluation
+./trec_eval -m all_trec ../CHEDAR/ConvDR/datasets/raw/cast-19/2019qrels.txt ../CHEDAR/ConvDR/results/cast-19/multi_mapped.trec > ../CHEDAR/ConvDR/results/cast-19/multi_results.txt
+```
+
 ## Download Trained Models
 
 Three trained models can be downloaded with the following link: [CAsT19-KD-CV-Fold1](https://data.thunlp.org/convdr/convdr-kd-cast19-1.zip), [CAsT20-KD-Warmup-CV-Fold2](https://data.thunlp.org/convdr/convdr-kd-cast20-2.zip) and [ORQUAC-Multi](https://data.thunlp.org/convdr/convdr-multi-orquac.cp).
