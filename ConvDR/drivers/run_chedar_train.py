@@ -12,7 +12,7 @@ from tqdm import tqdm, trange
 from transformers import get_linear_schedule_with_warmup
 from torch import nn
 
-from model.models import MSMarcoConfigDict
+from model.models import MSMarcoConfigDict, HistoryEncoder
 from utils.util import ChedarSearchDataset,  NUM_FOLD, set_seed, load_model
 from utils.dpr_utils import CheckpointState, get_model_obj, get_optimizer
 
@@ -96,24 +96,26 @@ def train(args,
     train_iterator = trange(int(args.num_train_epochs), desc="Epoch")
     set_seed(
         args)  # Added here for reproducibility (even between python 2 and 3)
-    
-    history_emb = torch.zeros((embs.shape))    
+    history_encoder = HistoryEncoder(args)
+    history_encoder.to(args.device)
+    history_emb = torch.zeros((1,768),device= args.device)    
     for _ in train_iterator:
         epoch_iterator = tqdm(train_dataloader, desc="Iteration")
         for step, batch in enumerate(epoch_iterator):
-            qid, concat_ids, concat_id_mask, target_ids, target_id_mask = (ele.to(
-                args.device) for ele in [batch["qid"],batch["concat_ids"], batch["concat_id_mask"], batch["target_ids"], batch["target_id_mask"]
+            concat_ids, concat_id_mask, target_ids, target_id_mask = (ele.to(args.device) for ele in [batch["concat_ids"], batch["concat_id_mask"], batch["target_ids"], batch["target_id_mask"]
                 ])
-            model.train()
+            qid = batch["qid"][0]
+            print("Conversation id and Query id:",qid)
+            model.eval()
             teacher_model.eval()
-            
+            history_encoder.train()
             with torch.no_grad(): #CHEDAR: dont train convdr model
               embs = model(concat_ids, concat_id_mask)
               
             #CHEDAR:
             if qid.split('_')[-1] == '1':
               #Create new history embedding
-              history_emb = torch.zeros((embs.shape))
+              history_emb = torch.zeros((embs.shape),device= args.device)
             
             history_emb = history_encoder(embs,history_emb)
             
@@ -195,11 +197,12 @@ def train(args,
             torch.cuda.empty_cache()
 
             if (step + 1) % args.gradient_accumulation_steps == 0:
-                torch.nn.utils.clip_grad_norm_(model.parameters(),
+                torch.nn.utils.clip_grad_norm_(history_encoder.parameters(),
                                                args.max_grad_norm)
                 optimizer.step()
                 scheduler.step()  # Update learning rate schedule
-                model.zero_grad()
+                #model.zero_grad()
+                history_encoder.zero_grad()
                 global_step += 1
 
                 if global_step % args.log_steps == 0:
