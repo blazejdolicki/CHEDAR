@@ -615,6 +615,183 @@ class ConvSearchDataset(Dataset):
             return collated_dict
 
         return collate_fn
+#-----------------------------------------------------------------------------------------------
+#                             START    CHEDAR
+#-----------------------------------------------------------------------------------------------
+
+class ChedarSearchDataset(Dataset):
+    def __init__(self, filenames, tokenizer, args, mode="train"):
+        self.examples = []
+        for filename in filenames:
+            with open(filename, encoding="utf-8") as f:
+                for line in f:
+                    record = json.loads(line)
+                    input_sents = record['input']
+                    target_sent = record['target']
+                    auto_sent = record.get('output', "no")
+                    raw_sent = record["input"][-1]
+                    responses = record[
+                        "manual_response"] if args.query == "man_can" else (
+                            record["automatic_response"]
+                            if args.query == "auto_can" else [])
+                    topic_number = record.get('topic_number', None)
+                    query_number = record.get('query_number', None)
+                    qid = str(topic_number) + "_" + str(
+                        query_number) if topic_number != None else str(
+                            record["qid"])
+                    sequences = record['input']
+                    concat_ids = []
+                    concat_id_mask = []
+                    target_ids = None
+                    target_id_mask = None
+                    doc_pos = None
+                    doc_negs = None
+                    if mode == "train" and args.ranking_task:
+                        doc_pos = record["doc_pos"]
+                        doc_negs = record["doc_negs"]
+
+                    if mode == "train" or args.query in [
+                            "no_res", "man_can", "auto_can"
+                    ]:
+                        if args.model_type == "dpr":
+                            raise KeyError("dpr not modified for CHEDAR, check if something needs to be done")
+                            concat_ids.append(
+                                tokenizer.cls_token_id
+                            )  # dpr (on OR-QuAC) uses BERT-style sequence [CLS] q1 [SEP] q2 [SEP] ...
+                        
+                        # CHEDAR commented out because we dont use previous questions or answers as input
+#                        for sent in input_sents[:-1]:  # exlude last one
+#                            if args.model_type != "dpr":
+#                                concat_ids.append(
+#                                    tokenizer.cls_token_id
+#                                )  # RoBERTa-style sequence <s> q1 </s> <s> q2 </s> ...
+#                            concat_ids.extend(
+#                                tokenizer.convert_tokens_to_ids(
+#                                    tokenizer.tokenize(sent)))
+#                            concat_ids.append(tokenizer.sep_token_id)
+#
+#                        if args.query in [
+#                                "man_can", "auto_can"
+#                        ] and len(responses) >= 2:  # add response
+#                            if args.model_type != "dpr":
+#                                concat_ids.append(tokenizer.cls_token_id)
+#                            concat_ids.extend(
+#                                tokenizer.convert_tokens_to_ids(["<response>"
+#                                                                 ]))
+#                            concat_ids.extend(
+#                                tokenizer.convert_tokens_to_ids(
+#                                    tokenizer.tokenize(responses[-2])))
+#                            concat_ids.append(tokenizer.sep_token_id)
+#                            sequences.insert(-1, responses[-2])
+
+                        if args.model_type != "dpr":
+                            concat_ids.append(tokenizer.cls_token_id)
+                        concat_ids.extend(
+                            tokenizer.convert_tokens_to_ids(
+                                tokenizer.tokenize(input_sents[-1]))) #Chedar: We only want the latest query which hasnt been resolved
+                        concat_ids.append(tokenizer.sep_token_id)
+
+                        # We do not use token type id for BERT (and for RoBERTa, of course)
+                        concat_ids, concat_id_mask = pad_input_ids_with_mask(
+                            concat_ids, args.max_concat_length)
+                        assert len(concat_ids) == args.max_concat_length
+
+                    elif args.query == "target":  # manual
+                        #raise KeyError("query type target not modified for CHEDAR, check if something needs to be done")
+                        concat_ids = tokenizer.encode(
+                            target_sent,
+                            add_special_tokens=True,
+                            max_length=args.max_query_length)
+                        concat_ids, concat_id_mask = pad_input_ids_with_mask(
+                            concat_ids, args.max_query_length)
+                        assert len(concat_ids) == args.max_query_length
+
+                    elif args.query == "output":  # reserved for query rewriter output
+                        #raise KeyError("query type output not modified for CHEDAR, check if something needs to be done")
+                        concat_ids = tokenizer.encode(
+                            auto_sent,
+                            add_special_tokens=True,
+                            max_length=args.max_query_length)
+                        concat_ids, concat_id_mask = pad_input_ids_with_mask(
+                            concat_ids, args.max_query_length)
+                        assert len(concat_ids) == args.max_query_length
+
+                    elif args.query == "raw":
+                         #raise KeyError("query type raw not modified for CHEDAR, check if something needs to be done")
+                        concat_ids = tokenizer.encode(
+                            raw_sent,
+                            add_special_tokens=True,
+                            max_length=args.max_query_length)
+                        concat_ids, concat_id_mask = pad_input_ids_with_mask(
+                            concat_ids, args.max_query_length)
+                        assert len(concat_ids) == args.max_query_length
+
+                    else:
+                        raise KeyError("Unsupported query type")
+
+                    if mode == "train":
+                        target_ids = tokenizer.encode(
+                            target_sent,
+                            add_special_tokens=True,
+                            max_length=args.max_query_length)
+                        target_ids, target_id_mask = pad_input_ids_with_mask(
+                            target_ids, args.max_query_length)
+                        assert len(target_ids) == args.max_query_length
+
+                    self.examples.append(
+                        ConvSearchExample(qid, concat_ids, concat_id_mask,
+                                          target_ids, target_id_mask, doc_pos,
+                                          doc_negs, sequences))
+
+    def __len__(self):
+        return len(self.examples)
+
+    def __getitem__(self, item):
+        return self.examples[item]
+
+    @staticmethod
+    def get_collate_fn(args, mode):
+        def collate_fn(batch_dataset: list):
+            collated_dict = {
+                "qid": [],
+                "concat_ids": [],
+                "concat_id_mask": [],
+            }
+            if mode == "train":
+                collated_dict.update({"target_ids": [], "target_id_mask": []})
+                if args.ranking_task:
+                    collated_dict.update({"documents": []})
+            else:
+                collated_dict.update({"history_utterances": []})
+            for example in batch_dataset:
+                collated_dict["qid"].append(example.qid)
+                collated_dict["concat_ids"].append(example.concat_ids)
+                collated_dict["concat_id_mask"].append(example.concat_id_mask)
+                if mode == "train":
+                    collated_dict["target_ids"].append(example.target_ids)
+                    collated_dict["target_id_mask"].append(
+                        example.target_id_mask)
+                    if args.ranking_task:
+                        collated_dict["documents"].append([example.doc_pos] +
+                                                          example.doc_negs)
+                else:
+                    collated_dict["history_utterances"].append(
+                        example.raw_sequences)
+            should_be_tensor = [
+                "concat_ids", "concat_id_mask", "target_ids", "target_id_mask"
+            ]
+            for key in should_be_tensor:
+                if key in collated_dict:
+                    collated_dict[key] = torch.tensor(collated_dict[key],
+                                                      dtype=torch.long)
+
+            return collated_dict
+
+        return collate_fn
+#-----------------------------------------------------------------------------------------------
+#                               END  CHEDAR
+#-----------------------------------------------------------------------------------------------
+
 
 
 def tokenize_to_file(args, i, num_process, in_path, out_path, line_fn):

@@ -1,0 +1,6 @@
+/home/lcur0054/CHEDAR/ConvDR
+Loading doc_idx_to_id...
+Traceback (most recent call last):
+  File "data/id_remap.py", line 18, in <module>
+    g.write("{} Q0 {} {} {} {}\n".format(qid, doc_idx_to_id[int(pid)], rank, score, label))
+IndexError: list index out of range

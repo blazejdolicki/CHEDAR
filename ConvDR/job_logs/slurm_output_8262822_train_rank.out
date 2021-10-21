@@ -1,0 +1,1977 @@
+10/19/2021 13:18:36 - WARNING - __main__ -   device: cuda, n_gpu: 1
+10/19/2021 13:18:36 - INFO - transformers.configuration_utils -   loading configuration file checkpoints/ad-hoc-ance-msmarco/config.json
+10/19/2021 13:18:36 - INFO - transformers.configuration_utils -   Model config {
+  "_num_labels": 2,
+  "architectures": [
+    "RobertaDot_NLL_LN"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bad_words_ids": null,
+  "bos_token_id": 0,
+  "decoder_start_token_id": null,
+  "do_sample": false,
+  "early_stopping": false,
+  "eos_token_id": 2,
+  "eos_token_ids": 0,
+  "finetuning_task": "MSMarco",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "is_encoder_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-05,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 514,
+  "min_length": 0,
+  "model_type": "roberta",
+  "no_repeat_ngram_size": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 2,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 1,
+  "prefix": null,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "task_specific_params": null,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 1,
+  "use_bfloat16": false,
+  "vocab_size": 50265
+}
+
+10/19/2021 13:18:36 - INFO - transformers.tokenization_utils -   Model name 'checkpoints/ad-hoc-ance-msmarco' not found in model shortcut name list (roberta-base, roberta-large, roberta-large-mnli, distilroberta-base, roberta-base-openai-detector, roberta-large-openai-detector). Assuming 'checkpoints/ad-hoc-ance-msmarco' is a path or url to a directory containing tokenizer files.
+10/19/2021 13:18:36 - INFO - transformers.tokenization_utils -   Didn't find file checkpoints/ad-hoc-ance-msmarco/added_tokens.json. We won't load it.
+10/19/2021 13:18:36 - INFO - transformers.tokenization_utils -   loading file checkpoints/ad-hoc-ance-msmarco/vocab.json
+10/19/2021 13:18:36 - INFO - transformers.tokenization_utils -   loading file checkpoints/ad-hoc-ance-msmarco/merges.txt
+10/19/2021 13:18:36 - INFO - transformers.tokenization_utils -   loading file None
+10/19/2021 13:18:36 - INFO - transformers.tokenization_utils -   loading file checkpoints/ad-hoc-ance-msmarco/special_tokens_map.json
+10/19/2021 13:18:36 - INFO - transformers.tokenization_utils -   loading file checkpoints/ad-hoc-ance-msmarco/tokenizer_config.json
+10/19/2021 13:18:36 - INFO - transformers.modeling_utils -   loading weights file checkpoints/ad-hoc-ance-msmarco/pytorch_model.bin
+10/19/2021 13:18:49 - INFO - __main__ -   Training Fold #0
+10/19/2021 13:18:49 - INFO - transformers.configuration_utils -   loading configuration file checkpoints/ad-hoc-ance-msmarco/config.json
+10/19/2021 13:18:49 - INFO - transformers.configuration_utils -   Model config {
+  "_num_labels": 2,
+  "architectures": [
+    "RobertaDot_NLL_LN"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bad_words_ids": null,
+  "bos_token_id": 0,
+  "decoder_start_token_id": null,
+  "do_sample": false,
+  "early_stopping": false,
+  "eos_token_id": 2,
+  "eos_token_ids": 0,
+  "finetuning_task": "MSMarco",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "is_encoder_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-05,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 514,
+  "min_length": 0,
+  "model_type": "roberta",
+  "no_repeat_ngram_size": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 2,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 1,
+  "prefix": null,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "task_specific_params": null,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 1,
+  "use_bfloat16": false,
+  "vocab_size": 50265
+}
+
+10/19/2021 13:18:49 - INFO - transformers.tokenization_utils -   Model name 'checkpoints/ad-hoc-ance-msmarco' not found in model shortcut name list (roberta-base, roberta-large, roberta-large-mnli, distilroberta-base, roberta-base-openai-detector, roberta-large-openai-detector). Assuming 'checkpoints/ad-hoc-ance-msmarco' is a path or url to a directory containing tokenizer files.
+10/19/2021 13:18:49 - INFO - transformers.tokenization_utils -   Didn't find file checkpoints/ad-hoc-ance-msmarco/added_tokens.json. We won't load it.
+10/19/2021 13:18:49 - INFO - transformers.tokenization_utils -   loading file checkpoints/ad-hoc-ance-msmarco/vocab.json
+10/19/2021 13:18:49 - INFO - transformers.tokenization_utils -   loading file checkpoints/ad-hoc-ance-msmarco/merges.txt
+10/19/2021 13:18:49 - INFO - transformers.tokenization_utils -   loading file None
+10/19/2021 13:18:49 - INFO - transformers.tokenization_utils -   loading file checkpoints/ad-hoc-ance-msmarco/special_tokens_map.json
+10/19/2021 13:18:49 - INFO - transformers.tokenization_utils -   loading file checkpoints/ad-hoc-ance-msmarco/tokenizer_config.json
+10/19/2021 13:18:49 - INFO - transformers.modeling_utils -   loading weights file checkpoints/ad-hoc-ance-msmarco/pytorch_model.bin
+10/19/2021 13:18:56 - INFO - __main__ -   Training/evaluation parameters Namespace(adam_epsilon=1e-08, cache_dir=None, cross_validate=True, device=device(type='cuda'), gradient_accumulation_steps=1, init_from_multiple_models=False, learning_rate=1e-05, log_dir='logs/convdr_multi_cast19', log_steps=1, max_concat_length=256, max_grad_norm=1.0, max_query_length=64, max_steps=-1, model_name_or_path='checkpoints/ad-hoc-ance-msmarco', model_path='checkpoints/ad-hoc-ance-msmarco', model_type='rdot_nll', n_gpu=1, no_cuda=False, no_mse=False, num_negatives=9, num_train_epochs=8.0, output_dir='checkpoints/convdr-multi-cast19', overwrite_output_dir=False, per_gpu_train_batch_size=4, query='no_res', ranking_task=True, save_steps=-1, seed=42, teacher_model='checkpoints/ad-hoc-ance-msmarco', train_file='datasets/cast-19/eval_topics.rank.jsonl', warmup_steps=0, weight_decay=0.0)
+10/19/2021 13:18:56 - INFO - __main__ -   train_files: ['datasets/cast-19/eval_topics.rank.jsonl.1', 'datasets/cast-19/eval_topics.rank.jsonl.2', 'datasets/cast-19/eval_topics.rank.jsonl.3', 'datasets/cast-19/eval_topics.rank.jsonl.4']
+10/19/2021 13:18:56 - INFO - __main__ -   ***** Running training *****
+10/19/2021 13:18:56 - INFO - __main__ -     Num examples = 137
+10/19/2021 13:18:56 - INFO - __main__ -     Num Epochs = 8
+10/19/2021 13:18:56 - INFO - __main__ -     Instantaneous batch size per GPU = 4
+10/19/2021 13:18:56 - INFO - __main__ -     Total train batch size (w. parallel & accumulation) = 4
+10/19/2021 13:18:56 - INFO - __main__ -     Gradient Accumulation steps = 1
+10/19/2021 13:18:56 - INFO - __main__ -     Total optimization steps = 280
+Using mean: False
+Using mean: False
+Epoch:   0%|          | 0/8 [00:00<?, ?it/s]
+Iteration:   0%|          | 0/35 [00:00<?, ?it/s][A/home/lcur0054/.conda/envs/convdr/lib/python3.7/site-packages/transformers/optimization.py:146: UserWarning: This overload of add_ is deprecated:
+	add_(Number alpha, Tensor other)
+Consider using one of the following signatures instead:
+	add_(Tensor other, *, Number alpha) (Triggered internally at  /opt/conda/conda-bld/pytorch_1631630836880/work/torch/csrc/utils/python_arg_parser.cpp:1025.)
+  exp_avg.mul_(beta1).add_(1.0 - beta1, grad)
+
+Iteration:   3%|2         | 1/35 [00:01<00:59,  1.75s/it][A
+Iteration:   6%|5         | 2/35 [00:02<00:46,  1.41s/it][A
+Iteration:   9%|8         | 3/35 [00:04<00:40,  1.28s/it][A
+Iteration:  11%|#1        | 4/35 [00:05<00:37,  1.21s/it][A
+Iteration:  14%|#4        | 5/35 [00:06<00:35,  1.18s/it][A
+Iteration:  17%|#7        | 6/35 [00:07<00:33,  1.17s/it][A
+Iteration:  20%|##        | 7/35 [00:08<00:32,  1.15s/it][A
+Iteration:  23%|##2       | 8/35 [00:09<00:30,  1.14s/it][A
+Iteration:  26%|##5       | 9/35 [00:10<00:29,  1.13s/it][A
+Iteration:  29%|##8       | 10/35 [00:11<00:28,  1.13s/it][A
+Iteration:  31%|###1      | 11/35 [00:13<00:27,  1.13s/it][A
+Iteration:  34%|###4      | 12/35 [00:14<00:25,  1.13s/it][A
+Iteration:  37%|###7      | 13/35 [00:15<00:24,  1.13s/it][A
+Iteration:  40%|####      | 14/35 [00:16<00:23,  1.12s/it][A
+Iteration:  43%|####2     | 15/35 [00:17<00:22,  1.12s/it][A
+Iteration:  46%|####5     | 16/35 [00:18<00:21,  1.12s/it][A
+Iteration:  49%|####8     | 17/35 [00:19<00:20,  1.12s/it][A
+Iteration:  51%|#####1    | 18/35 [00:20<00:18,  1.12s/it][A
+Iteration:  54%|#####4    | 19/35 [00:21<00:17,  1.11s/it][A
+Iteration:  57%|#####7    | 20/35 [00:23<00:16,  1.11s/it][A
+Iteration:  60%|######    | 21/35 [00:24<00:15,  1.12s/it][A
+Iteration:  63%|######2   | 22/35 [00:25<00:14,  1.11s/it][A
+Iteration:  66%|######5   | 23/35 [00:26<00:13,  1.12s/it][A
+Iteration:  69%|######8   | 24/35 [00:27<00:12,  1.11s/it][A
+Iteration:  71%|#######1  | 25/35 [00:28<00:11,  1.12s/it][A
+Iteration:  74%|#######4  | 26/35 [00:29<00:10,  1.12s/it][A
+Iteration:  77%|#######7  | 27/35 [00:30<00:09,  1.13s/it][A
+Iteration:  80%|########  | 28/35 [00:32<00:07,  1.13s/it][A
+Iteration:  83%|########2 | 29/35 [00:33<00:06,  1.11s/it][A
+Iteration:  86%|########5 | 30/35 [00:34<00:05,  1.10s/it][A
+Iteration:  89%|########8 | 31/35 [00:35<00:04,  1.10s/it][A
+Iteration:  91%|#########1| 32/35 [00:36<00:03,  1.10s/it][A
+Iteration:  94%|#########4| 33/35 [00:37<00:02,  1.10s/it][A
+Iteration:  97%|#########7| 34/35 [00:38<00:01,  1.11s/it][A
+Iteration: 100%|##########| 35/35 [00:39<00:00,  1.12it/s][AIteration: 100%|##########| 35/35 [00:39<00:00,  1.11s/it]
+Epoch:  12%|#2        | 1/8 [00:39<04:33, 39.02s/it]
+Iteration:   0%|          | 0/35 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/35 [00:01<00:37,  1.10s/it][A
+Iteration:   6%|5         | 2/35 [00:02<00:36,  1.09s/it][A
+Iteration:   9%|8         | 3/35 [00:03<00:35,  1.10s/it][A
+Iteration:  11%|#1        | 4/35 [00:04<00:34,  1.10s/it][A
+Iteration:  14%|#4        | 5/35 [00:05<00:32,  1.10s/it][A
+Iteration:  17%|#7        | 6/35 [00:06<00:31,  1.10s/it][A
+Iteration:  20%|##        | 7/35 [00:07<00:30,  1.10s/it][A
+Iteration:  23%|##2       | 8/35 [00:08<00:29,  1.09s/it][A
+Iteration:  26%|##5       | 9/35 [00:09<00:28,  1.09s/it][A
+Iteration:  29%|##8       | 10/35 [00:10<00:27,  1.10s/it][A
+Iteration:  31%|###1      | 11/35 [00:12<00:26,  1.09s/it][A
+Iteration:  34%|###4      | 12/35 [00:13<00:25,  1.10s/it][A
+Iteration:  37%|###7      | 13/35 [00:14<00:24,  1.10s/it][A
+Iteration:  40%|####      | 14/35 [00:15<00:23,  1.11s/it][A
+Iteration:  43%|####2     | 15/35 [00:16<00:22,  1.11s/it][A
+Iteration:  46%|####5     | 16/35 [00:17<00:21,  1.11s/it][A
+Iteration:  49%|####8     | 17/35 [00:18<00:19,  1.11s/it][A
+Iteration:  51%|#####1    | 18/35 [00:19<00:18,  1.10s/it][A
+Iteration:  54%|#####4    | 19/35 [00:20<00:17,  1.11s/it][A
+Iteration:  57%|#####7    | 20/35 [00:22<00:16,  1.11s/it][A
+Iteration:  60%|######    | 21/35 [00:23<00:15,  1.10s/it][A
+Iteration:  63%|######2   | 22/35 [00:24<00:14,  1.10s/it][A
+Iteration:  66%|######5   | 23/35 [00:25<00:13,  1.11s/it][A
+Iteration:  69%|######8   | 24/35 [00:26<00:12,  1.10s/it][A
+Iteration:  71%|#######1  | 25/35 [00:27<00:10,  1.10s/it][A
+Iteration:  74%|#######4  | 26/35 [00:28<00:09,  1.09s/it][A
+Iteration:  77%|#######7  | 27/35 [00:29<00:08,  1.10s/it][A
+Iteration:  80%|########  | 28/35 [00:30<00:07,  1.10s/it][A
+Iteration:  83%|########2 | 29/35 [00:31<00:06,  1.12s/it][A
+Iteration:  86%|########5 | 30/35 [00:33<00:05,  1.10s/it][A
+Iteration:  89%|########8 | 31/35 [00:34<00:04,  1.10s/it][A
+Iteration:  91%|#########1| 32/35 [00:35<00:03,  1.11s/it][A
+Iteration:  94%|#########4| 33/35 [00:36<00:02,  1.12s/it][A
+Iteration:  97%|#########7| 34/35 [00:37<00:01,  1.11s/it][A
+Iteration: 100%|##########| 35/35 [00:37<00:00,  1.12it/s][AIteration: 100%|##########| 35/35 [00:37<00:00,  1.08s/it]
+Epoch:  25%|##5       | 2/8 [01:16<03:50, 38.37s/it]
+Iteration:   0%|          | 0/35 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/35 [00:01<00:37,  1.09s/it][A
+Iteration:   6%|5         | 2/35 [00:02<00:36,  1.11s/it][A
+Iteration:   9%|8         | 3/35 [00:03<00:35,  1.10s/it][A
+Iteration:  11%|#1        | 4/35 [00:04<00:33,  1.09s/it][A
+Iteration:  14%|#4        | 5/35 [00:05<00:33,  1.10s/it][A
+Iteration:  17%|#7        | 6/35 [00:06<00:31,  1.10s/it][A
+Iteration:  20%|##        | 7/35 [00:07<00:30,  1.11s/it][A
+Iteration:  23%|##2       | 8/35 [00:08<00:30,  1.12s/it][A
+Iteration:  26%|##5       | 9/35 [00:09<00:28,  1.11s/it][A
+Iteration:  29%|##8       | 10/35 [00:11<00:27,  1.11s/it][A
+Iteration:  31%|###1      | 11/35 [00:12<00:26,  1.11s/it][A
+Iteration:  34%|###4      | 12/35 [00:13<00:25,  1.12s/it][A
+Iteration:  37%|###7      | 13/35 [00:14<00:24,  1.10s/it][A
+Iteration:  40%|####      | 14/35 [00:15<00:23,  1.11s/it][A
+Iteration:  43%|####2     | 15/35 [00:16<00:22,  1.10s/it][A
+Iteration:  46%|####5     | 16/35 [00:17<00:20,  1.10s/it][A
+Iteration:  49%|####8     | 17/35 [00:18<00:19,  1.10s/it][A
+Iteration:  51%|#####1    | 18/35 [00:19<00:18,  1.09s/it][A
+Iteration:  54%|#####4    | 19/35 [00:20<00:17,  1.08s/it][A
+Iteration:  57%|#####7    | 20/35 [00:21<00:16,  1.08s/it][A
+Iteration:  60%|######    | 21/35 [00:23<00:15,  1.09s/it][A
+Iteration:  63%|######2   | 22/35 [00:24<00:14,  1.08s/it][A
+Iteration:  66%|######5   | 23/35 [00:25<00:13,  1.10s/it][A
+Iteration:  69%|######8   | 24/35 [00:26<00:12,  1.10s/it][A
+Iteration:  71%|#######1  | 25/35 [00:27<00:11,  1.10s/it][A
+Iteration:  74%|#######4  | 26/35 [00:28<00:09,  1.11s/it][A
+Iteration:  77%|#######7  | 27/35 [00:29<00:08,  1.11s/it][A
+Iteration:  80%|########  | 28/35 [00:30<00:07,  1.10s/it][A
+Iteration:  83%|########2 | 29/35 [00:31<00:06,  1.11s/it][A
+Iteration:  86%|########5 | 30/35 [00:33<00:05,  1.11s/it][A
+Iteration:  89%|########8 | 31/35 [00:34<00:04,  1.10s/it][A
+Iteration:  91%|#########1| 32/35 [00:35<00:03,  1.11s/it][A
+Iteration:  94%|#########4| 33/35 [00:36<00:02,  1.11s/it][A
+Iteration:  97%|#########7| 34/35 [00:37<00:01,  1.10s/it][A
+Iteration: 100%|##########| 35/35 [00:37<00:00,  1.13it/s][AIteration: 100%|##########| 35/35 [00:37<00:00,  1.08s/it]
+Epoch:  38%|###7      | 3/8 [01:54<03:10, 38.13s/it]
+Iteration:   0%|          | 0/35 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/35 [00:01<00:38,  1.12s/it][A
+Iteration:   6%|5         | 2/35 [00:02<00:37,  1.13s/it][A
+Iteration:   9%|8         | 3/35 [00:03<00:36,  1.13s/it][A
+Iteration:  11%|#1        | 4/35 [00:04<00:34,  1.12s/it][A
+Iteration:  14%|#4        | 5/35 [00:05<00:33,  1.13s/it][A
+Iteration:  17%|#7        | 6/35 [00:06<00:32,  1.13s/it][A
+Iteration:  20%|##        | 7/35 [00:07<00:31,  1.13s/it][A
+Iteration:  23%|##2       | 8/35 [00:09<00:30,  1.13s/it][A
+Iteration:  26%|##5       | 9/35 [00:10<00:29,  1.12s/it][A
+Iteration:  29%|##8       | 10/35 [00:11<00:27,  1.11s/it][A
+Iteration:  31%|###1      | 11/35 [00:12<00:26,  1.12s/it][A
+Iteration:  34%|###4      | 12/35 [00:13<00:25,  1.12s/it][A
+Iteration:  37%|###7      | 13/35 [00:14<00:24,  1.12s/it][A
+Iteration:  40%|####      | 14/35 [00:15<00:23,  1.12s/it][A
+Iteration:  43%|####2     | 15/35 [00:16<00:22,  1.11s/it][A
+Iteration:  46%|####5     | 16/35 [00:17<00:21,  1.11s/it][A
+Iteration:  49%|####8     | 17/35 [00:19<00:20,  1.12s/it][A
+Iteration:  51%|#####1    | 18/35 [00:20<00:19,  1.13s/it][A
+Iteration:  54%|#####4    | 19/35 [00:21<00:17,  1.11s/it][A
+Iteration:  57%|#####7    | 20/35 [00:22<00:16,  1.11s/it][A
+Iteration:  60%|######    | 21/35 [00:23<00:15,  1.12s/it][A
+Iteration:  63%|######2   | 22/35 [00:24<00:14,  1.12s/it][A
+Iteration:  66%|######5   | 23/35 [00:25<00:13,  1.10s/it][A
+Iteration:  69%|######8   | 24/35 [00:26<00:12,  1.11s/it][A
+Iteration:  71%|#######1  | 25/35 [00:27<00:11,  1.11s/it][A
+Iteration:  74%|#######4  | 26/35 [00:29<00:09,  1.10s/it][A
+Iteration:  77%|#######7  | 27/35 [00:30<00:08,  1.11s/it][A
+Iteration:  80%|########  | 28/35 [00:31<00:07,  1.11s/it][A
+Iteration:  83%|########2 | 29/35 [00:32<00:06,  1.11s/it][A
+Iteration:  86%|########5 | 30/35 [00:33<00:05,  1.12s/it][A
+Iteration:  89%|########8 | 31/35 [00:34<00:04,  1.11s/it][A
+Iteration:  91%|#########1| 32/35 [00:35<00:03,  1.13s/it][A
+Iteration:  94%|#########4| 33/35 [00:36<00:02,  1.12s/it][A
+Iteration:  97%|#########7| 34/35 [00:37<00:01,  1.12s/it][A
+Iteration: 100%|##########| 35/35 [00:38<00:00,  1.11it/s][AIteration: 100%|##########| 35/35 [00:38<00:00,  1.10s/it]
+Epoch:  50%|#####     | 4/8 [02:33<02:32, 38.22s/it]
+Iteration:   0%|          | 0/35 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/35 [00:01<00:38,  1.14s/it][A
+Iteration:   6%|5         | 2/35 [00:02<00:37,  1.13s/it][A
+Iteration:   9%|8         | 3/35 [00:03<00:36,  1.14s/it][A
+Iteration:  11%|#1        | 4/35 [00:04<00:35,  1.13s/it][A
+Iteration:  14%|#4        | 5/35 [00:05<00:33,  1.13s/it][A
+Iteration:  17%|#7        | 6/35 [00:06<00:32,  1.12s/it][A
+Iteration:  20%|##        | 7/35 [00:07<00:31,  1.12s/it][A
+Iteration:  23%|##2       | 8/35 [00:09<00:30,  1.14s/it][A
+Iteration:  26%|##5       | 9/35 [00:10<00:29,  1.13s/it][A
+Iteration:  29%|##8       | 10/35 [00:11<00:28,  1.13s/it][A
+Iteration:  31%|###1      | 11/35 [00:12<00:26,  1.12s/it][A
+Iteration:  34%|###4      | 12/35 [00:13<00:25,  1.12s/it][A
+Iteration:  37%|###7      | 13/35 [00:14<00:24,  1.12s/it][A
+Iteration:  40%|####      | 14/35 [00:15<00:23,  1.14s/it][A
+Iteration:  43%|####2     | 15/35 [00:16<00:22,  1.14s/it][A
+Iteration:  46%|####5     | 16/35 [00:18<00:21,  1.12s/it][A
+Iteration:  49%|####8     | 17/35 [00:19<00:20,  1.12s/it][A
+Iteration:  51%|#####1    | 18/35 [00:20<00:18,  1.11s/it][A
+Iteration:  54%|#####4    | 19/35 [00:21<00:17,  1.11s/it][A
+Iteration:  57%|#####7    | 20/35 [00:22<00:16,  1.11s/it][A
+Iteration:  60%|######    | 21/35 [00:23<00:15,  1.12s/it][A
+Iteration:  63%|######2   | 22/35 [00:24<00:14,  1.10s/it][A
+Iteration:  66%|######5   | 23/35 [00:25<00:13,  1.13s/it][A
+Iteration:  69%|######8   | 24/35 [00:26<00:12,  1.12s/it][A
+Iteration:  71%|#######1  | 25/35 [00:28<00:11,  1.11s/it][A
+Iteration:  74%|#######4  | 26/35 [00:29<00:10,  1.11s/it][A
+Iteration:  77%|#######7  | 27/35 [00:30<00:08,  1.11s/it][A
+Iteration:  80%|########  | 28/35 [00:31<00:07,  1.12s/it][A
+Iteration:  83%|########2 | 29/35 [00:32<00:06,  1.11s/it][A
+Iteration:  86%|########5 | 30/35 [00:33<00:05,  1.12s/it][A
+Iteration:  89%|########8 | 31/35 [00:34<00:04,  1.12s/it][A
+Iteration:  91%|#########1| 32/35 [00:35<00:03,  1.12s/it][A
+Iteration:  94%|#########4| 33/35 [00:37<00:02,  1.13s/it][A
+Iteration:  97%|#########7| 34/35 [00:38<00:01,  1.12s/it][A
+Iteration: 100%|##########| 35/35 [00:38<00:00,  1.11it/s][AIteration: 100%|##########| 35/35 [00:38<00:00,  1.10s/it]
+Epoch:  62%|######2   | 5/8 [03:11<01:54, 38.33s/it]
+Iteration:   0%|          | 0/35 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/35 [00:01<00:37,  1.12s/it][A
+Iteration:   6%|5         | 2/35 [00:02<00:36,  1.10s/it][A
+Iteration:   9%|8         | 3/35 [00:03<00:35,  1.10s/it][A
+Iteration:  11%|#1        | 4/35 [00:04<00:34,  1.13s/it][A
+Iteration:  14%|#4        | 5/35 [00:05<00:34,  1.13s/it][A
+Iteration:  17%|#7        | 6/35 [00:06<00:32,  1.12s/it][A
+Iteration:  20%|##        | 7/35 [00:07<00:31,  1.11s/it][A
+Iteration:  23%|##2       | 8/35 [00:08<00:29,  1.10s/it][A
+Iteration:  26%|##5       | 9/35 [00:10<00:28,  1.10s/it][A
+Iteration:  29%|##8       | 10/35 [00:11<00:27,  1.10s/it][A
+Iteration:  31%|###1      | 11/35 [00:12<00:26,  1.11s/it][A
+Iteration:  34%|###4      | 12/35 [00:13<00:25,  1.11s/it][A
+Iteration:  37%|###7      | 13/35 [00:14<00:24,  1.12s/it][A
+Iteration:  40%|####      | 14/35 [00:15<00:23,  1.11s/it][A
+Iteration:  43%|####2     | 15/35 [00:16<00:22,  1.10s/it][A
+Iteration:  46%|####5     | 16/35 [00:17<00:20,  1.10s/it][A
+Iteration:  49%|####8     | 17/35 [00:18<00:20,  1.12s/it][A
+Iteration:  51%|#####1    | 18/35 [00:20<00:19,  1.12s/it][A
+Iteration:  54%|#####4    | 19/35 [00:21<00:18,  1.13s/it][A
+Iteration:  57%|#####7    | 20/35 [00:22<00:16,  1.13s/it][A
+Iteration:  60%|######    | 21/35 [00:23<00:15,  1.11s/it][A
+Iteration:  63%|######2   | 22/35 [00:24<00:14,  1.11s/it][A
+Iteration:  66%|######5   | 23/35 [00:25<00:13,  1.12s/it][A
+Iteration:  69%|######8   | 24/35 [00:26<00:12,  1.11s/it][A
+Iteration:  71%|#######1  | 25/35 [00:27<00:11,  1.10s/it][A
+Iteration:  74%|#######4  | 26/35 [00:28<00:10,  1.11s/it][A
+Iteration:  77%|#######7  | 27/35 [00:30<00:08,  1.11s/it][A
+Iteration:  80%|########  | 28/35 [00:31<00:07,  1.11s/it][A
+Iteration:  83%|########2 | 29/35 [00:32<00:06,  1.10s/it][A
+Iteration:  86%|########5 | 30/35 [00:33<00:05,  1.10s/it][A
+Iteration:  89%|########8 | 31/35 [00:34<00:04,  1.11s/it][A
+Iteration:  91%|#########1| 32/35 [00:35<00:03,  1.11s/it][A
+Iteration:  94%|#########4| 33/35 [00:36<00:02,  1.11s/it][A
+Iteration:  97%|#########7| 34/35 [00:37<00:01,  1.12s/it][A
+Iteration: 100%|##########| 35/35 [00:38<00:00,  1.10it/s][AIteration: 100%|##########| 35/35 [00:38<00:00,  1.09s/it]
+Epoch:  75%|#######5  | 6/8 [03:49<01:16, 38.29s/it]
+Iteration:   0%|          | 0/35 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/35 [00:01<00:37,  1.09s/it][A
+Iteration:   6%|5         | 2/35 [00:02<00:36,  1.11s/it][A
+Iteration:   9%|8         | 3/35 [00:03<00:36,  1.14s/it][A
+Iteration:  11%|#1        | 4/35 [00:04<00:34,  1.12s/it][A
+Iteration:  14%|#4        | 5/35 [00:05<00:33,  1.11s/it][A
+Iteration:  17%|#7        | 6/35 [00:06<00:32,  1.12s/it][A
+Iteration:  20%|##        | 7/35 [00:07<00:31,  1.13s/it][A
+Iteration:  23%|##2       | 8/35 [00:08<00:30,  1.13s/it][A
+Iteration:  26%|##5       | 9/35 [00:10<00:28,  1.11s/it][A
+Iteration:  29%|##8       | 10/35 [00:11<00:27,  1.11s/it][A
+Iteration:  31%|###1      | 11/35 [00:12<00:26,  1.11s/it][A
+Iteration:  34%|###4      | 12/35 [00:13<00:25,  1.11s/it][A
+Iteration:  37%|###7      | 13/35 [00:14<00:24,  1.10s/it][A
+Iteration:  40%|####      | 14/35 [00:15<00:23,  1.10s/it][A
+Iteration:  43%|####2     | 15/35 [00:16<00:21,  1.09s/it][A
+Iteration:  46%|####5     | 16/35 [00:17<00:20,  1.09s/it][A
+Iteration:  49%|####8     | 17/35 [00:18<00:20,  1.11s/it][A
+Iteration:  51%|#####1    | 18/35 [00:19<00:18,  1.11s/it][A
+Iteration:  54%|#####4    | 19/35 [00:21<00:17,  1.11s/it][A
+Iteration:  57%|#####7    | 20/35 [00:22<00:16,  1.11s/it][A
+Iteration:  60%|######    | 21/35 [00:23<00:15,  1.11s/it][A
+Iteration:  63%|######2   | 22/35 [00:24<00:14,  1.11s/it][A
+Iteration:  66%|######5   | 23/35 [00:25<00:13,  1.11s/it][A
+Iteration:  69%|######8   | 24/35 [00:26<00:12,  1.11s/it][A
+Iteration:  71%|#######1  | 25/35 [00:27<00:11,  1.11s/it][A
+Iteration:  74%|#######4  | 26/35 [00:28<00:10,  1.12s/it][A
+Iteration:  77%|#######7  | 27/35 [00:29<00:08,  1.12s/it][A
+Iteration:  80%|########  | 28/35 [00:31<00:07,  1.12s/it][A
+Iteration:  83%|########2 | 29/35 [00:32<00:06,  1.12s/it][A
+Iteration:  86%|########5 | 30/35 [00:33<00:05,  1.12s/it][A
+Iteration:  89%|########8 | 31/35 [00:34<00:04,  1.13s/it][A
+Iteration:  91%|#########1| 32/35 [00:35<00:03,  1.12s/it][A
+Iteration:  94%|#########4| 33/35 [00:36<00:02,  1.11s/it][A
+Iteration:  97%|#########7| 34/35 [00:37<00:01,  1.11s/it][A
+Iteration: 100%|##########| 35/35 [00:38<00:00,  1.13it/s][AIteration: 100%|##########| 35/35 [00:38<00:00,  1.09s/it]
+Epoch:  88%|########7 | 7/8 [04:28<00:38, 38.25s/it]
+Iteration:   0%|          | 0/35 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/35 [00:01<00:37,  1.11s/it][A
+Iteration:   6%|5         | 2/35 [00:02<00:36,  1.12s/it][A
+Iteration:   9%|8         | 3/35 [00:03<00:35,  1.12s/it][A
+Iteration:  11%|#1        | 4/35 [00:04<00:34,  1.11s/it][A
+Iteration:  14%|#4        | 5/35 [00:05<00:33,  1.11s/it][A
+Iteration:  17%|#7        | 6/35 [00:06<00:32,  1.11s/it][A
+Iteration:  20%|##        | 7/35 [00:07<00:31,  1.11s/it][A
+Iteration:  23%|##2       | 8/35 [00:08<00:29,  1.11s/it][A
+Iteration:  26%|##5       | 9/35 [00:09<00:28,  1.11s/it][A
+Iteration:  29%|##8       | 10/35 [00:11<00:27,  1.11s/it][A
+Iteration:  31%|###1      | 11/35 [00:12<00:26,  1.11s/it][A
+Iteration:  34%|###4      | 12/35 [00:13<00:25,  1.11s/it][A
+Iteration:  37%|###7      | 13/35 [00:14<00:24,  1.12s/it][A
+Iteration:  40%|####      | 14/35 [00:15<00:23,  1.12s/it][A
+Iteration:  43%|####2     | 15/35 [00:16<00:22,  1.11s/it][A
+Iteration:  46%|####5     | 16/35 [00:17<00:21,  1.11s/it][A
+Iteration:  49%|####8     | 17/35 [00:18<00:20,  1.12s/it][A
+Iteration:  51%|#####1    | 18/35 [00:20<00:19,  1.12s/it][A
+Iteration:  54%|#####4    | 19/35 [00:21<00:17,  1.12s/it][A
+Iteration:  57%|#####7    | 20/35 [00:22<00:16,  1.11s/it][A
+Iteration:  60%|######    | 21/35 [00:23<00:15,  1.12s/it][A
+Iteration:  63%|######2   | 22/35 [00:24<00:14,  1.13s/it][A
+Iteration:  66%|######5   | 23/35 [00:25<00:13,  1.12s/it][A
+Iteration:  69%|######8   | 24/35 [00:26<00:12,  1.10s/it][A
+Iteration:  71%|#######1  | 25/35 [00:27<00:11,  1.11s/it][A
+Iteration:  74%|#######4  | 26/35 [00:28<00:09,  1.11s/it][A
+Iteration:  77%|#######7  | 27/35 [00:30<00:08,  1.11s/it][A
+Iteration:  80%|########  | 28/35 [00:31<00:07,  1.10s/it][A
+Iteration:  83%|########2 | 29/35 [00:32<00:06,  1.12s/it][A
+Iteration:  86%|########5 | 30/35 [00:33<00:05,  1.12s/it][A
+Iteration:  89%|########8 | 31/35 [00:34<00:04,  1.12s/it][A
+Iteration:  91%|#########1| 32/35 [00:35<00:03,  1.11s/it][A
+Iteration:  94%|#########4| 33/35 [00:36<00:02,  1.12s/it][A
+Iteration:  97%|#########7| 34/35 [00:37<00:01,  1.11s/it][A
+Iteration: 100%|##########| 35/35 [00:38<00:00,  1.12it/s][AIteration: 100%|##########| 35/35 [00:38<00:00,  1.09s/it]
+Epoch: 100%|##########| 8/8 [05:06<00:00, 38.26s/it]Epoch: 100%|##########| 8/8 [05:06<00:00, 38.29s/it]
+10/19/2021 13:24:03 - INFO - __main__ -    global_step = 280, average loss = 0.0
+10/19/2021 13:24:03 - INFO - __main__ -   Saving model checkpoint to checkpoints/convdr-multi-cast19-0
+10/19/2021 13:24:03 - INFO - transformers.configuration_utils -   Configuration saved in checkpoints/convdr-multi-cast19-0/config.json
+10/19/2021 13:24:04 - INFO - transformers.modeling_utils -   Model weights saved in checkpoints/convdr-multi-cast19-0/pytorch_model.bin
+10/19/2021 13:24:05 - INFO - __main__ -   Training Fold #1
+10/19/2021 13:24:05 - INFO - transformers.configuration_utils -   loading configuration file checkpoints/ad-hoc-ance-msmarco/config.json
+10/19/2021 13:24:05 - INFO - transformers.configuration_utils -   Model config {
+  "_num_labels": 2,
+  "architectures": [
+    "RobertaDot_NLL_LN"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bad_words_ids": null,
+  "bos_token_id": 0,
+  "decoder_start_token_id": null,
+  "do_sample": false,
+  "early_stopping": false,
+  "eos_token_id": 2,
+  "eos_token_ids": 0,
+  "finetuning_task": "MSMarco",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "is_encoder_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-05,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 514,
+  "min_length": 0,
+  "model_type": "roberta",
+  "no_repeat_ngram_size": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 2,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 1,
+  "prefix": null,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "task_specific_params": null,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 1,
+  "use_bfloat16": false,
+  "vocab_size": 50265
+}
+
+10/19/2021 13:24:05 - INFO - transformers.tokenization_utils -   Model name 'checkpoints/ad-hoc-ance-msmarco' not found in model shortcut name list (roberta-base, roberta-large, roberta-large-mnli, distilroberta-base, roberta-base-openai-detector, roberta-large-openai-detector). Assuming 'checkpoints/ad-hoc-ance-msmarco' is a path or url to a directory containing tokenizer files.
+10/19/2021 13:24:05 - INFO - transformers.tokenization_utils -   Didn't find file checkpoints/ad-hoc-ance-msmarco/added_tokens.json. We won't load it.
+10/19/2021 13:24:05 - INFO - transformers.tokenization_utils -   loading file checkpoints/ad-hoc-ance-msmarco/vocab.json
+10/19/2021 13:24:05 - INFO - transformers.tokenization_utils -   loading file checkpoints/ad-hoc-ance-msmarco/merges.txt
+10/19/2021 13:24:05 - INFO - transformers.tokenization_utils -   loading file None
+10/19/2021 13:24:05 - INFO - transformers.tokenization_utils -   loading file checkpoints/ad-hoc-ance-msmarco/special_tokens_map.json
+10/19/2021 13:24:05 - INFO - transformers.tokenization_utils -   loading file checkpoints/ad-hoc-ance-msmarco/tokenizer_config.json
+10/19/2021 13:24:05 - INFO - transformers.modeling_utils -   loading weights file checkpoints/ad-hoc-ance-msmarco/pytorch_model.bin
+10/19/2021 13:24:12 - INFO - __main__ -   Training/evaluation parameters Namespace(adam_epsilon=1e-08, cache_dir=None, cross_validate=True, device=device(type='cuda'), gradient_accumulation_steps=1, init_from_multiple_models=False, learning_rate=1e-05, log_dir='logs/convdr_multi_cast19', log_steps=1, max_concat_length=256, max_grad_norm=1.0, max_query_length=64, max_steps=-1, model_name_or_path='checkpoints/ad-hoc-ance-msmarco', model_path='checkpoints/ad-hoc-ance-msmarco', model_type='rdot_nll', n_gpu=1, no_cuda=False, no_mse=False, num_negatives=9, num_train_epochs=8.0, output_dir='checkpoints/convdr-multi-cast19', overwrite_output_dir=False, per_gpu_train_batch_size=4, query='no_res', ranking_task=True, save_steps=-1, seed=42, teacher_model='checkpoints/ad-hoc-ance-msmarco', train_batch_size=4, train_file='datasets/cast-19/eval_topics.rank.jsonl', warmup_steps=0, weight_decay=0.0)
+10/19/2021 13:24:12 - INFO - __main__ -   train_files: ['datasets/cast-19/eval_topics.rank.jsonl.0', 'datasets/cast-19/eval_topics.rank.jsonl.2', 'datasets/cast-19/eval_topics.rank.jsonl.3', 'datasets/cast-19/eval_topics.rank.jsonl.4']
+10/19/2021 13:24:12 - INFO - __main__ -   ***** Running training *****
+10/19/2021 13:24:12 - INFO - __main__ -     Num examples = 141
+10/19/2021 13:24:12 - INFO - __main__ -     Num Epochs = 8
+10/19/2021 13:24:12 - INFO - __main__ -     Instantaneous batch size per GPU = 4
+10/19/2021 13:24:12 - INFO - __main__ -     Total train batch size (w. parallel & accumulation) = 4
+10/19/2021 13:24:12 - INFO - __main__ -     Gradient Accumulation steps = 1
+10/19/2021 13:24:12 - INFO - __main__ -     Total optimization steps = 288
+Using mean: False
+Epoch:   0%|          | 0/8 [00:00<?, ?it/s]
+Iteration:   0%|          | 0/36 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/36 [00:01<00:43,  1.25s/it][A
+Iteration:   6%|5         | 2/36 [00:02<00:41,  1.22s/it][A
+Iteration:   8%|8         | 3/36 [00:03<00:39,  1.21s/it][A
+Iteration:  11%|#1        | 4/36 [00:04<00:37,  1.19s/it][A
+Iteration:  14%|#3        | 5/36 [00:05<00:36,  1.17s/it][A
+Iteration:  17%|#6        | 6/36 [00:07<00:35,  1.17s/it][A
+Iteration:  19%|#9        | 7/36 [00:08<00:33,  1.16s/it][A
+Iteration:  22%|##2       | 8/36 [00:09<00:32,  1.16s/it][A
+Iteration:  25%|##5       | 9/36 [00:10<00:31,  1.15s/it][A
+Iteration:  28%|##7       | 10/36 [00:11<00:29,  1.15s/it][A
+Iteration:  31%|###       | 11/36 [00:12<00:28,  1.16s/it][A
+Iteration:  33%|###3      | 12/36 [00:13<00:27,  1.14s/it][A
+Iteration:  36%|###6      | 13/36 [00:15<00:26,  1.14s/it][A
+Iteration:  39%|###8      | 14/36 [00:16<00:24,  1.13s/it][A
+Iteration:  42%|####1     | 15/36 [00:17<00:23,  1.14s/it][A
+Iteration:  44%|####4     | 16/36 [00:18<00:23,  1.16s/it][A
+Iteration:  47%|####7     | 17/36 [00:19<00:21,  1.15s/it][A
+Iteration:  50%|#####     | 18/36 [00:20<00:20,  1.15s/it][A
+Iteration:  53%|#####2    | 19/36 [00:22<00:19,  1.15s/it][A
+Iteration:  56%|#####5    | 20/36 [00:23<00:18,  1.16s/it][A
+Iteration:  58%|#####8    | 21/36 [00:24<00:17,  1.16s/it][A
+Iteration:  61%|######1   | 22/36 [00:25<00:16,  1.17s/it][A
+Iteration:  64%|######3   | 23/36 [00:26<00:14,  1.15s/it][A
+Iteration:  67%|######6   | 24/36 [00:27<00:13,  1.16s/it][A
+Iteration:  69%|######9   | 25/36 [00:29<00:12,  1.17s/it][A
+Iteration:  72%|#######2  | 26/36 [00:30<00:11,  1.16s/it][A
+Iteration:  75%|#######5  | 27/36 [00:31<00:10,  1.15s/it][A
+Iteration:  78%|#######7  | 28/36 [00:32<00:09,  1.13s/it][A
+Iteration:  81%|########  | 29/36 [00:33<00:07,  1.14s/it][A
+Iteration:  83%|########3 | 30/36 [00:34<00:06,  1.13s/it][A
+Iteration:  86%|########6 | 31/36 [00:35<00:05,  1.13s/it][A
+Iteration:  89%|########8 | 32/36 [00:36<00:04,  1.12s/it][A
+Iteration:  92%|#########1| 33/36 [00:37<00:03,  1.12s/it][A
+Iteration:  94%|#########4| 34/36 [00:39<00:02,  1.12s/it][A
+Iteration:  97%|#########7| 35/36 [00:40<00:01,  1.13s/it][A
+Iteration: 100%|##########| 36/36 [00:40<00:00,  1.09it/s][AIteration: 100%|##########| 36/36 [00:40<00:00,  1.13s/it]
+Epoch:  12%|#2        | 1/8 [00:40<04:44, 40.69s/it]
+Iteration:   0%|          | 0/36 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/36 [00:01<00:38,  1.10s/it][A
+Iteration:   6%|5         | 2/36 [00:02<00:37,  1.10s/it][A
+Iteration:   8%|8         | 3/36 [00:03<00:36,  1.12s/it][A
+Iteration:  11%|#1        | 4/36 [00:04<00:35,  1.11s/it][A
+Iteration:  14%|#3        | 5/36 [00:05<00:34,  1.12s/it][A
+Iteration:  17%|#6        | 6/36 [00:06<00:33,  1.12s/it][A
+Iteration:  19%|#9        | 7/36 [00:07<00:32,  1.12s/it][A
+Iteration:  22%|##2       | 8/36 [00:08<00:31,  1.11s/it][A
+Iteration:  25%|##5       | 9/36 [00:10<00:29,  1.11s/it][A
+Iteration:  28%|##7       | 10/36 [00:11<00:28,  1.10s/it][A
+Iteration:  31%|###       | 11/36 [00:12<00:27,  1.11s/it][A
+Iteration:  33%|###3      | 12/36 [00:13<00:27,  1.13s/it][A
+Iteration:  36%|###6      | 13/36 [00:14<00:25,  1.12s/it][A
+Iteration:  39%|###8      | 14/36 [00:15<00:24,  1.14s/it][A
+Iteration:  42%|####1     | 15/36 [00:16<00:23,  1.14s/it][A
+Iteration:  44%|####4     | 16/36 [00:17<00:22,  1.14s/it][A
+Iteration:  47%|####7     | 17/36 [00:19<00:21,  1.13s/it][A
+Iteration:  50%|#####     | 18/36 [00:20<00:20,  1.11s/it][A
+Iteration:  53%|#####2    | 19/36 [00:21<00:18,  1.11s/it][A
+Iteration:  56%|#####5    | 20/36 [00:22<00:17,  1.11s/it][A
+Iteration:  58%|#####8    | 21/36 [00:23<00:16,  1.11s/it][A
+Iteration:  61%|######1   | 22/36 [00:24<00:15,  1.11s/it][A
+Iteration:  64%|######3   | 23/36 [00:25<00:14,  1.10s/it][A
+Iteration:  67%|######6   | 24/36 [00:26<00:13,  1.10s/it][A
+Iteration:  69%|######9   | 25/36 [00:27<00:12,  1.10s/it][A
+Iteration:  72%|#######2  | 26/36 [00:29<00:11,  1.11s/it][A
+Iteration:  75%|#######5  | 27/36 [00:30<00:09,  1.11s/it][A
+Iteration:  78%|#######7  | 28/36 [00:31<00:08,  1.11s/it][A
+Iteration:  81%|########  | 29/36 [00:32<00:07,  1.11s/it][A
+Iteration:  83%|########3 | 30/36 [00:33<00:06,  1.11s/it][A
+Iteration:  86%|########6 | 31/36 [00:34<00:05,  1.11s/it][A
+Iteration:  89%|########8 | 32/36 [00:35<00:04,  1.13s/it][A
+Iteration:  92%|#########1| 33/36 [00:36<00:03,  1.13s/it][A
+Iteration:  94%|#########4| 34/36 [00:38<00:02,  1.14s/it][A
+Iteration:  97%|#########7| 35/36 [00:39<00:01,  1.13s/it][A
+Iteration: 100%|##########| 36/36 [00:39<00:00,  1.10it/s][AIteration: 100%|##########| 36/36 [00:39<00:00,  1.10s/it]
+Epoch:  25%|##5       | 2/8 [01:20<04:00, 40.01s/it]
+Iteration:   0%|          | 0/36 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/36 [00:01<00:39,  1.13s/it][A
+Iteration:   6%|5         | 2/36 [00:02<00:37,  1.11s/it][A
+Iteration:   8%|8         | 3/36 [00:03<00:36,  1.10s/it][A
+Iteration:  11%|#1        | 4/36 [00:04<00:35,  1.10s/it][A
+Iteration:  14%|#3        | 5/36 [00:05<00:34,  1.11s/it][A
+Iteration:  17%|#6        | 6/36 [00:06<00:33,  1.11s/it][A
+Iteration:  19%|#9        | 7/36 [00:07<00:32,  1.12s/it][A
+Iteration:  22%|##2       | 8/36 [00:08<00:31,  1.13s/it][A
+Iteration:  25%|##5       | 9/36 [00:10<00:30,  1.13s/it][A
+Iteration:  28%|##7       | 10/36 [00:11<00:29,  1.12s/it][A
+Iteration:  31%|###       | 11/36 [00:12<00:28,  1.12s/it][A
+Iteration:  33%|###3      | 12/36 [00:13<00:26,  1.12s/it][A
+Iteration:  36%|###6      | 13/36 [00:14<00:25,  1.12s/it][A
+Iteration:  39%|###8      | 14/36 [00:15<00:24,  1.13s/it][A
+Iteration:  42%|####1     | 15/36 [00:16<00:23,  1.12s/it][A
+Iteration:  44%|####4     | 16/36 [00:17<00:22,  1.13s/it][A
+Iteration:  47%|####7     | 17/36 [00:19<00:21,  1.13s/it][A
+Iteration:  50%|#####     | 18/36 [00:20<00:20,  1.13s/it][A
+Iteration:  53%|#####2    | 19/36 [00:21<00:19,  1.13s/it][A
+Iteration:  56%|#####5    | 20/36 [00:22<00:18,  1.13s/it][A
+Iteration:  58%|#####8    | 21/36 [00:23<00:16,  1.12s/it][A
+Iteration:  61%|######1   | 22/36 [00:24<00:15,  1.13s/it][A
+Iteration:  64%|######3   | 23/36 [00:25<00:14,  1.12s/it][A
+Iteration:  67%|######6   | 24/36 [00:26<00:13,  1.13s/it][A
+Iteration:  69%|######9   | 25/36 [00:28<00:12,  1.12s/it][A
+Iteration:  72%|#######2  | 26/36 [00:29<00:11,  1.13s/it][A
+Iteration:  75%|#######5  | 27/36 [00:30<00:10,  1.12s/it][A
+Iteration:  78%|#######7  | 28/36 [00:31<00:09,  1.13s/it][A
+Iteration:  81%|########  | 29/36 [00:32<00:07,  1.14s/it][A
+Iteration:  83%|########3 | 30/36 [00:33<00:06,  1.13s/it][A
+Iteration:  86%|########6 | 31/36 [00:34<00:05,  1.12s/it][A
+Iteration:  89%|########8 | 32/36 [00:35<00:04,  1.13s/it][A
+Iteration:  92%|#########1| 33/36 [00:37<00:03,  1.14s/it][A
+Iteration:  94%|#########4| 34/36 [00:38<00:02,  1.14s/it][A
+Iteration:  97%|#########7| 35/36 [00:39<00:01,  1.12s/it][A
+Iteration: 100%|##########| 36/36 [00:39<00:00,  1.08it/s][AIteration: 100%|##########| 36/36 [00:39<00:00,  1.11s/it]
+Epoch:  38%|###7      | 3/8 [02:00<03:19, 39.91s/it]
+Iteration:   0%|          | 0/36 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/36 [00:01<00:38,  1.11s/it][A
+Iteration:   6%|5         | 2/36 [00:02<00:37,  1.11s/it][A
+Iteration:   8%|8         | 3/36 [00:03<00:37,  1.14s/it][A
+Iteration:  11%|#1        | 4/36 [00:04<00:36,  1.13s/it][A
+Iteration:  14%|#3        | 5/36 [00:05<00:34,  1.13s/it][A
+Iteration:  17%|#6        | 6/36 [00:06<00:33,  1.11s/it][A
+Iteration:  19%|#9        | 7/36 [00:07<00:32,  1.12s/it][A
+Iteration:  22%|##2       | 8/36 [00:08<00:31,  1.12s/it][A
+Iteration:  25%|##5       | 9/36 [00:10<00:30,  1.13s/it][A
+Iteration:  28%|##7       | 10/36 [00:11<00:29,  1.13s/it][A
+Iteration:  31%|###       | 11/36 [00:12<00:28,  1.13s/it][A
+Iteration:  33%|###3      | 12/36 [00:13<00:27,  1.13s/it][A
+Iteration:  36%|###6      | 13/36 [00:14<00:25,  1.12s/it][A
+Iteration:  39%|###8      | 14/36 [00:15<00:24,  1.13s/it][A
+Iteration:  42%|####1     | 15/36 [00:16<00:23,  1.14s/it][A
+Iteration:  44%|####4     | 16/36 [00:18<00:22,  1.13s/it][A
+Iteration:  47%|####7     | 17/36 [00:19<00:21,  1.13s/it][A
+Iteration:  50%|#####     | 18/36 [00:20<00:20,  1.12s/it][A
+Iteration:  53%|#####2    | 19/36 [00:21<00:19,  1.12s/it][A
+Iteration:  56%|#####5    | 20/36 [00:22<00:17,  1.12s/it][A
+Iteration:  58%|#####8    | 21/36 [00:23<00:16,  1.12s/it][A
+Iteration:  61%|######1   | 22/36 [00:24<00:15,  1.11s/it][A
+Iteration:  64%|######3   | 23/36 [00:25<00:14,  1.10s/it][A
+Iteration:  67%|######6   | 24/36 [00:26<00:13,  1.11s/it][A
+Iteration:  69%|######9   | 25/36 [00:28<00:12,  1.12s/it][A
+Iteration:  72%|#######2  | 26/36 [00:29<00:11,  1.11s/it][A
+Iteration:  75%|#######5  | 27/36 [00:30<00:09,  1.10s/it][A
+Iteration:  78%|#######7  | 28/36 [00:31<00:08,  1.12s/it][A
+Iteration:  81%|########  | 29/36 [00:32<00:07,  1.12s/it][A
+Iteration:  83%|########3 | 30/36 [00:33<00:06,  1.12s/it][A
+Iteration:  86%|########6 | 31/36 [00:34<00:05,  1.11s/it][A
+Iteration:  89%|########8 | 32/36 [00:35<00:04,  1.12s/it][A
+Iteration:  92%|#########1| 33/36 [00:36<00:03,  1.13s/it][A
+Iteration:  94%|#########4| 34/36 [00:38<00:02,  1.13s/it][A
+Iteration:  97%|#########7| 35/36 [00:39<00:01,  1.13s/it][A
+Iteration: 100%|##########| 36/36 [00:39<00:00,  1.09it/s][AIteration: 100%|##########| 36/36 [00:39<00:00,  1.10s/it]
+Epoch:  50%|#####     | 4/8 [02:39<02:39, 39.82s/it]
+Iteration:   0%|          | 0/36 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/36 [00:01<00:38,  1.09s/it][A
+Iteration:   6%|5         | 2/36 [00:02<00:36,  1.08s/it][A
+Iteration:   8%|8         | 3/36 [00:03<00:36,  1.10s/it][A
+Iteration:  11%|#1        | 4/36 [00:04<00:35,  1.11s/it][A
+Iteration:  14%|#3        | 5/36 [00:05<00:34,  1.10s/it][A
+Iteration:  17%|#6        | 6/36 [00:06<00:33,  1.10s/it][A
+Iteration:  19%|#9        | 7/36 [00:07<00:32,  1.12s/it][A
+Iteration:  22%|##2       | 8/36 [00:08<00:31,  1.12s/it][A
+Iteration:  25%|##5       | 9/36 [00:10<00:30,  1.13s/it][A
+Iteration:  28%|##7       | 10/36 [00:11<00:28,  1.12s/it][A
+Iteration:  31%|###       | 11/36 [00:12<00:28,  1.12s/it][A
+Iteration:  33%|###3      | 12/36 [00:13<00:27,  1.13s/it][A
+Iteration:  36%|###6      | 13/36 [00:14<00:26,  1.13s/it][A
+Iteration:  39%|###8      | 14/36 [00:15<00:24,  1.13s/it][A
+Iteration:  42%|####1     | 15/36 [00:16<00:23,  1.12s/it][A
+Iteration:  44%|####4     | 16/36 [00:17<00:22,  1.12s/it][A
+Iteration:  47%|####7     | 17/36 [00:19<00:21,  1.12s/it][A
+Iteration:  50%|#####     | 18/36 [00:20<00:20,  1.12s/it][A
+Iteration:  53%|#####2    | 19/36 [00:21<00:18,  1.11s/it][A
+Iteration:  56%|#####5    | 20/36 [00:22<00:17,  1.12s/it][A
+Iteration:  58%|#####8    | 21/36 [00:23<00:16,  1.11s/it][A
+Iteration:  61%|######1   | 22/36 [00:24<00:15,  1.12s/it][A
+Iteration:  64%|######3   | 23/36 [00:25<00:14,  1.13s/it][A
+Iteration:  67%|######6   | 24/36 [00:26<00:13,  1.12s/it][A
+Iteration:  69%|######9   | 25/36 [00:27<00:12,  1.12s/it][A
+Iteration:  72%|#######2  | 26/36 [00:29<00:11,  1.12s/it][A
+Iteration:  75%|#######5  | 27/36 [00:30<00:10,  1.12s/it][A
+Iteration:  78%|#######7  | 28/36 [00:31<00:08,  1.12s/it][A
+Iteration:  81%|########  | 29/36 [00:32<00:07,  1.12s/it][A
+Iteration:  83%|########3 | 30/36 [00:33<00:06,  1.12s/it][A
+Iteration:  86%|########6 | 31/36 [00:34<00:05,  1.12s/it][A
+Iteration:  89%|########8 | 32/36 [00:35<00:04,  1.12s/it][A
+Iteration:  92%|#########1| 33/36 [00:36<00:03,  1.11s/it][A
+Iteration:  94%|#########4| 34/36 [00:38<00:02,  1.11s/it][A
+Iteration:  97%|#########7| 35/36 [00:39<00:01,  1.12s/it][A
+Iteration: 100%|##########| 36/36 [00:39<00:00,  1.12it/s][AIteration: 100%|##########| 36/36 [00:39<00:00,  1.10s/it]
+Epoch:  62%|######2   | 5/8 [03:19<01:59, 39.71s/it]
+Iteration:   0%|          | 0/36 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/36 [00:01<00:40,  1.16s/it][A
+Iteration:   6%|5         | 2/36 [00:02<00:37,  1.11s/it][A
+Iteration:   8%|8         | 3/36 [00:03<00:36,  1.12s/it][A
+Iteration:  11%|#1        | 4/36 [00:04<00:35,  1.12s/it][A
+Iteration:  14%|#3        | 5/36 [00:05<00:34,  1.11s/it][A
+Iteration:  17%|#6        | 6/36 [00:06<00:33,  1.11s/it][A
+Iteration:  19%|#9        | 7/36 [00:07<00:32,  1.12s/it][A
+Iteration:  22%|##2       | 8/36 [00:08<00:31,  1.12s/it][A
+Iteration:  25%|##5       | 9/36 [00:10<00:30,  1.13s/it][A
+Iteration:  28%|##7       | 10/36 [00:11<00:29,  1.13s/it][A
+Iteration:  31%|###       | 11/36 [00:12<00:28,  1.13s/it][A
+Iteration:  33%|###3      | 12/36 [00:13<00:27,  1.13s/it][A
+Iteration:  36%|###6      | 13/36 [00:14<00:25,  1.13s/it][A
+Iteration:  39%|###8      | 14/36 [00:15<00:24,  1.13s/it][A
+Iteration:  42%|####1     | 15/36 [00:16<00:23,  1.12s/it][A
+Iteration:  44%|####4     | 16/36 [00:18<00:22,  1.14s/it][A
+Iteration:  47%|####7     | 17/36 [00:19<00:21,  1.13s/it][A
+Iteration:  50%|#####     | 18/36 [00:20<00:20,  1.13s/it][A
+Iteration:  53%|#####2    | 19/36 [00:21<00:19,  1.12s/it][A
+Iteration:  56%|#####5    | 20/36 [00:22<00:17,  1.12s/it][A
+Iteration:  58%|#####8    | 21/36 [00:23<00:16,  1.11s/it][A
+Iteration:  61%|######1   | 22/36 [00:24<00:15,  1.11s/it][A
+Iteration:  64%|######3   | 23/36 [00:25<00:14,  1.11s/it][A
+Iteration:  67%|######6   | 24/36 [00:26<00:13,  1.11s/it][A
+Iteration:  69%|######9   | 25/36 [00:27<00:12,  1.10s/it][A
+Iteration:  72%|#######2  | 26/36 [00:29<00:11,  1.11s/it][A
+Iteration:  75%|#######5  | 27/36 [00:30<00:09,  1.11s/it][A
+Iteration:  78%|#######7  | 28/36 [00:31<00:08,  1.10s/it][A
+Iteration:  81%|########  | 29/36 [00:32<00:07,  1.11s/it][A
+Iteration:  83%|########3 | 30/36 [00:33<00:06,  1.12s/it][A
+Iteration:  86%|########6 | 31/36 [00:34<00:05,  1.11s/it][A
+Iteration:  89%|########8 | 32/36 [00:35<00:04,  1.13s/it][A
+Iteration:  92%|#########1| 33/36 [00:36<00:03,  1.12s/it][A
+Iteration:  94%|#########4| 34/36 [00:38<00:02,  1.13s/it][A
+Iteration:  97%|#########7| 35/36 [00:39<00:01,  1.13s/it][A
+Iteration: 100%|##########| 36/36 [00:39<00:00,  1.10it/s][AIteration: 100%|##########| 36/36 [00:39<00:00,  1.10s/it]
+Epoch:  75%|#######5  | 6/8 [03:58<01:19, 39.68s/it]
+Iteration:   0%|          | 0/36 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/36 [00:01<00:40,  1.15s/it][A
+Iteration:   6%|5         | 2/36 [00:02<00:37,  1.12s/it][A
+Iteration:   8%|8         | 3/36 [00:03<00:36,  1.10s/it][A
+Iteration:  11%|#1        | 4/36 [00:04<00:35,  1.11s/it][A
+Iteration:  14%|#3        | 5/36 [00:05<00:34,  1.12s/it][A
+Iteration:  17%|#6        | 6/36 [00:06<00:33,  1.12s/it][A
+Iteration:  19%|#9        | 7/36 [00:07<00:32,  1.13s/it][A
+Iteration:  22%|##2       | 8/36 [00:08<00:31,  1.13s/it][A
+Iteration:  25%|##5       | 9/36 [00:10<00:30,  1.12s/it][A
+Iteration:  28%|##7       | 10/36 [00:11<00:29,  1.14s/it][A
+Iteration:  31%|###       | 11/36 [00:12<00:28,  1.13s/it][A
+Iteration:  33%|###3      | 12/36 [00:13<00:26,  1.12s/it][A
+Iteration:  36%|###6      | 13/36 [00:14<00:25,  1.13s/it][A
+Iteration:  39%|###8      | 14/36 [00:15<00:24,  1.13s/it][A
+Iteration:  42%|####1     | 15/36 [00:16<00:23,  1.13s/it][A
+Iteration:  44%|####4     | 16/36 [00:17<00:22,  1.13s/it][A
+Iteration:  47%|####7     | 17/36 [00:19<00:21,  1.13s/it][A
+Iteration:  50%|#####     | 18/36 [00:20<00:20,  1.12s/it][A
+Iteration:  53%|#####2    | 19/36 [00:21<00:19,  1.13s/it][A
+Iteration:  56%|#####5    | 20/36 [00:22<00:17,  1.11s/it][A
+Iteration:  58%|#####8    | 21/36 [00:23<00:16,  1.11s/it][A
+Iteration:  61%|######1   | 22/36 [00:24<00:15,  1.11s/it][A
+Iteration:  64%|######3   | 23/36 [00:25<00:14,  1.10s/it][A
+Iteration:  67%|######6   | 24/36 [00:26<00:13,  1.12s/it][A
+Iteration:  69%|######9   | 25/36 [00:28<00:12,  1.13s/it][A
+Iteration:  72%|#######2  | 26/36 [00:29<00:11,  1.12s/it][A
+Iteration:  75%|#######5  | 27/36 [00:30<00:10,  1.12s/it][A
+Iteration:  78%|#######7  | 28/36 [00:31<00:08,  1.12s/it][A
+Iteration:  81%|########  | 29/36 [00:32<00:07,  1.13s/it][A
+Iteration:  83%|########3 | 30/36 [00:33<00:06,  1.13s/it][A
+Iteration:  86%|########6 | 31/36 [00:34<00:05,  1.12s/it][A
+Iteration:  89%|########8 | 32/36 [00:35<00:04,  1.12s/it][A
+Iteration:  92%|#########1| 33/36 [00:37<00:03,  1.12s/it][A
+Iteration:  94%|#########4| 34/36 [00:38<00:02,  1.12s/it][A
+Iteration:  97%|#########7| 35/36 [00:39<00:01,  1.11s/it][A
+Iteration: 100%|##########| 36/36 [00:39<00:00,  1.11it/s][AIteration: 100%|##########| 36/36 [00:39<00:00,  1.10s/it]
+Epoch:  88%|########7 | 7/8 [04:38<00:39, 39.67s/it]
+Iteration:   0%|          | 0/36 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/36 [00:01<00:40,  1.15s/it][A
+Iteration:   6%|5         | 2/36 [00:02<00:39,  1.16s/it][A
+Iteration:   8%|8         | 3/36 [00:03<00:38,  1.16s/it][A
+Iteration:  11%|#1        | 4/36 [00:04<00:36,  1.15s/it][A
+Iteration:  14%|#3        | 5/36 [00:05<00:34,  1.12s/it][A
+Iteration:  17%|#6        | 6/36 [00:06<00:33,  1.13s/it][A
+Iteration:  19%|#9        | 7/36 [00:07<00:32,  1.13s/it][A
+Iteration:  22%|##2       | 8/36 [00:09<00:31,  1.12s/it][A
+Iteration:  25%|##5       | 9/36 [00:10<00:30,  1.12s/it][A
+Iteration:  28%|##7       | 10/36 [00:11<00:29,  1.12s/it][A
+Iteration:  31%|###       | 11/36 [00:12<00:27,  1.11s/it][A
+Iteration:  33%|###3      | 12/36 [00:13<00:26,  1.11s/it][A
+Iteration:  36%|###6      | 13/36 [00:14<00:25,  1.11s/it][A
+Iteration:  39%|###8      | 14/36 [00:15<00:24,  1.11s/it][A
+Iteration:  42%|####1     | 15/36 [00:16<00:23,  1.11s/it][A
+Iteration:  44%|####4     | 16/36 [00:17<00:22,  1.12s/it][A
+Iteration:  47%|####7     | 17/36 [00:19<00:21,  1.13s/it][A
+Iteration:  50%|#####     | 18/36 [00:20<00:20,  1.12s/it][A
+Iteration:  53%|#####2    | 19/36 [00:21<00:18,  1.11s/it][A
+Iteration:  56%|#####5    | 20/36 [00:22<00:17,  1.12s/it][A
+Iteration:  58%|#####8    | 21/36 [00:23<00:16,  1.12s/it][A
+Iteration:  61%|######1   | 22/36 [00:24<00:15,  1.11s/it][A
+Iteration:  64%|######3   | 23/36 [00:25<00:14,  1.12s/it][A
+Iteration:  67%|######6   | 24/36 [00:26<00:13,  1.12s/it][A
+Iteration:  69%|######9   | 25/36 [00:28<00:12,  1.12s/it][A
+Iteration:  72%|#######2  | 26/36 [00:29<00:11,  1.11s/it][A
+Iteration:  75%|#######5  | 27/36 [00:30<00:09,  1.11s/it][A
+Iteration:  78%|#######7  | 28/36 [00:31<00:08,  1.10s/it][A
+Iteration:  81%|########  | 29/36 [00:32<00:07,  1.12s/it][A
+Iteration:  83%|########3 | 30/36 [00:33<00:06,  1.10s/it][A
+Iteration:  86%|########6 | 31/36 [00:34<00:05,  1.10s/it][A
+Iteration:  89%|########8 | 32/36 [00:35<00:04,  1.11s/it][A
+Iteration:  92%|#########1| 33/36 [00:36<00:03,  1.10s/it][A
+Iteration:  94%|#########4| 34/36 [00:37<00:02,  1.11s/it][A
+Iteration:  97%|#########7| 35/36 [00:39<00:01,  1.11s/it][A
+Iteration: 100%|##########| 36/36 [00:39<00:00,  1.12it/s][AIteration: 100%|##########| 36/36 [00:39<00:00,  1.10s/it]
+Epoch: 100%|##########| 8/8 [05:17<00:00, 39.60s/it]Epoch: 100%|##########| 8/8 [05:17<00:00, 39.74s/it]
+10/19/2021 13:29:30 - INFO - __main__ -    global_step = 288, average loss = 0.0
+10/19/2021 13:29:30 - INFO - __main__ -   Saving model checkpoint to checkpoints/convdr-multi-cast19-1
+10/19/2021 13:29:30 - INFO - transformers.configuration_utils -   Configuration saved in checkpoints/convdr-multi-cast19-1/config.json
+10/19/2021 13:29:32 - INFO - transformers.modeling_utils -   Model weights saved in checkpoints/convdr-multi-cast19-1/pytorch_model.bin
+10/19/2021 13:29:32 - INFO - __main__ -   Training Fold #2
+10/19/2021 13:29:32 - INFO - transformers.configuration_utils -   loading configuration file checkpoints/ad-hoc-ance-msmarco/config.json
+10/19/2021 13:29:32 - INFO - transformers.configuration_utils -   Model config {
+  "_num_labels": 2,
+  "architectures": [
+    "RobertaDot_NLL_LN"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bad_words_ids": null,
+  "bos_token_id": 0,
+  "decoder_start_token_id": null,
+  "do_sample": false,
+  "early_stopping": false,
+  "eos_token_id": 2,
+  "eos_token_ids": 0,
+  "finetuning_task": "MSMarco",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "is_encoder_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-05,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 514,
+  "min_length": 0,
+  "model_type": "roberta",
+  "no_repeat_ngram_size": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 2,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 1,
+  "prefix": null,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "task_specific_params": null,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 1,
+  "use_bfloat16": false,
+  "vocab_size": 50265
+}
+
+10/19/2021 13:29:32 - INFO - transformers.tokenization_utils -   Model name 'checkpoints/ad-hoc-ance-msmarco' not found in model shortcut name list (roberta-base, roberta-large, roberta-large-mnli, distilroberta-base, roberta-base-openai-detector, roberta-large-openai-detector). Assuming 'checkpoints/ad-hoc-ance-msmarco' is a path or url to a directory containing tokenizer files.
+10/19/2021 13:29:32 - INFO - transformers.tokenization_utils -   Didn't find file checkpoints/ad-hoc-ance-msmarco/added_tokens.json. We won't load it.
+10/19/2021 13:29:32 - INFO - transformers.tokenization_utils -   loading file checkpoints/ad-hoc-ance-msmarco/vocab.json
+10/19/2021 13:29:32 - INFO - transformers.tokenization_utils -   loading file checkpoints/ad-hoc-ance-msmarco/merges.txt
+10/19/2021 13:29:32 - INFO - transformers.tokenization_utils -   loading file None
+10/19/2021 13:29:32 - INFO - transformers.tokenization_utils -   loading file checkpoints/ad-hoc-ance-msmarco/special_tokens_map.json
+10/19/2021 13:29:32 - INFO - transformers.tokenization_utils -   loading file checkpoints/ad-hoc-ance-msmarco/tokenizer_config.json
+10/19/2021 13:29:32 - INFO - transformers.modeling_utils -   loading weights file checkpoints/ad-hoc-ance-msmarco/pytorch_model.bin
+10/19/2021 13:29:39 - INFO - __main__ -   Training/evaluation parameters Namespace(adam_epsilon=1e-08, cache_dir=None, cross_validate=True, device=device(type='cuda'), gradient_accumulation_steps=1, init_from_multiple_models=False, learning_rate=1e-05, log_dir='logs/convdr_multi_cast19', log_steps=1, max_concat_length=256, max_grad_norm=1.0, max_query_length=64, max_steps=-1, model_name_or_path='checkpoints/ad-hoc-ance-msmarco', model_path='checkpoints/ad-hoc-ance-msmarco', model_type='rdot_nll', n_gpu=1, no_cuda=False, no_mse=False, num_negatives=9, num_train_epochs=8.0, output_dir='checkpoints/convdr-multi-cast19', overwrite_output_dir=False, per_gpu_train_batch_size=4, query='no_res', ranking_task=True, save_steps=-1, seed=42, teacher_model='checkpoints/ad-hoc-ance-msmarco', train_batch_size=4, train_file='datasets/cast-19/eval_topics.rank.jsonl', warmup_steps=0, weight_decay=0.0)
+10/19/2021 13:29:39 - INFO - __main__ -   train_files: ['datasets/cast-19/eval_topics.rank.jsonl.0', 'datasets/cast-19/eval_topics.rank.jsonl.1', 'datasets/cast-19/eval_topics.rank.jsonl.3', 'datasets/cast-19/eval_topics.rank.jsonl.4']
+10/19/2021 13:29:40 - INFO - __main__ -   ***** Running training *****
+10/19/2021 13:29:40 - INFO - __main__ -     Num examples = 140
+10/19/2021 13:29:40 - INFO - __main__ -     Num Epochs = 8
+10/19/2021 13:29:40 - INFO - __main__ -     Instantaneous batch size per GPU = 4
+10/19/2021 13:29:40 - INFO - __main__ -     Total train batch size (w. parallel & accumulation) = 4
+10/19/2021 13:29:40 - INFO - __main__ -     Gradient Accumulation steps = 1
+10/19/2021 13:29:40 - INFO - __main__ -     Total optimization steps = 280
+Using mean: False
+Epoch:   0%|          | 0/8 [00:00<?, ?it/s]
+Iteration:   0%|          | 0/35 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/35 [00:01<00:42,  1.24s/it][A
+Iteration:   6%|5         | 2/35 [00:02<00:39,  1.20s/it][A
+Iteration:   9%|8         | 3/35 [00:03<00:38,  1.19s/it][A
+Iteration:  11%|#1        | 4/35 [00:04<00:36,  1.19s/it][A
+Iteration:  14%|#4        | 5/35 [00:05<00:34,  1.17s/it][A
+Iteration:  17%|#7        | 6/35 [00:07<00:33,  1.16s/it][A
+Iteration:  20%|##        | 7/35 [00:08<00:32,  1.14s/it][A
+Iteration:  23%|##2       | 8/35 [00:09<00:31,  1.15s/it][A
+Iteration:  26%|##5       | 9/35 [00:10<00:30,  1.16s/it][A
+Iteration:  29%|##8       | 10/35 [00:11<00:28,  1.15s/it][A
+Iteration:  31%|###1      | 11/35 [00:12<00:27,  1.14s/it][A
+Iteration:  34%|###4      | 12/35 [00:13<00:26,  1.14s/it][A
+Iteration:  37%|###7      | 13/35 [00:15<00:25,  1.14s/it][A
+Iteration:  40%|####      | 14/35 [00:16<00:23,  1.14s/it][A
+Iteration:  43%|####2     | 15/35 [00:17<00:22,  1.15s/it][A
+Iteration:  46%|####5     | 16/35 [00:18<00:21,  1.14s/it][A
+Iteration:  49%|####8     | 17/35 [00:19<00:20,  1.12s/it][A
+Iteration:  51%|#####1    | 18/35 [00:20<00:19,  1.14s/it][A
+Iteration:  54%|#####4    | 19/35 [00:21<00:18,  1.14s/it][A
+Iteration:  57%|#####7    | 20/35 [00:23<00:17,  1.15s/it][A
+Iteration:  60%|######    | 21/35 [00:24<00:15,  1.14s/it][A
+Iteration:  63%|######2   | 22/35 [00:25<00:14,  1.14s/it][A
+Iteration:  66%|######5   | 23/35 [00:26<00:13,  1.12s/it][A
+Iteration:  69%|######8   | 24/35 [00:27<00:12,  1.13s/it][A
+Iteration:  71%|#######1  | 25/35 [00:28<00:11,  1.13s/it][A
+Iteration:  74%|#######4  | 26/35 [00:29<00:10,  1.13s/it][A
+Iteration:  77%|#######7  | 27/35 [00:30<00:09,  1.14s/it][A
+Iteration:  80%|########  | 28/35 [00:32<00:07,  1.13s/it][A
+Iteration:  83%|########2 | 29/35 [00:33<00:06,  1.14s/it][A
+Iteration:  86%|########5 | 30/35 [00:34<00:05,  1.14s/it][A
+Iteration:  89%|########8 | 31/35 [00:35<00:04,  1.13s/it][A
+Iteration:  91%|#########1| 32/35 [00:36<00:03,  1.13s/it][A
+Iteration:  94%|#########4| 33/35 [00:37<00:02,  1.13s/it][A
+Iteration:  97%|#########7| 34/35 [00:38<00:01,  1.14s/it][A
+Iteration: 100%|##########| 35/35 [00:39<00:00,  1.14s/it][AIteration: 100%|##########| 35/35 [00:39<00:00,  1.14s/it]
+Epoch:  12%|#2        | 1/8 [00:39<04:39, 39.99s/it]
+Iteration:   0%|          | 0/35 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/35 [00:01<00:36,  1.08s/it][A
+Iteration:   6%|5         | 2/35 [00:02<00:36,  1.12s/it][A
+Iteration:   9%|8         | 3/35 [00:03<00:35,  1.11s/it][A
+Iteration:  11%|#1        | 4/35 [00:04<00:34,  1.12s/it][A
+Iteration:  14%|#4        | 5/35 [00:05<00:33,  1.12s/it][A
+Iteration:  17%|#7        | 6/35 [00:06<00:32,  1.12s/it][A
+Iteration:  20%|##        | 7/35 [00:07<00:31,  1.11s/it][A
+Iteration:  23%|##2       | 8/35 [00:08<00:30,  1.11s/it][A
+Iteration:  26%|##5       | 9/35 [00:10<00:28,  1.11s/it][A
+Iteration:  29%|##8       | 10/35 [00:11<00:27,  1.12s/it][A
+Iteration:  31%|###1      | 11/35 [00:12<00:26,  1.11s/it][A
+Iteration:  34%|###4      | 12/35 [00:13<00:25,  1.12s/it][A
+Iteration:  37%|###7      | 13/35 [00:14<00:24,  1.11s/it][A
+Iteration:  40%|####      | 14/35 [00:15<00:23,  1.12s/it][A
+Iteration:  43%|####2     | 15/35 [00:16<00:22,  1.11s/it][A
+Iteration:  46%|####5     | 16/35 [00:17<00:21,  1.12s/it][A
+Iteration:  49%|####8     | 17/35 [00:18<00:20,  1.12s/it][A
+Iteration:  51%|#####1    | 18/35 [00:20<00:18,  1.11s/it][A
+Iteration:  54%|#####4    | 19/35 [00:21<00:18,  1.13s/it][A
+Iteration:  57%|#####7    | 20/35 [00:22<00:16,  1.12s/it][A
+Iteration:  60%|######    | 21/35 [00:23<00:15,  1.11s/it][A
+Iteration:  63%|######2   | 22/35 [00:24<00:14,  1.12s/it][A
+Iteration:  66%|######5   | 23/35 [00:25<00:13,  1.12s/it][A
+Iteration:  69%|######8   | 24/35 [00:26<00:12,  1.11s/it][A
+Iteration:  71%|#######1  | 25/35 [00:27<00:11,  1.11s/it][A
+Iteration:  74%|#######4  | 26/35 [00:28<00:10,  1.11s/it][A
+Iteration:  77%|#######7  | 27/35 [00:30<00:08,  1.12s/it][A
+Iteration:  80%|########  | 28/35 [00:31<00:07,  1.11s/it][A
+Iteration:  83%|########2 | 29/35 [00:32<00:06,  1.11s/it][A
+Iteration:  86%|########5 | 30/35 [00:33<00:05,  1.12s/it][A
+Iteration:  89%|########8 | 31/35 [00:34<00:04,  1.13s/it][A
+Iteration:  91%|#########1| 32/35 [00:35<00:03,  1.13s/it][A
+Iteration:  94%|#########4| 33/35 [00:36<00:02,  1.13s/it][A
+Iteration:  97%|#########7| 34/35 [00:37<00:01,  1.12s/it][A
+Iteration: 100%|##########| 35/35 [00:39<00:00,  1.12s/it][AIteration: 100%|##########| 35/35 [00:39<00:00,  1.12s/it]
+Epoch:  25%|##5       | 2/8 [01:19<03:56, 39.46s/it]
+Iteration:   0%|          | 0/35 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/35 [00:01<00:38,  1.15s/it][A
+Iteration:   6%|5         | 2/35 [00:02<00:36,  1.11s/it][A
+Iteration:   9%|8         | 3/35 [00:03<00:35,  1.11s/it][A
+Iteration:  11%|#1        | 4/35 [00:04<00:34,  1.11s/it][A
+Iteration:  14%|#4        | 5/35 [00:05<00:33,  1.12s/it][A
+Iteration:  17%|#7        | 6/35 [00:06<00:32,  1.12s/it][A
+Iteration:  20%|##        | 7/35 [00:07<00:31,  1.13s/it][A
+Iteration:  23%|##2       | 8/35 [00:08<00:30,  1.12s/it][A
+Iteration:  26%|##5       | 9/35 [00:10<00:29,  1.13s/it][A
+Iteration:  29%|##8       | 10/35 [00:11<00:28,  1.13s/it][A
+Iteration:  31%|###1      | 11/35 [00:12<00:27,  1.13s/it][A
+Iteration:  34%|###4      | 12/35 [00:13<00:25,  1.12s/it][A
+Iteration:  37%|###7      | 13/35 [00:14<00:24,  1.12s/it][A
+Iteration:  40%|####      | 14/35 [00:15<00:23,  1.12s/it][A
+Iteration:  43%|####2     | 15/35 [00:16<00:22,  1.12s/it][A
+Iteration:  46%|####5     | 16/35 [00:17<00:21,  1.12s/it][A
+Iteration:  49%|####8     | 17/35 [00:19<00:20,  1.12s/it][A
+Iteration:  51%|#####1    | 18/35 [00:20<00:18,  1.12s/it][A
+Iteration:  54%|#####4    | 19/35 [00:21<00:17,  1.11s/it][A
+Iteration:  57%|#####7    | 20/35 [00:22<00:16,  1.10s/it][A
+Iteration:  60%|######    | 21/35 [00:23<00:15,  1.10s/it][A
+Iteration:  63%|######2   | 22/35 [00:24<00:14,  1.12s/it][A
+Iteration:  66%|######5   | 23/35 [00:25<00:13,  1.12s/it][A
+Iteration:  69%|######8   | 24/35 [00:26<00:12,  1.13s/it][A
+Iteration:  71%|#######1  | 25/35 [00:27<00:11,  1.12s/it][A
+Iteration:  74%|#######4  | 26/35 [00:29<00:09,  1.11s/it][A
+Iteration:  77%|#######7  | 27/35 [00:30<00:08,  1.11s/it][A
+Iteration:  80%|########  | 28/35 [00:31<00:07,  1.12s/it][A
+Iteration:  83%|########2 | 29/35 [00:32<00:06,  1.12s/it][A
+Iteration:  86%|########5 | 30/35 [00:33<00:05,  1.12s/it][A
+Iteration:  89%|########8 | 31/35 [00:34<00:04,  1.12s/it][A
+Iteration:  91%|#########1| 32/35 [00:35<00:03,  1.13s/it][A
+Iteration:  94%|#########4| 33/35 [00:36<00:02,  1.13s/it][A
+Iteration:  97%|#########7| 34/35 [00:37<00:01,  1.11s/it][A
+Iteration: 100%|##########| 35/35 [00:39<00:00,  1.12s/it][AIteration: 100%|##########| 35/35 [00:39<00:00,  1.12s/it]
+Epoch:  38%|###7      | 3/8 [01:58<03:16, 39.31s/it]
+Iteration:   0%|          | 0/35 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/35 [00:01<00:38,  1.12s/it][A
+Iteration:   6%|5         | 2/35 [00:02<00:36,  1.12s/it][A
+Iteration:   9%|8         | 3/35 [00:03<00:35,  1.11s/it][A
+Iteration:  11%|#1        | 4/35 [00:04<00:34,  1.10s/it][A
+Iteration:  14%|#4        | 5/35 [00:05<00:33,  1.12s/it][A
+Iteration:  17%|#7        | 6/35 [00:06<00:32,  1.13s/it][A
+Iteration:  20%|##        | 7/35 [00:07<00:31,  1.12s/it][A
+Iteration:  23%|##2       | 8/35 [00:08<00:30,  1.12s/it][A
+Iteration:  26%|##5       | 9/35 [00:10<00:29,  1.12s/it][A
+Iteration:  29%|##8       | 10/35 [00:11<00:28,  1.13s/it][A
+Iteration:  31%|###1      | 11/35 [00:12<00:27,  1.13s/it][A
+Iteration:  34%|###4      | 12/35 [00:13<00:26,  1.14s/it][A
+Iteration:  37%|###7      | 13/35 [00:14<00:24,  1.13s/it][A
+Iteration:  40%|####      | 14/35 [00:15<00:23,  1.11s/it][A
+Iteration:  43%|####2     | 15/35 [00:16<00:22,  1.12s/it][A
+Iteration:  46%|####5     | 16/35 [00:17<00:21,  1.12s/it][A
+Iteration:  49%|####8     | 17/35 [00:19<00:20,  1.11s/it][A
+Iteration:  51%|#####1    | 18/35 [00:20<00:19,  1.12s/it][A
+Iteration:  54%|#####4    | 19/35 [00:21<00:17,  1.11s/it][A
+Iteration:  57%|#####7    | 20/35 [00:22<00:16,  1.13s/it][A
+Iteration:  60%|######    | 21/35 [00:23<00:15,  1.12s/it][A
+Iteration:  63%|######2   | 22/35 [00:24<00:14,  1.12s/it][A
+Iteration:  66%|######5   | 23/35 [00:25<00:13,  1.11s/it][A
+Iteration:  69%|######8   | 24/35 [00:26<00:12,  1.12s/it][A
+Iteration:  71%|#######1  | 25/35 [00:28<00:11,  1.14s/it][A
+Iteration:  74%|#######4  | 26/35 [00:29<00:10,  1.12s/it][A
+Iteration:  77%|#######7  | 27/35 [00:30<00:08,  1.11s/it][A
+Iteration:  80%|########  | 28/35 [00:31<00:07,  1.12s/it][A
+Iteration:  83%|########2 | 29/35 [00:32<00:06,  1.12s/it][A
+Iteration:  86%|########5 | 30/35 [00:33<00:05,  1.11s/it][A
+Iteration:  89%|########8 | 31/35 [00:34<00:04,  1.11s/it][A
+Iteration:  91%|#########1| 32/35 [00:35<00:03,  1.12s/it][A
+Iteration:  94%|#########4| 33/35 [00:36<00:02,  1.11s/it][A
+Iteration:  97%|#########7| 34/35 [00:38<00:01,  1.11s/it][A
+Iteration: 100%|##########| 35/35 [00:39<00:00,  1.12s/it][AIteration: 100%|##########| 35/35 [00:39<00:00,  1.12s/it]
+Epoch:  50%|#####     | 4/8 [02:37<02:37, 39.26s/it]
+Iteration:   0%|          | 0/35 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/35 [00:01<00:38,  1.12s/it][A
+Iteration:   6%|5         | 2/35 [00:02<00:36,  1.10s/it][A
+Iteration:   9%|8         | 3/35 [00:03<00:36,  1.13s/it][A
+Iteration:  11%|#1        | 4/35 [00:04<00:35,  1.14s/it][A
+Iteration:  14%|#4        | 5/35 [00:05<00:33,  1.13s/it][A
+Iteration:  17%|#7        | 6/35 [00:06<00:32,  1.11s/it][A
+Iteration:  20%|##        | 7/35 [00:07<00:31,  1.12s/it][A
+Iteration:  23%|##2       | 8/35 [00:08<00:30,  1.12s/it][A
+Iteration:  26%|##5       | 9/35 [00:10<00:28,  1.11s/it][A
+Iteration:  29%|##8       | 10/35 [00:11<00:27,  1.11s/it][A
+Iteration:  31%|###1      | 11/35 [00:12<00:26,  1.12s/it][A
+Iteration:  34%|###4      | 12/35 [00:13<00:25,  1.13s/it][A
+Iteration:  37%|###7      | 13/35 [00:14<00:24,  1.12s/it][A
+Iteration:  40%|####      | 14/35 [00:15<00:23,  1.13s/it][A
+Iteration:  43%|####2     | 15/35 [00:16<00:22,  1.13s/it][A
+Iteration:  46%|####5     | 16/35 [00:17<00:21,  1.12s/it][A
+Iteration:  49%|####8     | 17/35 [00:19<00:19,  1.11s/it][A
+Iteration:  51%|#####1    | 18/35 [00:20<00:19,  1.12s/it][A
+Iteration:  54%|#####4    | 19/35 [00:21<00:18,  1.13s/it][A
+Iteration:  57%|#####7    | 20/35 [00:22<00:17,  1.14s/it][A
+Iteration:  60%|######    | 21/35 [00:23<00:15,  1.14s/it][A
+Iteration:  63%|######2   | 22/35 [00:24<00:14,  1.12s/it][A
+Iteration:  66%|######5   | 23/35 [00:25<00:13,  1.12s/it][A
+Iteration:  69%|######8   | 24/35 [00:26<00:12,  1.11s/it][A
+Iteration:  71%|#######1  | 25/35 [00:28<00:11,  1.11s/it][A
+Iteration:  74%|#######4  | 26/35 [00:29<00:10,  1.12s/it][A
+Iteration:  77%|#######7  | 27/35 [00:30<00:08,  1.12s/it][A
+Iteration:  80%|########  | 28/35 [00:31<00:07,  1.12s/it][A
+Iteration:  83%|########2 | 29/35 [00:32<00:06,  1.13s/it][A
+Iteration:  86%|########5 | 30/35 [00:33<00:05,  1.13s/it][A
+Iteration:  89%|########8 | 31/35 [00:34<00:04,  1.12s/it][A
+Iteration:  91%|#########1| 32/35 [00:35<00:03,  1.12s/it][A
+Iteration:  94%|#########4| 33/35 [00:37<00:02,  1.12s/it][A
+Iteration:  97%|#########7| 34/35 [00:38<00:01,  1.12s/it][A
+Iteration: 100%|##########| 35/35 [00:39<00:00,  1.12s/it][AIteration: 100%|##########| 35/35 [00:39<00:00,  1.12s/it]
+Epoch:  62%|######2   | 5/8 [03:16<01:57, 39.28s/it]
+Iteration:   0%|          | 0/35 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/35 [00:01<00:38,  1.13s/it][A
+Iteration:   6%|5         | 2/35 [00:02<00:37,  1.12s/it][A
+Iteration:   9%|8         | 3/35 [00:03<00:35,  1.12s/it][A
+Iteration:  11%|#1        | 4/35 [00:04<00:34,  1.13s/it][A
+Iteration:  14%|#4        | 5/35 [00:05<00:33,  1.12s/it][A
+Iteration:  17%|#7        | 6/35 [00:06<00:32,  1.12s/it][A
+Iteration:  20%|##        | 7/35 [00:07<00:30,  1.11s/it][A
+Iteration:  23%|##2       | 8/35 [00:08<00:30,  1.12s/it][A
+Iteration:  26%|##5       | 9/35 [00:10<00:28,  1.11s/it][A
+Iteration:  29%|##8       | 10/35 [00:11<00:27,  1.10s/it][A
+Iteration:  31%|###1      | 11/35 [00:12<00:26,  1.11s/it][A
+Iteration:  34%|###4      | 12/35 [00:13<00:25,  1.11s/it][A
+Iteration:  37%|###7      | 13/35 [00:14<00:24,  1.11s/it][A
+Iteration:  40%|####      | 14/35 [00:15<00:23,  1.12s/it][A
+Iteration:  43%|####2     | 15/35 [00:16<00:22,  1.12s/it][A
+Iteration:  46%|####5     | 16/35 [00:17<00:21,  1.12s/it][A
+Iteration:  49%|####8     | 17/35 [00:18<00:20,  1.11s/it][A
+Iteration:  51%|#####1    | 18/35 [00:20<00:18,  1.11s/it][A
+Iteration:  54%|#####4    | 19/35 [00:21<00:17,  1.12s/it][A
+Iteration:  57%|#####7    | 20/35 [00:22<00:16,  1.13s/it][A
+Iteration:  60%|######    | 21/35 [00:23<00:15,  1.12s/it][A
+Iteration:  63%|######2   | 22/35 [00:24<00:14,  1.14s/it][A
+Iteration:  66%|######5   | 23/35 [00:25<00:13,  1.13s/it][A
+Iteration:  69%|######8   | 24/35 [00:26<00:12,  1.12s/it][A
+Iteration:  71%|#######1  | 25/35 [00:27<00:11,  1.12s/it][A
+Iteration:  74%|#######4  | 26/35 [00:29<00:10,  1.13s/it][A
+Iteration:  77%|#######7  | 27/35 [00:30<00:09,  1.13s/it][A
+Iteration:  80%|########  | 28/35 [00:31<00:07,  1.11s/it][A
+Iteration:  83%|########2 | 29/35 [00:32<00:06,  1.12s/it][A
+Iteration:  86%|########5 | 30/35 [00:33<00:05,  1.12s/it][A
+Iteration:  89%|########8 | 31/35 [00:34<00:04,  1.13s/it][A
+Iteration:  91%|#########1| 32/35 [00:35<00:03,  1.14s/it][A
+Iteration:  94%|#########4| 33/35 [00:37<00:02,  1.14s/it][A
+Iteration:  97%|#########7| 34/35 [00:38<00:01,  1.13s/it][A
+Iteration: 100%|##########| 35/35 [00:39<00:00,  1.13s/it][AIteration: 100%|##########| 35/35 [00:39<00:00,  1.12s/it]
+Epoch:  75%|#######5  | 6/8 [03:55<01:18, 39.28s/it]
+Iteration:   0%|          | 0/35 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/35 [00:01<00:38,  1.13s/it][A
+Iteration:   6%|5         | 2/35 [00:02<00:36,  1.11s/it][A
+Iteration:   9%|8         | 3/35 [00:03<00:35,  1.10s/it][A
+Iteration:  11%|#1        | 4/35 [00:04<00:34,  1.12s/it][A
+Iteration:  14%|#4        | 5/35 [00:05<00:33,  1.13s/it][A
+Iteration:  17%|#7        | 6/35 [00:06<00:32,  1.12s/it][A
+Iteration:  20%|##        | 7/35 [00:07<00:31,  1.13s/it][A
+Iteration:  23%|##2       | 8/35 [00:09<00:30,  1.13s/it][A
+Iteration:  26%|##5       | 9/35 [00:10<00:29,  1.12s/it][A
+Iteration:  29%|##8       | 10/35 [00:11<00:27,  1.11s/it][A
+Iteration:  31%|###1      | 11/35 [00:12<00:26,  1.11s/it][A
+Iteration:  34%|###4      | 12/35 [00:13<00:25,  1.11s/it][A
+Iteration:  37%|###7      | 13/35 [00:14<00:24,  1.10s/it][A
+Iteration:  40%|####      | 14/35 [00:15<00:23,  1.13s/it][A
+Iteration:  43%|####2     | 15/35 [00:16<00:22,  1.12s/it][A
+Iteration:  46%|####5     | 16/35 [00:17<00:21,  1.13s/it][A
+Iteration:  49%|####8     | 17/35 [00:19<00:20,  1.12s/it][A
+Iteration:  51%|#####1    | 18/35 [00:20<00:18,  1.11s/it][A
+Iteration:  54%|#####4    | 19/35 [00:21<00:17,  1.12s/it][A
+Iteration:  57%|#####7    | 20/35 [00:22<00:16,  1.12s/it][A
+Iteration:  60%|######    | 21/35 [00:23<00:15,  1.12s/it][A
+Iteration:  63%|######2   | 22/35 [00:24<00:14,  1.10s/it][A
+Iteration:  66%|######5   | 23/35 [00:25<00:13,  1.10s/it][A
+Iteration:  69%|######8   | 24/35 [00:26<00:12,  1.10s/it][A
+Iteration:  71%|#######1  | 25/35 [00:27<00:11,  1.11s/it][A
+Iteration:  74%|#######4  | 26/35 [00:29<00:09,  1.11s/it][A
+Iteration:  77%|#######7  | 27/35 [00:30<00:08,  1.10s/it][A
+Iteration:  80%|########  | 28/35 [00:31<00:07,  1.11s/it][A
+Iteration:  83%|########2 | 29/35 [00:32<00:06,  1.11s/it][A
+Iteration:  86%|########5 | 30/35 [00:33<00:05,  1.11s/it][A
+Iteration:  89%|########8 | 31/35 [00:34<00:04,  1.11s/it][A
+Iteration:  91%|#########1| 32/35 [00:35<00:03,  1.13s/it][A
+Iteration:  94%|#########4| 33/35 [00:36<00:02,  1.13s/it][A
+Iteration:  97%|#########7| 34/35 [00:37<00:01,  1.13s/it][A
+Iteration: 100%|##########| 35/35 [00:39<00:00,  1.13s/it][AIteration: 100%|##########| 35/35 [00:39<00:00,  1.12s/it]
+Epoch:  88%|########7 | 7/8 [04:35<00:39, 39.23s/it]
+Iteration:   0%|          | 0/35 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/35 [00:01<00:38,  1.14s/it][A
+Iteration:   6%|5         | 2/35 [00:02<00:36,  1.12s/it][A
+Iteration:   9%|8         | 3/35 [00:03<00:36,  1.13s/it][A
+Iteration:  11%|#1        | 4/35 [00:04<00:34,  1.12s/it][A
+Iteration:  14%|#4        | 5/35 [00:05<00:33,  1.12s/it][A
+Iteration:  17%|#7        | 6/35 [00:06<00:32,  1.13s/it][A
+Iteration:  20%|##        | 7/35 [00:07<00:31,  1.12s/it][A
+Iteration:  23%|##2       | 8/35 [00:08<00:30,  1.11s/it][A
+Iteration:  26%|##5       | 9/35 [00:10<00:29,  1.12s/it][A
+Iteration:  29%|##8       | 10/35 [00:11<00:27,  1.09s/it][A
+Iteration:  31%|###1      | 11/35 [00:12<00:26,  1.09s/it][A
+Iteration:  34%|###4      | 12/35 [00:13<00:25,  1.11s/it][A
+Iteration:  37%|###7      | 13/35 [00:14<00:24,  1.12s/it][A
+Iteration:  40%|####      | 14/35 [00:15<00:23,  1.11s/it][A
+Iteration:  43%|####2     | 15/35 [00:16<00:22,  1.13s/it][A
+Iteration:  46%|####5     | 16/35 [00:17<00:21,  1.12s/it][A
+Iteration:  49%|####8     | 17/35 [00:19<00:20,  1.13s/it][A
+Iteration:  51%|#####1    | 18/35 [00:20<00:18,  1.11s/it][A
+Iteration:  54%|#####4    | 19/35 [00:21<00:17,  1.11s/it][A
+Iteration:  57%|#####7    | 20/35 [00:22<00:16,  1.10s/it][A
+Iteration:  60%|######    | 21/35 [00:23<00:15,  1.10s/it][A
+Iteration:  63%|######2   | 22/35 [00:24<00:14,  1.10s/it][A
+Iteration:  66%|######5   | 23/35 [00:25<00:13,  1.10s/it][A
+Iteration:  69%|######8   | 24/35 [00:26<00:12,  1.10s/it][A
+Iteration:  71%|#######1  | 25/35 [00:27<00:11,  1.10s/it][A
+Iteration:  74%|#######4  | 26/35 [00:28<00:10,  1.12s/it][A
+Iteration:  77%|#######7  | 27/35 [00:30<00:08,  1.12s/it][A
+Iteration:  80%|########  | 28/35 [00:31<00:07,  1.11s/it][A
+Iteration:  83%|########2 | 29/35 [00:32<00:06,  1.11s/it][A
+Iteration:  86%|########5 | 30/35 [00:33<00:05,  1.12s/it][A
+Iteration:  89%|########8 | 31/35 [00:34<00:04,  1.12s/it][A
+Iteration:  91%|#########1| 32/35 [00:35<00:03,  1.12s/it][A
+Iteration:  94%|#########4| 33/35 [00:36<00:02,  1.12s/it][A
+Iteration:  97%|#########7| 34/35 [00:37<00:01,  1.13s/it][A
+Iteration: 100%|##########| 35/35 [00:39<00:00,  1.13s/it][AIteration: 100%|##########| 35/35 [00:39<00:00,  1.11s/it]
+Epoch: 100%|##########| 8/8 [05:14<00:00, 39.16s/it]Epoch: 100%|##########| 8/8 [05:14<00:00, 39.27s/it]
+10/19/2021 13:34:54 - INFO - __main__ -    global_step = 280, average loss = 0.0
+10/19/2021 13:34:54 - INFO - __main__ -   Saving model checkpoint to checkpoints/convdr-multi-cast19-2
+10/19/2021 13:34:54 - INFO - transformers.configuration_utils -   Configuration saved in checkpoints/convdr-multi-cast19-2/config.json
+10/19/2021 13:34:55 - INFO - transformers.modeling_utils -   Model weights saved in checkpoints/convdr-multi-cast19-2/pytorch_model.bin
+10/19/2021 13:34:55 - INFO - __main__ -   Training Fold #3
+10/19/2021 13:34:55 - INFO - transformers.configuration_utils -   loading configuration file checkpoints/ad-hoc-ance-msmarco/config.json
+10/19/2021 13:34:55 - INFO - transformers.configuration_utils -   Model config {
+  "_num_labels": 2,
+  "architectures": [
+    "RobertaDot_NLL_LN"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bad_words_ids": null,
+  "bos_token_id": 0,
+  "decoder_start_token_id": null,
+  "do_sample": false,
+  "early_stopping": false,
+  "eos_token_id": 2,
+  "eos_token_ids": 0,
+  "finetuning_task": "MSMarco",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "is_encoder_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-05,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 514,
+  "min_length": 0,
+  "model_type": "roberta",
+  "no_repeat_ngram_size": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 2,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 1,
+  "prefix": null,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "task_specific_params": null,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 1,
+  "use_bfloat16": false,
+  "vocab_size": 50265
+}
+
+10/19/2021 13:34:55 - INFO - transformers.tokenization_utils -   Model name 'checkpoints/ad-hoc-ance-msmarco' not found in model shortcut name list (roberta-base, roberta-large, roberta-large-mnli, distilroberta-base, roberta-base-openai-detector, roberta-large-openai-detector). Assuming 'checkpoints/ad-hoc-ance-msmarco' is a path or url to a directory containing tokenizer files.
+10/19/2021 13:34:55 - INFO - transformers.tokenization_utils -   Didn't find file checkpoints/ad-hoc-ance-msmarco/added_tokens.json. We won't load it.
+10/19/2021 13:34:55 - INFO - transformers.tokenization_utils -   loading file checkpoints/ad-hoc-ance-msmarco/vocab.json
+10/19/2021 13:34:55 - INFO - transformers.tokenization_utils -   loading file checkpoints/ad-hoc-ance-msmarco/merges.txt
+10/19/2021 13:34:55 - INFO - transformers.tokenization_utils -   loading file None
+10/19/2021 13:34:55 - INFO - transformers.tokenization_utils -   loading file checkpoints/ad-hoc-ance-msmarco/special_tokens_map.json
+10/19/2021 13:34:55 - INFO - transformers.tokenization_utils -   loading file checkpoints/ad-hoc-ance-msmarco/tokenizer_config.json
+10/19/2021 13:34:56 - INFO - transformers.modeling_utils -   loading weights file checkpoints/ad-hoc-ance-msmarco/pytorch_model.bin
+10/19/2021 13:35:03 - INFO - __main__ -   Training/evaluation parameters Namespace(adam_epsilon=1e-08, cache_dir=None, cross_validate=True, device=device(type='cuda'), gradient_accumulation_steps=1, init_from_multiple_models=False, learning_rate=1e-05, log_dir='logs/convdr_multi_cast19', log_steps=1, max_concat_length=256, max_grad_norm=1.0, max_query_length=64, max_steps=-1, model_name_or_path='checkpoints/ad-hoc-ance-msmarco', model_path='checkpoints/ad-hoc-ance-msmarco', model_type='rdot_nll', n_gpu=1, no_cuda=False, no_mse=False, num_negatives=9, num_train_epochs=8.0, output_dir='checkpoints/convdr-multi-cast19', overwrite_output_dir=False, per_gpu_train_batch_size=4, query='no_res', ranking_task=True, save_steps=-1, seed=42, teacher_model='checkpoints/ad-hoc-ance-msmarco', train_batch_size=4, train_file='datasets/cast-19/eval_topics.rank.jsonl', warmup_steps=0, weight_decay=0.0)
+10/19/2021 13:35:03 - INFO - __main__ -   train_files: ['datasets/cast-19/eval_topics.rank.jsonl.0', 'datasets/cast-19/eval_topics.rank.jsonl.1', 'datasets/cast-19/eval_topics.rank.jsonl.2', 'datasets/cast-19/eval_topics.rank.jsonl.4']
+10/19/2021 13:35:03 - INFO - __main__ -   ***** Running training *****
+10/19/2021 13:35:03 - INFO - __main__ -     Num examples = 141
+10/19/2021 13:35:03 - INFO - __main__ -     Num Epochs = 8
+10/19/2021 13:35:03 - INFO - __main__ -     Instantaneous batch size per GPU = 4
+10/19/2021 13:35:03 - INFO - __main__ -     Total train batch size (w. parallel & accumulation) = 4
+10/19/2021 13:35:03 - INFO - __main__ -     Gradient Accumulation steps = 1
+10/19/2021 13:35:03 - INFO - __main__ -     Total optimization steps = 288
+Using mean: False
+Epoch:   0%|          | 0/8 [00:00<?, ?it/s]
+Iteration:   0%|          | 0/36 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/36 [00:01<00:42,  1.21s/it][A
+Iteration:   6%|5         | 2/36 [00:02<00:39,  1.17s/it][A
+Iteration:   8%|8         | 3/36 [00:03<00:38,  1.16s/it][A
+Iteration:  11%|#1        | 4/36 [00:04<00:37,  1.17s/it][A
+Iteration:  14%|#3        | 5/36 [00:05<00:35,  1.16s/it][A
+Iteration:  17%|#6        | 6/36 [00:06<00:34,  1.14s/it][A
+Iteration:  19%|#9        | 7/36 [00:08<00:33,  1.14s/it][A
+Iteration:  22%|##2       | 8/36 [00:09<00:31,  1.14s/it][A
+Iteration:  25%|##5       | 9/36 [00:10<00:30,  1.14s/it][A
+Iteration:  28%|##7       | 10/36 [00:11<00:29,  1.13s/it][A
+Iteration:  31%|###       | 11/36 [00:12<00:28,  1.13s/it][A
+Iteration:  33%|###3      | 12/36 [00:13<00:27,  1.13s/it][A
+Iteration:  36%|###6      | 13/36 [00:14<00:25,  1.13s/it][A
+Iteration:  39%|###8      | 14/36 [00:15<00:24,  1.12s/it][A
+Iteration:  42%|####1     | 15/36 [00:17<00:23,  1.13s/it][A
+Iteration:  44%|####4     | 16/36 [00:18<00:22,  1.13s/it][A
+Iteration:  47%|####7     | 17/36 [00:19<00:21,  1.14s/it][A
+Iteration:  50%|#####     | 18/36 [00:20<00:20,  1.15s/it][A
+Iteration:  53%|#####2    | 19/36 [00:21<00:19,  1.16s/it][A
+Iteration:  56%|#####5    | 20/36 [00:22<00:18,  1.14s/it][A
+Iteration:  58%|#####8    | 21/36 [00:23<00:17,  1.14s/it][A
+Iteration:  61%|######1   | 22/36 [00:25<00:16,  1.15s/it][A
+Iteration:  64%|######3   | 23/36 [00:26<00:14,  1.14s/it][A
+Iteration:  67%|######6   | 24/36 [00:27<00:13,  1.14s/it][A
+Iteration:  69%|######9   | 25/36 [00:28<00:12,  1.15s/it][A
+Iteration:  72%|#######2  | 26/36 [00:29<00:11,  1.14s/it][A
+Iteration:  75%|#######5  | 27/36 [00:30<00:10,  1.14s/it][A
+Iteration:  78%|#######7  | 28/36 [00:31<00:09,  1.14s/it][A
+Iteration:  81%|########  | 29/36 [00:33<00:07,  1.13s/it][A
+Iteration:  83%|########3 | 30/36 [00:34<00:06,  1.14s/it][A
+Iteration:  86%|########6 | 31/36 [00:35<00:05,  1.14s/it][A
+Iteration:  89%|########8 | 32/36 [00:36<00:04,  1.16s/it][A
+Iteration:  92%|#########1| 33/36 [00:37<00:03,  1.14s/it][A
+Iteration:  94%|#########4| 34/36 [00:38<00:02,  1.13s/it][A
+Iteration:  97%|#########7| 35/36 [00:39<00:01,  1.12s/it][A
+Iteration: 100%|##########| 36/36 [00:40<00:00,  1.10it/s][AIteration: 100%|##########| 36/36 [00:40<00:00,  1.12s/it]
+Epoch:  12%|#2        | 1/8 [00:40<04:42, 40.31s/it]
+Iteration:   0%|          | 0/36 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/36 [00:01<00:38,  1.11s/it][A
+Iteration:   6%|5         | 2/36 [00:02<00:37,  1.09s/it][A
+Iteration:   8%|8         | 3/36 [00:03<00:35,  1.09s/it][A
+Iteration:  11%|#1        | 4/36 [00:04<00:35,  1.11s/it][A
+Iteration:  14%|#3        | 5/36 [00:05<00:34,  1.11s/it][A
+Iteration:  17%|#6        | 6/36 [00:06<00:33,  1.13s/it][A
+Iteration:  19%|#9        | 7/36 [00:07<00:32,  1.12s/it][A
+Iteration:  22%|##2       | 8/36 [00:08<00:31,  1.12s/it][A
+Iteration:  25%|##5       | 9/36 [00:10<00:30,  1.12s/it][A
+Iteration:  28%|##7       | 10/36 [00:11<00:29,  1.12s/it][A
+Iteration:  31%|###       | 11/36 [00:12<00:28,  1.14s/it][A
+Iteration:  33%|###3      | 12/36 [00:13<00:27,  1.14s/it][A
+Iteration:  36%|###6      | 13/36 [00:14<00:26,  1.13s/it][A
+Iteration:  39%|###8      | 14/36 [00:15<00:24,  1.12s/it][A
+Iteration:  42%|####1     | 15/36 [00:16<00:23,  1.12s/it][A
+Iteration:  44%|####4     | 16/36 [00:17<00:22,  1.12s/it][A
+Iteration:  47%|####7     | 17/36 [00:19<00:21,  1.12s/it][A
+Iteration:  50%|#####     | 18/36 [00:20<00:20,  1.13s/it][A
+Iteration:  53%|#####2    | 19/36 [00:21<00:19,  1.12s/it][A
+Iteration:  56%|#####5    | 20/36 [00:22<00:17,  1.11s/it][A
+Iteration:  58%|#####8    | 21/36 [00:23<00:16,  1.11s/it][A
+Iteration:  61%|######1   | 22/36 [00:24<00:15,  1.11s/it][A
+Iteration:  64%|######3   | 23/36 [00:25<00:14,  1.12s/it][A
+Iteration:  67%|######6   | 24/36 [00:26<00:13,  1.11s/it][A
+Iteration:  69%|######9   | 25/36 [00:27<00:12,  1.11s/it][A
+Iteration:  72%|#######2  | 26/36 [00:29<00:11,  1.11s/it][A
+Iteration:  75%|#######5  | 27/36 [00:30<00:10,  1.12s/it][A
+Iteration:  78%|#######7  | 28/36 [00:31<00:08,  1.10s/it][A
+Iteration:  81%|########  | 29/36 [00:32<00:07,  1.11s/it][A
+Iteration:  83%|########3 | 30/36 [00:33<00:06,  1.12s/it][A
+Iteration:  86%|########6 | 31/36 [00:34<00:05,  1.12s/it][A
+Iteration:  89%|########8 | 32/36 [00:35<00:04,  1.13s/it][A
+Iteration:  92%|#########1| 33/36 [00:36<00:03,  1.12s/it][A
+Iteration:  94%|#########4| 34/36 [00:38<00:02,  1.12s/it][A
+Iteration:  97%|#########7| 35/36 [00:39<00:01,  1.11s/it][A
+Iteration: 100%|##########| 36/36 [00:39<00:00,  1.11it/s][AIteration: 100%|##########| 36/36 [00:39<00:00,  1.10s/it]
+Epoch:  25%|##5       | 2/8 [01:19<03:59, 39.84s/it]
+Iteration:   0%|          | 0/36 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/36 [00:01<00:38,  1.09s/it][A
+Iteration:   6%|5         | 2/36 [00:02<00:37,  1.10s/it][A
+Iteration:   8%|8         | 3/36 [00:03<00:36,  1.10s/it][A
+Iteration:  11%|#1        | 4/36 [00:04<00:35,  1.12s/it][A
+Iteration:  14%|#3        | 5/36 [00:05<00:35,  1.13s/it][A
+Iteration:  17%|#6        | 6/36 [00:06<00:34,  1.14s/it][A
+Iteration:  19%|#9        | 7/36 [00:07<00:32,  1.12s/it][A
+Iteration:  22%|##2       | 8/36 [00:08<00:30,  1.11s/it][A
+Iteration:  25%|##5       | 9/36 [00:10<00:30,  1.12s/it][A
+Iteration:  28%|##7       | 10/36 [00:11<00:29,  1.13s/it][A
+Iteration:  31%|###       | 11/36 [00:12<00:27,  1.12s/it][A
+Iteration:  33%|###3      | 12/36 [00:13<00:27,  1.13s/it][A
+Iteration:  36%|###6      | 13/36 [00:14<00:25,  1.12s/it][A
+Iteration:  39%|###8      | 14/36 [00:15<00:24,  1.12s/it][A
+Iteration:  42%|####1     | 15/36 [00:16<00:23,  1.13s/it][A
+Iteration:  44%|####4     | 16/36 [00:17<00:22,  1.13s/it][A
+Iteration:  47%|####7     | 17/36 [00:19<00:21,  1.14s/it][A
+Iteration:  50%|#####     | 18/36 [00:20<00:20,  1.12s/it][A
+Iteration:  53%|#####2    | 19/36 [00:21<00:18,  1.11s/it][A
+Iteration:  56%|#####5    | 20/36 [00:22<00:17,  1.11s/it][A
+Iteration:  58%|#####8    | 21/36 [00:23<00:16,  1.12s/it][A
+Iteration:  61%|######1   | 22/36 [00:24<00:15,  1.10s/it][A
+Iteration:  64%|######3   | 23/36 [00:25<00:14,  1.11s/it][A
+Iteration:  67%|######6   | 24/36 [00:26<00:13,  1.12s/it][A
+Iteration:  69%|######9   | 25/36 [00:28<00:12,  1.13s/it][A
+Iteration:  72%|#######2  | 26/36 [00:29<00:11,  1.14s/it][A
+Iteration:  75%|#######5  | 27/36 [00:30<00:10,  1.13s/it][A
+Iteration:  78%|#######7  | 28/36 [00:31<00:08,  1.12s/it][A
+Iteration:  81%|########  | 29/36 [00:32<00:07,  1.13s/it][A
+Iteration:  83%|########3 | 30/36 [00:33<00:06,  1.13s/it][A
+Iteration:  86%|########6 | 31/36 [00:34<00:05,  1.13s/it][A
+Iteration:  89%|########8 | 32/36 [00:35<00:04,  1.12s/it][A
+Iteration:  92%|#########1| 33/36 [00:37<00:03,  1.13s/it][A
+Iteration:  94%|#########4| 34/36 [00:38<00:02,  1.12s/it][A
+Iteration:  97%|#########7| 35/36 [00:39<00:01,  1.11s/it][A
+Iteration: 100%|##########| 36/36 [00:39<00:00,  1.12it/s][AIteration: 100%|##########| 36/36 [00:39<00:00,  1.10s/it]
+Epoch:  38%|###7      | 3/8 [01:59<03:18, 39.74s/it]
+Iteration:   0%|          | 0/36 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/36 [00:01<00:39,  1.13s/it][A
+Iteration:   6%|5         | 2/36 [00:02<00:38,  1.12s/it][A
+Iteration:   8%|8         | 3/36 [00:03<00:37,  1.13s/it][A
+Iteration:  11%|#1        | 4/36 [00:04<00:35,  1.12s/it][A
+Iteration:  14%|#3        | 5/36 [00:05<00:35,  1.13s/it][A
+Iteration:  17%|#6        | 6/36 [00:06<00:33,  1.12s/it][A
+Iteration:  19%|#9        | 7/36 [00:07<00:32,  1.12s/it][A
+Iteration:  22%|##2       | 8/36 [00:08<00:31,  1.12s/it][A
+Iteration:  25%|##5       | 9/36 [00:10<00:30,  1.13s/it][A
+Iteration:  28%|##7       | 10/36 [00:11<00:29,  1.13s/it][A
+Iteration:  31%|###       | 11/36 [00:12<00:28,  1.13s/it][A
+Iteration:  33%|###3      | 12/36 [00:13<00:26,  1.12s/it][A
+Iteration:  36%|###6      | 13/36 [00:14<00:25,  1.12s/it][A
+Iteration:  39%|###8      | 14/36 [00:15<00:24,  1.11s/it][A
+Iteration:  42%|####1     | 15/36 [00:16<00:23,  1.11s/it][A
+Iteration:  44%|####4     | 16/36 [00:17<00:22,  1.11s/it][A
+Iteration:  47%|####7     | 17/36 [00:19<00:21,  1.11s/it][A
+Iteration:  50%|#####     | 18/36 [00:20<00:20,  1.12s/it][A
+Iteration:  53%|#####2    | 19/36 [00:21<00:19,  1.12s/it][A
+Iteration:  56%|#####5    | 20/36 [00:22<00:17,  1.11s/it][A
+Iteration:  58%|#####8    | 21/36 [00:23<00:16,  1.11s/it][A
+Iteration:  61%|######1   | 22/36 [00:24<00:15,  1.13s/it][A
+Iteration:  64%|######3   | 23/36 [00:25<00:14,  1.13s/it][A
+Iteration:  67%|######6   | 24/36 [00:26<00:13,  1.12s/it][A
+Iteration:  69%|######9   | 25/36 [00:27<00:12,  1.11s/it][A
+Iteration:  72%|#######2  | 26/36 [00:29<00:11,  1.12s/it][A
+Iteration:  75%|#######5  | 27/36 [00:30<00:10,  1.12s/it][A
+Iteration:  78%|#######7  | 28/36 [00:31<00:09,  1.13s/it][A
+Iteration:  81%|########  | 29/36 [00:32<00:07,  1.11s/it][A
+Iteration:  83%|########3 | 30/36 [00:33<00:06,  1.11s/it][A
+Iteration:  86%|########6 | 31/36 [00:34<00:05,  1.12s/it][A
+Iteration:  89%|########8 | 32/36 [00:35<00:04,  1.12s/it][A
+Iteration:  92%|#########1| 33/36 [00:36<00:03,  1.11s/it][A
+Iteration:  94%|#########4| 34/36 [00:38<00:02,  1.11s/it][A
+Iteration:  97%|#########7| 35/36 [00:39<00:01,  1.13s/it][A
+Iteration: 100%|##########| 36/36 [00:39<00:00,  1.10it/s][AIteration: 100%|##########| 36/36 [00:39<00:00,  1.10s/it]
+Epoch:  50%|#####     | 4/8 [02:39<02:38, 39.69s/it]
+Iteration:   0%|          | 0/36 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/36 [00:01<00:39,  1.14s/it][A
+Iteration:   6%|5         | 2/36 [00:02<00:38,  1.12s/it][A
+Iteration:   8%|8         | 3/36 [00:03<00:37,  1.12s/it][A
+Iteration:  11%|#1        | 4/36 [00:04<00:35,  1.12s/it][A
+Iteration:  14%|#3        | 5/36 [00:05<00:34,  1.12s/it][A
+Iteration:  17%|#6        | 6/36 [00:06<00:33,  1.10s/it][A
+Iteration:  19%|#9        | 7/36 [00:07<00:32,  1.11s/it][A
+Iteration:  22%|##2       | 8/36 [00:08<00:30,  1.10s/it][A
+Iteration:  25%|##5       | 9/36 [00:10<00:30,  1.11s/it][A
+Iteration:  28%|##7       | 10/36 [00:11<00:28,  1.11s/it][A
+Iteration:  31%|###       | 11/36 [00:12<00:28,  1.12s/it][A
+Iteration:  33%|###3      | 12/36 [00:13<00:26,  1.12s/it][A
+Iteration:  36%|###6      | 13/36 [00:14<00:25,  1.12s/it][A
+Iteration:  39%|###8      | 14/36 [00:15<00:24,  1.11s/it][A
+Iteration:  42%|####1     | 15/36 [00:16<00:23,  1.12s/it][A
+Iteration:  44%|####4     | 16/36 [00:17<00:22,  1.12s/it][A
+Iteration:  47%|####7     | 17/36 [00:18<00:21,  1.12s/it][A
+Iteration:  50%|#####     | 18/36 [00:20<00:20,  1.13s/it][A
+Iteration:  53%|#####2    | 19/36 [00:21<00:19,  1.13s/it][A
+Iteration:  56%|#####5    | 20/36 [00:22<00:17,  1.12s/it][A
+Iteration:  58%|#####8    | 21/36 [00:23<00:16,  1.12s/it][A
+Iteration:  61%|######1   | 22/36 [00:24<00:15,  1.12s/it][A
+Iteration:  64%|######3   | 23/36 [00:25<00:14,  1.12s/it][A
+Iteration:  67%|######6   | 24/36 [00:26<00:13,  1.11s/it][A
+Iteration:  69%|######9   | 25/36 [00:27<00:12,  1.12s/it][A
+Iteration:  72%|#######2  | 26/36 [00:29<00:11,  1.12s/it][A
+Iteration:  75%|#######5  | 27/36 [00:30<00:10,  1.13s/it][A
+Iteration:  78%|#######7  | 28/36 [00:31<00:08,  1.12s/it][A
+Iteration:  81%|########  | 29/36 [00:32<00:07,  1.12s/it][A
+Iteration:  83%|########3 | 30/36 [00:33<00:06,  1.13s/it][A
+Iteration:  86%|########6 | 31/36 [00:34<00:05,  1.13s/it][A
+Iteration:  89%|########8 | 32/36 [00:35<00:04,  1.12s/it][A
+Iteration:  92%|#########1| 33/36 [00:36<00:03,  1.13s/it][A
+Iteration:  94%|#########4| 34/36 [00:38<00:02,  1.12s/it][A
+Iteration:  97%|#########7| 35/36 [00:39<00:01,  1.13s/it][A
+Iteration: 100%|##########| 36/36 [00:39<00:00,  1.12it/s][AIteration: 100%|##########| 36/36 [00:39<00:00,  1.10s/it]
+Epoch:  62%|######2   | 5/8 [03:18<01:58, 39.65s/it]
+Iteration:   0%|          | 0/36 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/36 [00:01<00:38,  1.10s/it][A
+Iteration:   6%|5         | 2/36 [00:02<00:37,  1.11s/it][A
+Iteration:   8%|8         | 3/36 [00:03<00:36,  1.11s/it][A
+Iteration:  11%|#1        | 4/36 [00:04<00:35,  1.11s/it][A
+Iteration:  14%|#3        | 5/36 [00:05<00:34,  1.11s/it][A
+Iteration:  17%|#6        | 6/36 [00:06<00:33,  1.12s/it][A
+Iteration:  19%|#9        | 7/36 [00:07<00:32,  1.11s/it][A
+Iteration:  22%|##2       | 8/36 [00:08<00:31,  1.12s/it][A
+Iteration:  25%|##5       | 9/36 [00:10<00:30,  1.11s/it][A
+Iteration:  28%|##7       | 10/36 [00:11<00:29,  1.12s/it][A
+Iteration:  31%|###       | 11/36 [00:12<00:27,  1.11s/it][A
+Iteration:  33%|###3      | 12/36 [00:13<00:26,  1.11s/it][A
+Iteration:  36%|###6      | 13/36 [00:14<00:25,  1.11s/it][A
+Iteration:  39%|###8      | 14/36 [00:15<00:24,  1.12s/it][A
+Iteration:  42%|####1     | 15/36 [00:16<00:23,  1.11s/it][A
+Iteration:  44%|####4     | 16/36 [00:17<00:22,  1.11s/it][A
+Iteration:  47%|####7     | 17/36 [00:18<00:21,  1.12s/it][A
+Iteration:  50%|#####     | 18/36 [00:20<00:20,  1.12s/it][A
+Iteration:  53%|#####2    | 19/36 [00:21<00:19,  1.13s/it][A
+Iteration:  56%|#####5    | 20/36 [00:22<00:18,  1.14s/it][A
+Iteration:  58%|#####8    | 21/36 [00:23<00:16,  1.13s/it][A
+Iteration:  61%|######1   | 22/36 [00:24<00:15,  1.12s/it][A
+Iteration:  64%|######3   | 23/36 [00:25<00:14,  1.11s/it][A
+Iteration:  67%|######6   | 24/36 [00:26<00:13,  1.11s/it][A
+Iteration:  69%|######9   | 25/36 [00:27<00:12,  1.11s/it][A
+Iteration:  72%|#######2  | 26/36 [00:28<00:11,  1.11s/it][A
+Iteration:  75%|#######5  | 27/36 [00:30<00:09,  1.11s/it][A
+Iteration:  78%|#######7  | 28/36 [00:31<00:08,  1.11s/it][A
+Iteration:  81%|########  | 29/36 [00:32<00:07,  1.10s/it][A
+Iteration:  83%|########3 | 30/36 [00:33<00:06,  1.09s/it][A
+Iteration:  86%|########6 | 31/36 [00:34<00:05,  1.11s/it][A
+Iteration:  89%|########8 | 32/36 [00:35<00:04,  1.11s/it][A
+Iteration:  92%|#########1| 33/36 [00:36<00:03,  1.12s/it][A
+Iteration:  94%|#########4| 34/36 [00:37<00:02,  1.13s/it][A
+Iteration:  97%|#########7| 35/36 [00:39<00:01,  1.13s/it][A
+Iteration: 100%|##########| 36/36 [00:39<00:00,  1.10it/s][AIteration: 100%|##########| 36/36 [00:39<00:00,  1.10s/it]
+Epoch:  75%|#######5  | 6/8 [03:58<01:19, 39.58s/it]
+Iteration:   0%|          | 0/36 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/36 [00:01<00:39,  1.12s/it][A
+Iteration:   6%|5         | 2/36 [00:02<00:37,  1.12s/it][A
+Iteration:   8%|8         | 3/36 [00:03<00:37,  1.13s/it][A
+Iteration:  11%|#1        | 4/36 [00:04<00:35,  1.12s/it][A
+Iteration:  14%|#3        | 5/36 [00:05<00:35,  1.13s/it][A
+Iteration:  17%|#6        | 6/36 [00:06<00:33,  1.12s/it][A
+Iteration:  19%|#9        | 7/36 [00:07<00:32,  1.12s/it][A
+Iteration:  22%|##2       | 8/36 [00:08<00:31,  1.13s/it][A
+Iteration:  25%|##5       | 9/36 [00:10<00:29,  1.11s/it][A
+Iteration:  28%|##7       | 10/36 [00:11<00:29,  1.12s/it][A
+Iteration:  31%|###       | 11/36 [00:12<00:28,  1.13s/it][A
+Iteration:  33%|###3      | 12/36 [00:13<00:26,  1.11s/it][A
+Iteration:  36%|###6      | 13/36 [00:14<00:25,  1.12s/it][A
+Iteration:  39%|###8      | 14/36 [00:15<00:24,  1.11s/it][A
+Iteration:  42%|####1     | 15/36 [00:16<00:23,  1.12s/it][A
+Iteration:  44%|####4     | 16/36 [00:17<00:22,  1.11s/it][A
+Iteration:  47%|####7     | 17/36 [00:19<00:21,  1.12s/it][A
+Iteration:  50%|#####     | 18/36 [00:20<00:19,  1.11s/it][A
+Iteration:  53%|#####2    | 19/36 [00:21<00:19,  1.12s/it][A
+Iteration:  56%|#####5    | 20/36 [00:22<00:17,  1.12s/it][A
+Iteration:  58%|#####8    | 21/36 [00:23<00:16,  1.12s/it][A
+Iteration:  61%|######1   | 22/36 [00:24<00:15,  1.11s/it][A
+Iteration:  64%|######3   | 23/36 [00:25<00:14,  1.13s/it][A
+Iteration:  67%|######6   | 24/36 [00:26<00:13,  1.12s/it][A
+Iteration:  69%|######9   | 25/36 [00:28<00:12,  1.13s/it][A
+Iteration:  72%|#######2  | 26/36 [00:29<00:11,  1.12s/it][A
+Iteration:  75%|#######5  | 27/36 [00:30<00:10,  1.12s/it][A
+Iteration:  78%|#######7  | 28/36 [00:31<00:09,  1.13s/it][A
+Iteration:  81%|########  | 29/36 [00:32<00:07,  1.12s/it][A
+Iteration:  83%|########3 | 30/36 [00:33<00:06,  1.12s/it][A
+Iteration:  86%|########6 | 31/36 [00:34<00:05,  1.12s/it][A
+Iteration:  89%|########8 | 32/36 [00:35<00:04,  1.13s/it][A
+Iteration:  92%|#########1| 33/36 [00:37<00:03,  1.13s/it][A
+Iteration:  94%|#########4| 34/36 [00:38<00:02,  1.14s/it][A
+Iteration:  97%|#########7| 35/36 [00:39<00:01,  1.12s/it][A
+Iteration: 100%|##########| 36/36 [00:39<00:00,  1.09it/s][AIteration: 100%|##########| 36/36 [00:39<00:00,  1.10s/it]
+Epoch:  88%|########7 | 7/8 [04:37<00:39, 39.62s/it]
+Iteration:   0%|          | 0/36 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/36 [00:01<00:39,  1.13s/it][A
+Iteration:   6%|5         | 2/36 [00:02<00:38,  1.13s/it][A
+Iteration:   8%|8         | 3/36 [00:03<00:36,  1.11s/it][A
+Iteration:  11%|#1        | 4/36 [00:04<00:36,  1.13s/it][A
+Iteration:  14%|#3        | 5/36 [00:05<00:35,  1.14s/it][A
+Iteration:  17%|#6        | 6/36 [00:06<00:33,  1.13s/it][A
+Iteration:  19%|#9        | 7/36 [00:07<00:32,  1.12s/it][A
+Iteration:  22%|##2       | 8/36 [00:08<00:31,  1.12s/it][A
+Iteration:  25%|##5       | 9/36 [00:10<00:30,  1.12s/it][A
+Iteration:  28%|##7       | 10/36 [00:11<00:29,  1.12s/it][A
+Iteration:  31%|###       | 11/36 [00:12<00:27,  1.11s/it][A
+Iteration:  33%|###3      | 12/36 [00:13<00:26,  1.12s/it][A
+Iteration:  36%|###6      | 13/36 [00:14<00:25,  1.13s/it][A
+Iteration:  39%|###8      | 14/36 [00:15<00:24,  1.11s/it][A
+Iteration:  42%|####1     | 15/36 [00:16<00:23,  1.12s/it][A
+Iteration:  44%|####4     | 16/36 [00:17<00:22,  1.13s/it][A
+Iteration:  47%|####7     | 17/36 [00:19<00:21,  1.13s/it][A
+Iteration:  50%|#####     | 18/36 [00:20<00:20,  1.13s/it][A
+Iteration:  53%|#####2    | 19/36 [00:21<00:19,  1.12s/it][A
+Iteration:  56%|#####5    | 20/36 [00:22<00:18,  1.13s/it][A
+Iteration:  58%|#####8    | 21/36 [00:23<00:16,  1.13s/it][A
+Iteration:  61%|######1   | 22/36 [00:24<00:15,  1.13s/it][A
+Iteration:  64%|######3   | 23/36 [00:25<00:14,  1.13s/it][A
+Iteration:  67%|######6   | 24/36 [00:26<00:13,  1.11s/it][A
+Iteration:  69%|######9   | 25/36 [00:28<00:12,  1.11s/it][A
+Iteration:  72%|#######2  | 26/36 [00:29<00:11,  1.11s/it][A
+Iteration:  75%|#######5  | 27/36 [00:30<00:10,  1.11s/it][A
+Iteration:  78%|#######7  | 28/36 [00:31<00:08,  1.11s/it][A
+Iteration:  81%|########  | 29/36 [00:32<00:07,  1.11s/it][A
+Iteration:  83%|########3 | 30/36 [00:33<00:06,  1.11s/it][A
+Iteration:  86%|########6 | 31/36 [00:34<00:05,  1.12s/it][A
+Iteration:  89%|########8 | 32/36 [00:35<00:04,  1.11s/it][A
+Iteration:  92%|#########1| 33/36 [00:36<00:03,  1.11s/it][A
+Iteration:  94%|#########4| 34/36 [00:38<00:02,  1.11s/it][A
+Iteration:  97%|#########7| 35/36 [00:39<00:01,  1.10s/it][A
+Iteration: 100%|##########| 36/36 [00:39<00:00,  1.12it/s][AIteration: 100%|##########| 36/36 [00:39<00:00,  1.10s/it]
+Epoch: 100%|##########| 8/8 [05:17<00:00, 39.60s/it]Epoch: 100%|##########| 8/8 [05:17<00:00, 39.67s/it]
+10/19/2021 13:40:20 - INFO - __main__ -    global_step = 288, average loss = 0.0
+10/19/2021 13:40:20 - INFO - __main__ -   Saving model checkpoint to checkpoints/convdr-multi-cast19-3
+10/19/2021 13:40:20 - INFO - transformers.configuration_utils -   Configuration saved in checkpoints/convdr-multi-cast19-3/config.json
+10/19/2021 13:40:22 - INFO - transformers.modeling_utils -   Model weights saved in checkpoints/convdr-multi-cast19-3/pytorch_model.bin
+10/19/2021 13:40:22 - INFO - __main__ -   Training Fold #4
+10/19/2021 13:40:22 - INFO - transformers.configuration_utils -   loading configuration file checkpoints/ad-hoc-ance-msmarco/config.json
+10/19/2021 13:40:22 - INFO - transformers.configuration_utils -   Model config {
+  "_num_labels": 2,
+  "architectures": [
+    "RobertaDot_NLL_LN"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bad_words_ids": null,
+  "bos_token_id": 0,
+  "decoder_start_token_id": null,
+  "do_sample": false,
+  "early_stopping": false,
+  "eos_token_id": 2,
+  "eos_token_ids": 0,
+  "finetuning_task": "MSMarco",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "is_encoder_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-05,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 514,
+  "min_length": 0,
+  "model_type": "roberta",
+  "no_repeat_ngram_size": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 2,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 1,
+  "prefix": null,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "task_specific_params": null,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 1,
+  "use_bfloat16": false,
+  "vocab_size": 50265
+}
+
+10/19/2021 13:40:22 - INFO - transformers.tokenization_utils -   Model name 'checkpoints/ad-hoc-ance-msmarco' not found in model shortcut name list (roberta-base, roberta-large, roberta-large-mnli, distilroberta-base, roberta-base-openai-detector, roberta-large-openai-detector). Assuming 'checkpoints/ad-hoc-ance-msmarco' is a path or url to a directory containing tokenizer files.
+10/19/2021 13:40:22 - INFO - transformers.tokenization_utils -   Didn't find file checkpoints/ad-hoc-ance-msmarco/added_tokens.json. We won't load it.
+10/19/2021 13:40:22 - INFO - transformers.tokenization_utils -   loading file checkpoints/ad-hoc-ance-msmarco/vocab.json
+10/19/2021 13:40:22 - INFO - transformers.tokenization_utils -   loading file checkpoints/ad-hoc-ance-msmarco/merges.txt
+10/19/2021 13:40:22 - INFO - transformers.tokenization_utils -   loading file None
+10/19/2021 13:40:22 - INFO - transformers.tokenization_utils -   loading file checkpoints/ad-hoc-ance-msmarco/special_tokens_map.json
+10/19/2021 13:40:22 - INFO - transformers.tokenization_utils -   loading file checkpoints/ad-hoc-ance-msmarco/tokenizer_config.json
+10/19/2021 13:40:22 - INFO - transformers.modeling_utils -   loading weights file checkpoints/ad-hoc-ance-msmarco/pytorch_model.bin
+10/19/2021 13:40:30 - INFO - __main__ -   Training/evaluation parameters Namespace(adam_epsilon=1e-08, cache_dir=None, cross_validate=True, device=device(type='cuda'), gradient_accumulation_steps=1, init_from_multiple_models=False, learning_rate=1e-05, log_dir='logs/convdr_multi_cast19', log_steps=1, max_concat_length=256, max_grad_norm=1.0, max_query_length=64, max_steps=-1, model_name_or_path='checkpoints/ad-hoc-ance-msmarco', model_path='checkpoints/ad-hoc-ance-msmarco', model_type='rdot_nll', n_gpu=1, no_cuda=False, no_mse=False, num_negatives=9, num_train_epochs=8.0, output_dir='checkpoints/convdr-multi-cast19', overwrite_output_dir=False, per_gpu_train_batch_size=4, query='no_res', ranking_task=True, save_steps=-1, seed=42, teacher_model='checkpoints/ad-hoc-ance-msmarco', train_batch_size=4, train_file='datasets/cast-19/eval_topics.rank.jsonl', warmup_steps=0, weight_decay=0.0)
+10/19/2021 13:40:30 - INFO - __main__ -   train_files: ['datasets/cast-19/eval_topics.rank.jsonl.0', 'datasets/cast-19/eval_topics.rank.jsonl.1', 'datasets/cast-19/eval_topics.rank.jsonl.2', 'datasets/cast-19/eval_topics.rank.jsonl.3']
+10/19/2021 13:40:30 - INFO - __main__ -   ***** Running training *****
+10/19/2021 13:40:30 - INFO - __main__ -     Num examples = 133
+10/19/2021 13:40:30 - INFO - __main__ -     Num Epochs = 8
+10/19/2021 13:40:30 - INFO - __main__ -     Instantaneous batch size per GPU = 4
+10/19/2021 13:40:30 - INFO - __main__ -     Total train batch size (w. parallel & accumulation) = 4
+10/19/2021 13:40:30 - INFO - __main__ -     Gradient Accumulation steps = 1
+10/19/2021 13:40:30 - INFO - __main__ -     Total optimization steps = 272
+Using mean: False
+Epoch:   0%|          | 0/8 [00:00<?, ?it/s]
+Iteration:   0%|          | 0/34 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/34 [00:01<00:41,  1.25s/it][A
+Iteration:   6%|5         | 2/34 [00:02<00:38,  1.21s/it][A
+Iteration:   9%|8         | 3/34 [00:03<00:36,  1.19s/it][A
+Iteration:  12%|#1        | 4/34 [00:04<00:35,  1.18s/it][A
+Iteration:  15%|#4        | 5/34 [00:05<00:33,  1.16s/it][A
+Iteration:  18%|#7        | 6/34 [00:07<00:32,  1.16s/it][A
+Iteration:  21%|##        | 7/34 [00:08<00:31,  1.15s/it][A
+Iteration:  24%|##3       | 8/34 [00:09<00:30,  1.16s/it][A
+Iteration:  26%|##6       | 9/34 [00:10<00:28,  1.16s/it][A
+Iteration:  29%|##9       | 10/34 [00:11<00:27,  1.15s/it][A
+Iteration:  32%|###2      | 11/34 [00:12<00:26,  1.14s/it][A
+Iteration:  35%|###5      | 12/34 [00:13<00:25,  1.15s/it][A
+Iteration:  38%|###8      | 13/34 [00:15<00:24,  1.15s/it][A
+Iteration:  41%|####1     | 14/34 [00:16<00:22,  1.14s/it][A
+Iteration:  44%|####4     | 15/34 [00:17<00:21,  1.15s/it][A
+Iteration:  47%|####7     | 16/34 [00:18<00:20,  1.15s/it][A
+Iteration:  50%|#####     | 17/34 [00:19<00:19,  1.14s/it][A
+Iteration:  53%|#####2    | 18/34 [00:20<00:18,  1.14s/it][A
+Iteration:  56%|#####5    | 19/34 [00:21<00:16,  1.13s/it][A
+Iteration:  59%|#####8    | 20/34 [00:23<00:15,  1.13s/it][A
+Iteration:  62%|######1   | 21/34 [00:24<00:14,  1.14s/it][A
+Iteration:  65%|######4   | 22/34 [00:25<00:13,  1.16s/it][A
+Iteration:  68%|######7   | 23/34 [00:26<00:12,  1.15s/it][A
+Iteration:  71%|#######   | 24/34 [00:27<00:11,  1.14s/it][A
+Iteration:  74%|#######3  | 25/34 [00:28<00:10,  1.15s/it][A
+Iteration:  76%|#######6  | 26/34 [00:29<00:09,  1.15s/it][A
+Iteration:  79%|#######9  | 27/34 [00:31<00:07,  1.14s/it][A
+Iteration:  82%|########2 | 28/34 [00:32<00:06,  1.14s/it][A
+Iteration:  85%|########5 | 29/34 [00:33<00:05,  1.14s/it][A
+Iteration:  88%|########8 | 30/34 [00:34<00:04,  1.15s/it][A
+Iteration:  91%|#########1| 31/34 [00:35<00:03,  1.14s/it][A
+Iteration:  94%|#########4| 32/34 [00:36<00:02,  1.14s/it][A
+Iteration:  97%|#########7| 33/34 [00:37<00:01,  1.15s/it][A
+Iteration: 100%|##########| 34/34 [00:38<00:00,  1.09it/s][AIteration: 100%|##########| 34/34 [00:38<00:00,  1.13s/it]
+Epoch:  12%|#2        | 1/8 [00:38<04:28, 38.34s/it]
+Iteration:   0%|          | 0/34 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/34 [00:01<00:37,  1.12s/it][A
+Iteration:   6%|5         | 2/34 [00:02<00:35,  1.12s/it][A
+Iteration:   9%|8         | 3/34 [00:03<00:34,  1.12s/it][A
+Iteration:  12%|#1        | 4/34 [00:04<00:33,  1.11s/it][A
+Iteration:  15%|#4        | 5/34 [00:05<00:31,  1.10s/it][A
+Iteration:  18%|#7        | 6/34 [00:06<00:31,  1.11s/it][A
+Iteration:  21%|##        | 7/34 [00:07<00:30,  1.11s/it][A
+Iteration:  24%|##3       | 8/34 [00:08<00:28,  1.11s/it][A
+Iteration:  26%|##6       | 9/34 [00:10<00:28,  1.13s/it][A
+Iteration:  29%|##9       | 10/34 [00:11<00:27,  1.13s/it][A
+Iteration:  32%|###2      | 11/34 [00:12<00:26,  1.13s/it][A
+Iteration:  35%|###5      | 12/34 [00:13<00:25,  1.14s/it][A
+Iteration:  38%|###8      | 13/34 [00:14<00:23,  1.13s/it][A
+Iteration:  41%|####1     | 14/34 [00:15<00:22,  1.12s/it][A
+Iteration:  44%|####4     | 15/34 [00:16<00:21,  1.12s/it][A
+Iteration:  47%|####7     | 16/34 [00:17<00:20,  1.12s/it][A
+Iteration:  50%|#####     | 17/34 [00:19<00:19,  1.13s/it][A
+Iteration:  53%|#####2    | 18/34 [00:20<00:17,  1.12s/it][A
+Iteration:  56%|#####5    | 19/34 [00:21<00:16,  1.12s/it][A
+Iteration:  59%|#####8    | 20/34 [00:22<00:15,  1.12s/it][A
+Iteration:  62%|######1   | 21/34 [00:23<00:14,  1.12s/it][A
+Iteration:  65%|######4   | 22/34 [00:24<00:13,  1.11s/it][A
+Iteration:  68%|######7   | 23/34 [00:25<00:12,  1.13s/it][A
+Iteration:  71%|#######   | 24/34 [00:26<00:11,  1.12s/it][A
+Iteration:  74%|#######3  | 25/34 [00:28<00:10,  1.13s/it][A
+Iteration:  76%|#######6  | 26/34 [00:29<00:09,  1.14s/it][A
+Iteration:  79%|#######9  | 27/34 [00:30<00:07,  1.14s/it][A
+Iteration:  82%|########2 | 28/34 [00:31<00:06,  1.14s/it][A
+Iteration:  85%|########5 | 29/34 [00:32<00:05,  1.12s/it][A
+Iteration:  88%|########8 | 30/34 [00:33<00:04,  1.13s/it][A
+Iteration:  91%|#########1| 31/34 [00:34<00:03,  1.12s/it][A
+Iteration:  94%|#########4| 32/34 [00:35<00:02,  1.12s/it][A
+Iteration:  97%|#########7| 33/34 [00:37<00:01,  1.12s/it][A
+Iteration: 100%|##########| 34/34 [00:37<00:00,  1.11it/s][AIteration: 100%|##########| 34/34 [00:37<00:00,  1.10s/it]
+Epoch:  25%|##5       | 2/8 [01:15<03:46, 37.81s/it]
+Iteration:   0%|          | 0/34 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/34 [00:01<00:37,  1.13s/it][A
+Iteration:   6%|5         | 2/34 [00:02<00:35,  1.10s/it][A
+Iteration:   9%|8         | 3/34 [00:03<00:34,  1.11s/it][A
+Iteration:  12%|#1        | 4/34 [00:04<00:33,  1.11s/it][A
+Iteration:  15%|#4        | 5/34 [00:05<00:32,  1.11s/it][A
+Iteration:  18%|#7        | 6/34 [00:06<00:30,  1.10s/it][A
+Iteration:  21%|##        | 7/34 [00:07<00:29,  1.10s/it][A
+Iteration:  24%|##3       | 8/34 [00:08<00:28,  1.11s/it][A
+Iteration:  26%|##6       | 9/34 [00:09<00:27,  1.11s/it][A
+Iteration:  29%|##9       | 10/34 [00:11<00:26,  1.11s/it][A
+Iteration:  32%|###2      | 11/34 [00:12<00:25,  1.11s/it][A
+Iteration:  35%|###5      | 12/34 [00:13<00:24,  1.10s/it][A
+Iteration:  38%|###8      | 13/34 [00:14<00:23,  1.11s/it][A
+Iteration:  41%|####1     | 14/34 [00:15<00:22,  1.11s/it][A
+Iteration:  44%|####4     | 15/34 [00:16<00:21,  1.11s/it][A
+Iteration:  47%|####7     | 16/34 [00:17<00:19,  1.11s/it][A
+Iteration:  50%|#####     | 17/34 [00:18<00:19,  1.13s/it][A
+Iteration:  53%|#####2    | 18/34 [00:19<00:17,  1.12s/it][A
+Iteration:  56%|#####5    | 19/34 [00:21<00:16,  1.13s/it][A
+Iteration:  59%|#####8    | 20/34 [00:22<00:15,  1.12s/it][A
+Iteration:  62%|######1   | 21/34 [00:23<00:14,  1.13s/it][A
+Iteration:  65%|######4   | 22/34 [00:24<00:13,  1.12s/it][A
+Iteration:  68%|######7   | 23/34 [00:25<00:12,  1.12s/it][A
+Iteration:  71%|#######   | 24/34 [00:26<00:11,  1.12s/it][A
+Iteration:  74%|#######3  | 25/34 [00:27<00:10,  1.11s/it][A
+Iteration:  76%|#######6  | 26/34 [00:28<00:08,  1.12s/it][A
+Iteration:  79%|#######9  | 27/34 [00:30<00:07,  1.12s/it][A
+Iteration:  82%|########2 | 28/34 [00:31<00:06,  1.12s/it][A
+Iteration:  85%|########5 | 29/34 [00:32<00:05,  1.11s/it][A
+Iteration:  88%|########8 | 30/34 [00:33<00:04,  1.11s/it][A
+Iteration:  91%|#########1| 31/34 [00:34<00:03,  1.13s/it][A
+Iteration:  94%|#########4| 32/34 [00:35<00:02,  1.12s/it][A
+Iteration:  97%|#########7| 33/34 [00:36<00:01,  1.13s/it][A
+Iteration: 100%|##########| 34/34 [00:37<00:00,  1.10it/s][AIteration: 100%|##########| 34/34 [00:37<00:00,  1.09s/it]
+Epoch:  38%|###7      | 3/8 [01:52<03:07, 37.53s/it]
+Iteration:   0%|          | 0/34 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/34 [00:01<00:36,  1.12s/it][A
+Iteration:   6%|5         | 2/34 [00:02<00:36,  1.13s/it][A
+Iteration:   9%|8         | 3/34 [00:03<00:34,  1.11s/it][A
+Iteration:  12%|#1        | 4/34 [00:04<00:33,  1.12s/it][A
+Iteration:  15%|#4        | 5/34 [00:05<00:32,  1.13s/it][A
+Iteration:  18%|#7        | 6/34 [00:06<00:31,  1.13s/it][A
+Iteration:  21%|##        | 7/34 [00:07<00:30,  1.12s/it][A
+Iteration:  24%|##3       | 8/34 [00:08<00:29,  1.12s/it][A
+Iteration:  26%|##6       | 9/34 [00:10<00:28,  1.14s/it][A
+Iteration:  29%|##9       | 10/34 [00:11<00:27,  1.13s/it][A
+Iteration:  32%|###2      | 11/34 [00:12<00:25,  1.13s/it][A
+Iteration:  35%|###5      | 12/34 [00:13<00:24,  1.13s/it][A
+Iteration:  38%|###8      | 13/34 [00:14<00:23,  1.12s/it][A
+Iteration:  41%|####1     | 14/34 [00:15<00:22,  1.12s/it][A
+Iteration:  44%|####4     | 15/34 [00:16<00:21,  1.12s/it][A
+Iteration:  47%|####7     | 16/34 [00:17<00:20,  1.12s/it][A
+Iteration:  50%|#####     | 17/34 [00:19<00:18,  1.12s/it][A
+Iteration:  53%|#####2    | 18/34 [00:20<00:17,  1.12s/it][A
+Iteration:  56%|#####5    | 19/34 [00:21<00:16,  1.12s/it][A
+Iteration:  59%|#####8    | 20/34 [00:22<00:15,  1.12s/it][A
+Iteration:  62%|######1   | 21/34 [00:23<00:14,  1.13s/it][A
+Iteration:  65%|######4   | 22/34 [00:24<00:13,  1.12s/it][A
+Iteration:  68%|######7   | 23/34 [00:25<00:12,  1.13s/it][A
+Iteration:  71%|#######   | 24/34 [00:26<00:11,  1.12s/it][A
+Iteration:  74%|#######3  | 25/34 [00:28<00:10,  1.12s/it][A
+Iteration:  76%|#######6  | 26/34 [00:29<00:08,  1.12s/it][A
+Iteration:  79%|#######9  | 27/34 [00:30<00:07,  1.11s/it][A
+Iteration:  82%|########2 | 28/34 [00:31<00:06,  1.11s/it][A
+Iteration:  85%|########5 | 29/34 [00:32<00:05,  1.12s/it][A
+Iteration:  88%|########8 | 30/34 [00:33<00:04,  1.11s/it][A
+Iteration:  91%|#########1| 31/34 [00:34<00:03,  1.12s/it][A
+Iteration:  94%|#########4| 32/34 [00:35<00:02,  1.13s/it][A
+Iteration:  97%|#########7| 33/34 [00:36<00:01,  1.12s/it][A
+Iteration: 100%|##########| 34/34 [00:37<00:00,  1.11it/s][AIteration: 100%|##########| 34/34 [00:37<00:00,  1.10s/it]
+Epoch:  50%|#####     | 4/8 [02:30<02:29, 37.48s/it]
+Iteration:   0%|          | 0/34 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/34 [00:01<00:37,  1.15s/it][A
+Iteration:   6%|5         | 2/34 [00:02<00:36,  1.14s/it][A
+Iteration:   9%|8         | 3/34 [00:03<00:35,  1.14s/it][A
+Iteration:  12%|#1        | 4/34 [00:04<00:34,  1.14s/it][A
+Iteration:  15%|#4        | 5/34 [00:05<00:32,  1.13s/it][A
+Iteration:  18%|#7        | 6/34 [00:06<00:31,  1.12s/it][A
+Iteration:  21%|##        | 7/34 [00:07<00:30,  1.13s/it][A
+Iteration:  24%|##3       | 8/34 [00:09<00:29,  1.13s/it][A
+Iteration:  26%|##6       | 9/34 [00:10<00:28,  1.12s/it][A
+Iteration:  29%|##9       | 10/34 [00:11<00:26,  1.12s/it][A
+Iteration:  32%|###2      | 11/34 [00:12<00:25,  1.13s/it][A
+Iteration:  35%|###5      | 12/34 [00:13<00:24,  1.12s/it][A
+Iteration:  38%|###8      | 13/34 [00:14<00:23,  1.12s/it][A
+Iteration:  41%|####1     | 14/34 [00:15<00:22,  1.12s/it][A
+Iteration:  44%|####4     | 15/34 [00:16<00:21,  1.13s/it][A
+Iteration:  47%|####7     | 16/34 [00:18<00:20,  1.13s/it][A
+Iteration:  50%|#####     | 17/34 [00:19<00:19,  1.12s/it][A
+Iteration:  53%|#####2    | 18/34 [00:20<00:17,  1.12s/it][A
+Iteration:  56%|#####5    | 19/34 [00:21<00:16,  1.12s/it][A
+Iteration:  59%|#####8    | 20/34 [00:22<00:15,  1.12s/it][A
+Iteration:  62%|######1   | 21/34 [00:23<00:14,  1.12s/it][A
+Iteration:  65%|######4   | 22/34 [00:24<00:13,  1.13s/it][A
+Iteration:  68%|######7   | 23/34 [00:25<00:12,  1.13s/it][A
+Iteration:  71%|#######   | 24/34 [00:27<00:11,  1.13s/it][A
+Iteration:  74%|#######3  | 25/34 [00:28<00:10,  1.13s/it][A
+Iteration:  76%|#######6  | 26/34 [00:29<00:08,  1.11s/it][A
+Iteration:  79%|#######9  | 27/34 [00:30<00:07,  1.11s/it][A
+Iteration:  82%|########2 | 28/34 [00:31<00:06,  1.11s/it][A
+Iteration:  85%|########5 | 29/34 [00:32<00:05,  1.12s/it][A
+Iteration:  88%|########8 | 30/34 [00:33<00:04,  1.12s/it][A
+Iteration:  91%|#########1| 31/34 [00:34<00:03,  1.13s/it][A
+Iteration:  94%|#########4| 32/34 [00:35<00:02,  1.13s/it][A
+Iteration:  97%|#########7| 33/34 [00:37<00:01,  1.13s/it][A
+Iteration: 100%|##########| 34/34 [00:37<00:00,  1.10it/s][AIteration: 100%|##########| 34/34 [00:37<00:00,  1.10s/it]
+Epoch:  62%|######2   | 5/8 [03:07<01:52, 37.50s/it]
+Iteration:   0%|          | 0/34 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/34 [00:01<00:37,  1.13s/it][A
+Iteration:   6%|5         | 2/34 [00:02<00:35,  1.12s/it][A
+Iteration:   9%|8         | 3/34 [00:03<00:34,  1.11s/it][A
+Iteration:  12%|#1        | 4/34 [00:04<00:33,  1.10s/it][A
+Iteration:  15%|#4        | 5/34 [00:05<00:32,  1.11s/it][A
+Iteration:  18%|#7        | 6/34 [00:06<00:31,  1.11s/it][A
+Iteration:  21%|##        | 7/34 [00:07<00:29,  1.11s/it][A
+Iteration:  24%|##3       | 8/34 [00:08<00:29,  1.12s/it][A
+Iteration:  26%|##6       | 9/34 [00:10<00:27,  1.12s/it][A
+Iteration:  29%|##9       | 10/34 [00:11<00:26,  1.10s/it][A
+Iteration:  32%|###2      | 11/34 [00:12<00:25,  1.11s/it][A
+Iteration:  35%|###5      | 12/34 [00:13<00:24,  1.11s/it][A
+Iteration:  38%|###8      | 13/34 [00:14<00:23,  1.11s/it][A
+Iteration:  41%|####1     | 14/34 [00:15<00:22,  1.12s/it][A
+Iteration:  44%|####4     | 15/34 [00:16<00:21,  1.11s/it][A
+Iteration:  47%|####7     | 16/34 [00:17<00:20,  1.11s/it][A
+Iteration:  50%|#####     | 17/34 [00:18<00:18,  1.12s/it][A
+Iteration:  53%|#####2    | 18/34 [00:20<00:17,  1.11s/it][A
+Iteration:  56%|#####5    | 19/34 [00:21<00:16,  1.12s/it][A
+Iteration:  59%|#####8    | 20/34 [00:22<00:15,  1.11s/it][A
+Iteration:  62%|######1   | 21/34 [00:23<00:14,  1.12s/it][A
+Iteration:  65%|######4   | 22/34 [00:24<00:13,  1.11s/it][A
+Iteration:  68%|######7   | 23/34 [00:25<00:12,  1.12s/it][A
+Iteration:  71%|#######   | 24/34 [00:26<00:11,  1.12s/it][A
+Iteration:  74%|#######3  | 25/34 [00:27<00:10,  1.12s/it][A
+Iteration:  76%|#######6  | 26/34 [00:28<00:08,  1.12s/it][A
+Iteration:  79%|#######9  | 27/34 [00:30<00:07,  1.12s/it][A
+Iteration:  82%|########2 | 28/34 [00:31<00:06,  1.12s/it][A
+Iteration:  85%|########5 | 29/34 [00:32<00:05,  1.13s/it][A
+Iteration:  88%|########8 | 30/34 [00:33<00:04,  1.13s/it][A
+Iteration:  91%|#########1| 31/34 [00:34<00:03,  1.12s/it][A
+Iteration:  94%|#########4| 32/34 [00:35<00:02,  1.12s/it][A
+Iteration:  97%|#########7| 33/34 [00:36<00:01,  1.12s/it][A
+Iteration: 100%|##########| 34/34 [00:37<00:00,  1.11it/s][AIteration: 100%|##########| 34/34 [00:37<00:00,  1.09s/it]
+Epoch:  75%|#######5  | 6/8 [03:45<01:14, 37.41s/it]
+Iteration:   0%|          | 0/34 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/34 [00:01<00:37,  1.15s/it][A
+Iteration:   6%|5         | 2/34 [00:02<00:35,  1.11s/it][A
+Iteration:   9%|8         | 3/34 [00:03<00:34,  1.12s/it][A
+Iteration:  12%|#1        | 4/34 [00:04<00:33,  1.11s/it][A
+Iteration:  15%|#4        | 5/34 [00:05<00:32,  1.11s/it][A
+Iteration:  18%|#7        | 6/34 [00:06<00:30,  1.10s/it][A
+Iteration:  21%|##        | 7/34 [00:07<00:29,  1.10s/it][A
+Iteration:  24%|##3       | 8/34 [00:08<00:28,  1.11s/it][A
+Iteration:  26%|##6       | 9/34 [00:09<00:27,  1.11s/it][A
+Iteration:  29%|##9       | 10/34 [00:11<00:27,  1.13s/it][A
+Iteration:  32%|###2      | 11/34 [00:12<00:25,  1.12s/it][A
+Iteration:  35%|###5      | 12/34 [00:13<00:24,  1.13s/it][A
+Iteration:  38%|###8      | 13/34 [00:14<00:23,  1.14s/it][A
+Iteration:  41%|####1     | 14/34 [00:15<00:22,  1.13s/it][A
+Iteration:  44%|####4     | 15/34 [00:16<00:21,  1.14s/it][A
+Iteration:  47%|####7     | 16/34 [00:17<00:20,  1.14s/it][A
+Iteration:  50%|#####     | 17/34 [00:19<00:19,  1.13s/it][A
+Iteration:  53%|#####2    | 18/34 [00:20<00:18,  1.13s/it][A
+Iteration:  56%|#####5    | 19/34 [00:21<00:16,  1.13s/it][A
+Iteration:  59%|#####8    | 20/34 [00:22<00:15,  1.14s/it][A
+Iteration:  62%|######1   | 21/34 [00:23<00:14,  1.13s/it][A
+Iteration:  65%|######4   | 22/34 [00:24<00:13,  1.13s/it][A
+Iteration:  68%|######7   | 23/34 [00:25<00:12,  1.14s/it][A
+Iteration:  71%|#######   | 24/34 [00:27<00:11,  1.13s/it][A
+Iteration:  74%|#######3  | 25/34 [00:28<00:10,  1.13s/it][A
+Iteration:  76%|#######6  | 26/34 [00:29<00:09,  1.13s/it][A
+Iteration:  79%|#######9  | 27/34 [00:30<00:07,  1.13s/it][A
+Iteration:  82%|########2 | 28/34 [00:31<00:06,  1.13s/it][A
+Iteration:  85%|########5 | 29/34 [00:32<00:05,  1.13s/it][A
+Iteration:  88%|########8 | 30/34 [00:33<00:04,  1.12s/it][A
+Iteration:  91%|#########1| 31/34 [00:34<00:03,  1.13s/it][A
+Iteration:  94%|#########4| 32/34 [00:36<00:02,  1.14s/it][A
+Iteration:  97%|#########7| 33/34 [00:37<00:01,  1.13s/it][A
+Iteration: 100%|##########| 34/34 [00:37<00:00,  1.10it/s][AIteration: 100%|##########| 34/34 [00:37<00:00,  1.11s/it]
+Epoch:  88%|########7 | 7/8 [04:22<00:37, 37.47s/it]
+Iteration:   0%|          | 0/34 [00:00<?, ?it/s][A
+Iteration:   3%|2         | 1/34 [00:01<00:36,  1.12s/it][A
+Iteration:   6%|5         | 2/34 [00:02<00:35,  1.11s/it][A
+Iteration:   9%|8         | 3/34 [00:03<00:34,  1.12s/it][A
+Iteration:  12%|#1        | 4/34 [00:04<00:33,  1.11s/it][A
+Iteration:  15%|#4        | 5/34 [00:05<00:32,  1.12s/it][A
+Iteration:  18%|#7        | 6/34 [00:06<00:31,  1.12s/it][A
+Iteration:  21%|##        | 7/34 [00:07<00:30,  1.14s/it][A
+Iteration:  24%|##3       | 8/34 [00:09<00:29,  1.13s/it][A
+Iteration:  26%|##6       | 9/34 [00:10<00:28,  1.12s/it][A
+Iteration:  29%|##9       | 10/34 [00:11<00:26,  1.12s/it][A
+Iteration:  32%|###2      | 11/34 [00:12<00:25,  1.11s/it][A
+Iteration:  35%|###5      | 12/34 [00:13<00:24,  1.11s/it][A
+Iteration:  38%|###8      | 13/34 [00:14<00:23,  1.11s/it][A
+Iteration:  41%|####1     | 14/34 [00:15<00:22,  1.12s/it][A
+Iteration:  44%|####4     | 15/34 [00:16<00:21,  1.12s/it][A
+Iteration:  47%|####7     | 16/34 [00:17<00:20,  1.11s/it][A
+Iteration:  50%|#####     | 17/34 [00:19<00:18,  1.11s/it][A
+Iteration:  53%|#####2    | 18/34 [00:20<00:17,  1.12s/it][A
+Iteration:  56%|#####5    | 19/34 [00:21<00:16,  1.12s/it][A
+Iteration:  59%|#####8    | 20/34 [00:22<00:15,  1.13s/it][A
+Iteration:  62%|######1   | 21/34 [00:23<00:14,  1.12s/it][A
+Iteration:  65%|######4   | 22/34 [00:24<00:13,  1.12s/it][A
+Iteration:  68%|######7   | 23/34 [00:25<00:12,  1.12s/it][A
+Iteration:  71%|#######   | 24/34 [00:26<00:11,  1.12s/it][A
+Iteration:  74%|#######3  | 25/34 [00:27<00:09,  1.10s/it][A
+Iteration:  76%|#######6  | 26/34 [00:29<00:08,  1.11s/it][A
+Iteration:  79%|#######9  | 27/34 [00:30<00:07,  1.11s/it][A
+Iteration:  82%|########2 | 28/34 [00:31<00:06,  1.11s/it][A
+Iteration:  85%|########5 | 29/34 [00:32<00:05,  1.11s/it][A
+Iteration:  88%|########8 | 30/34 [00:33<00:04,  1.12s/it][A
+Iteration:  91%|#########1| 31/34 [00:34<00:03,  1.11s/it][A
+Iteration:  94%|#########4| 32/34 [00:35<00:02,  1.13s/it][A
+Iteration:  97%|#########7| 33/34 [00:36<00:01,  1.13s/it][A
+Iteration: 100%|##########| 34/34 [00:37<00:00,  1.09it/s][AIteration: 100%|##########| 34/34 [00:37<00:00,  1.10s/it]
+Epoch: 100%|##########| 8/8 [05:00<00:00, 37.43s/it]Epoch: 100%|##########| 8/8 [05:00<00:00, 37.51s/it]
+10/19/2021 13:45:30 - INFO - __main__ -    global_step = 272, average loss = 0.0
+10/19/2021 13:45:30 - INFO - __main__ -   Saving model checkpoint to checkpoints/convdr-multi-cast19-4
+10/19/2021 13:45:30 - INFO - transformers.configuration_utils -   Configuration saved in checkpoints/convdr-multi-cast19-4/config.json
+10/19/2021 13:45:31 - INFO - transformers.modeling_utils -   Model weights saved in checkpoints/convdr-multi-cast19-4/pytorch_model.bin

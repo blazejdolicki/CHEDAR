@@ -261,7 +261,29 @@ class BiEncoder(nn.Module):
         loss = -1.0 * lsm[:, 0]
         return (loss.mean(), )
 
+# --------------------------------------------------
+#                   START CHEDAR
+# --------------------------------------------------
 
+class HistoryEncoder(nn.Module):
+    """ Bi-Encoder model component. Encapsulates query/question and context/passage encoders.
+    """
+    def __init__(self, args):
+        super(nn.Module, self).__init__()
+        self.encoder = nn.Sequence(
+                      nn.Linear(args.emb_size*2, args.history_hidden),
+                      nn.ReLu(),
+                      #nn.Linear(args.history_hidden, args.history_hidden),
+                      #nn.ReLu(),
+                      nn.Linear(args.history_hidden, args.args.emb_size))
+        
+    def forward(self, history_emb, query_emb):    
+      return self.encoder(torch.cat((history_emb, query_emb),1)
+      
+
+
+# --------------------------------------------------
+#                   END CHEDAR
 # --------------------------------------------------
 ALL_MODELS = sum(
     (tuple(conf.pretrained_config_archive_map.keys())

@@ -13,7 +13,7 @@ from transformers import get_linear_schedule_with_warmup
 from torch import nn
 
 from model.models import MSMarcoConfigDict
-from utils.util import ConvSearchDataset, NUM_FOLD, set_seed, load_model
+from utils.util import ChedarSearchDataset,  NUM_FOLD, set_seed, load_model
 from utils.dpr_utils import CheckpointState, get_model_obj, get_optimizer
 
 logger = logging.getLogger(__name__)
@@ -96,23 +96,33 @@ def train(args,
     train_iterator = trange(int(args.num_train_epochs), desc="Epoch")
     set_seed(
         args)  # Added here for reproducibility (even between python 2 and 3)
+    
+    history_emb = torch.zeros((embs.shape))    
     for _ in train_iterator:
         epoch_iterator = tqdm(train_dataloader, desc="Iteration")
         for step, batch in enumerate(epoch_iterator):
-            concat_ids, concat_id_mask, target_ids, target_id_mask = (ele.to(
-                args.device) for ele in [
-                    batch["concat_ids"], batch["concat_id_mask"],
-                    batch["target_ids"], batch["target_id_mask"]
+            qid, concat_ids, concat_id_mask, target_ids, target_id_mask = (ele.to(
+                args.device) for ele in [batch["qid"],batch["concat_ids"], batch["concat_id_mask"], batch["target_ids"], batch["target_id_mask"]
                 ])
             model.train()
             teacher_model.eval()
-            embs = model(concat_ids, concat_id_mask)
+            
+            with torch.no_grad(): #CHEDAR: dont train convdr model
+              embs = model(concat_ids, concat_id_mask)
+              
+            #CHEDAR:
+            if qid.split('_')[-1] == '1':
+              #Create new history embedding
+              history_emb = torch.zeros((embs.shape))
+            
+            history_emb = history_encoder(embs,history_emb)
+            
             with torch.no_grad():
                 teacher_embs = teacher_model(target_ids,
                                              target_id_mask).detach()
-            loss1 = None
+            loss1 = None            
             if not args.no_mse:
-                loss1 = loss_fn(embs, teacher_embs)
+                loss1 = loss_fn(history_emb, teacher_embs)
             loss = loss1
             loss2 = None
             if args.ranking_task:
@@ -159,7 +169,7 @@ def train(args,
                                                     dim=0)  # (B * K, E)
                 pos_and_negs_embeddings = pos_and_negs_embeddings.view(
                     bs, args.num_negatives + 1, -1)  # (B, K, E)
-                embs_for_ranking = embs.unsqueeze(-1)  # (B, E, 1)
+                embs_for_ranking = history_emb.unsqueeze(-1)  # (B, E, 1) #CHEDAR: use history_emb for ranking
                 embs_for_ranking = embs_for_ranking.expand(
                     bs, 768, args.num_negatives + 1)  # (B, E, K)
                 embs_for_ranking = embs_for_ranking.transpose(1,
@@ -329,7 +339,7 @@ def main():
 
     parser.add_argument(
         "--per_gpu_train_batch_size",
-        default=4,
+        default=1,
         type=int,
         help="Batch size per GPU/CPU for training."
     )
@@ -432,6 +442,20 @@ def main():
         choices=["no_res", "man_can", "auto_can", "target", "output", "raw"],
         help="Input query format."
     )
+    
+    parser.add_argument(
+        "--emb_size",
+        type=int,
+        default=768,
+        help="Size of embeddings used. Default is Roberta size, used in history encoder."
+    )
+    parser.add_argument(
+        "--history_hidden",
+        type=int,
+        default=768,
+        help="Size of embeddings used. Default is Roberta size, used in history encoder."
+    )
+    
     args = parser.parse_args()
 
     tb_writer = SummaryWriter(log_dir=args.log_dir)
@@ -453,7 +477,10 @@ def main():
         datefmt='%m/%d/%Y %H:%M:%S',
         level=logging.INFO)
     logger.warning("device: %s, n_gpu: %s", device, args.n_gpu)
-
+    
+    
+    if args.per_gpu_train_batch_size != 1:
+      raise KeyError("Batch size is not size 1, history embedding is a sequential process that requires going one query at a time (aka batch size = 1) ") 
     # Set seed
     set_seed(args)
 
@@ -479,7 +506,7 @@ def main():
 
         # Training
         logger.info("Training/evaluation parameters %s", args)
-        train_dataset = ConvSearchDataset([args.train_file],
+        train_dataset = ChedarSearchDataset([args.train_file],
                                           tokenizer,
                                           args,
                                           mode="train")
@@ -531,7 +558,7 @@ def main():
                 if j != i
             ]
             logger.info("train_files: {}".format(train_files))
-            train_dataset = ConvSearchDataset(train_files,
+            train_dataset = ChedarSearchDataset(train_files,
                                               tokenizer,
                                               args,
                                               mode="train")

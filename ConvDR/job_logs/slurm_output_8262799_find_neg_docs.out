@@ -1,0 +1,156 @@
+10/19/2021 12:57:57 - WARNING - __main__ -   device: cuda, n_gpu: 1
+10/19/2021 12:58:00 - INFO - __main__ -   Building index
+10/19/2021 12:58:01 - INFO - transformers.configuration_utils -   loading configuration file checkpoints/ad-hoc-ance-msmarco/config.json
+10/19/2021 12:58:01 - INFO - transformers.configuration_utils -   Model config {
+  "_num_labels": 2,
+  "architectures": [
+    "RobertaDot_NLL_LN"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bad_words_ids": null,
+  "bos_token_id": 0,
+  "decoder_start_token_id": null,
+  "do_sample": false,
+  "early_stopping": false,
+  "eos_token_id": 2,
+  "eos_token_ids": 0,
+  "finetuning_task": "MSMarco",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "is_encoder_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-05,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 514,
+  "min_length": 0,
+  "model_type": "roberta",
+  "no_repeat_ngram_size": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 2,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 1,
+  "prefix": null,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "task_specific_params": null,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 1,
+  "use_bfloat16": false,
+  "vocab_size": 50265
+}
+
+10/19/2021 12:58:01 - INFO - transformers.tokenization_utils -   Model name 'checkpoints/ad-hoc-ance-msmarco' not found in model shortcut name list (roberta-base, roberta-large, roberta-large-mnli, distilroberta-base, roberta-base-openai-detector, roberta-large-openai-detector). Assuming 'checkpoints/ad-hoc-ance-msmarco' is a path or url to a directory containing tokenizer files.
+10/19/2021 12:58:01 - INFO - transformers.tokenization_utils -   Didn't find file checkpoints/ad-hoc-ance-msmarco/added_tokens.json. We won't load it.
+10/19/2021 12:58:01 - INFO - transformers.tokenization_utils -   loading file checkpoints/ad-hoc-ance-msmarco/vocab.json
+10/19/2021 12:58:01 - INFO - transformers.tokenization_utils -   loading file checkpoints/ad-hoc-ance-msmarco/merges.txt
+10/19/2021 12:58:01 - INFO - transformers.tokenization_utils -   loading file None
+10/19/2021 12:58:01 - INFO - transformers.tokenization_utils -   loading file checkpoints/ad-hoc-ance-msmarco/special_tokens_map.json
+10/19/2021 12:58:01 - INFO - transformers.tokenization_utils -   loading file checkpoints/ad-hoc-ance-msmarco/tokenizer_config.json
+10/19/2021 12:58:03 - INFO - transformers.modeling_utils -   loading weights file checkpoints/ad-hoc-ance-msmarco/pytorch_model.bin
+10/19/2021 12:58:15 - INFO - __main__ -   Training/evaluation parameters Namespace(ann_data_dir='/project/gpuuva006/CAST19_ANCE_embeddings', cache_dir=None, cross_validate=False, device=device(type='cuda'), eval_file='datasets/cast-19/eval_topics.jsonl', fold=-1, max_concat_length=256, max_query_length=64, model_path='checkpoints/ad-hoc-ance-msmarco', model_type='rdot_nll', n_gpu=1, no_cuda=False, output_file='results/cast-19/manual_ance.jsonl', output_query_type='manual', output_trec_file='results/cast-19/manual_ance.trec', per_gpu_eval_batch_size=8, processed_data_dir='/project/gpuuva006/team3/cast-tokenized/', qrels='datasets/cast-19/qrels.tsv', query='target', raw_data_dir='datasets/cast-19', seed=42, top_n=100, use_gpu=True)
+10/19/2021 12:58:15 - INFO - __main__ -   ***** Running evaluation *****
+10/19/2021 12:58:15 - INFO - __main__ -     Num examples = 479
+10/19/2021 12:58:15 - INFO - __main__ -     Instantaneous batch size per GPU = 8
+10/19/2021 12:58:16 - INFO - __main__ -   Loading passage reps - block 0 part 0
+10/19/2021 12:58:28 - INFO - __main__ -   Loading passage reps - block 0 part 1
+10/19/2021 12:58:43 - INFO - __main__ -   Loading passage reps - block 0 part 2
+10/19/2021 12:58:59 - INFO - __main__ -   Loading passage reps - block 0 part 3
+10/19/2021 12:59:16 - INFO - __main__ -   Loading passage reps - block 1 part 0
+10/19/2021 12:59:33 - INFO - __main__ -   Loading passage reps - block 1 part 1
+10/19/2021 12:59:50 - INFO - __main__ -   Loading passage reps - block 1 part 2
+10/19/2021 13:00:08 - INFO - __main__ -   Loading passage reps - block 1 part 3
+10/19/2021 13:00:25 - INFO - __main__ -   Loading passage reps - block 2 part 0
+10/19/2021 13:00:42 - INFO - __main__ -   Loading passage reps - block 2 part 1
+10/19/2021 13:00:59 - INFO - __main__ -   Loading passage reps - block 2 part 2
+10/19/2021 13:01:16 - INFO - __main__ -   Loading passage reps - block 2 part 3
+10/19/2021 13:01:33 - INFO - __main__ -   Loading passage reps - block 3 part 0
+10/19/2021 13:01:51 - INFO - __main__ -   Loading passage reps - block 3 part 1
+10/19/2021 13:02:08 - INFO - __main__ -   Loading passage reps - block 3 part 2
+10/19/2021 13:02:25 - INFO - __main__ -   Loading passage reps - block 3 part 3
+10/19/2021 13:02:42 - INFO - __main__ -   start EvalDevQuery...
+10/19/2021 13:02:42 - INFO - __main__ -   Reading queries and passages...
+offset2pid first 10 elements [10000000, 10000032, 10000064, 10000096, 10000128, 10000160, 10000192, 10000224, 10000256, 10000288]
+Using mean: False
+passage embedding shape: (2401866, 768)
+query embedding shape: (479, 768)
+{'total': 0.24037623405456543, 'data': 479, 'per_query': 0.0005018292986525375}
+passage embedding shape: (2401866, 768)
+query embedding shape: (479, 768)
+{'total': 0.23803162574768066, 'data': 479, 'per_query': 0.0004969345005170786}
+passage embedding shape: (2401866, 768)
+query embedding shape: (479, 768)
+{'total': 0.23732233047485352, 'data': 479, 'per_query': 0.0004954537170665}
+passage embedding shape: (2401865, 768)
+query embedding shape: (479, 768)
+{'total': 0.2507481575012207, 'data': 479, 'per_query': 0.0005234825835098554}
+passage embedding shape: (2401866, 768)
+query embedding shape: (479, 768)
+{'total': 0.2362196445465088, 'data': 479, 'per_query': 0.0004931516587609787}
+passage embedding shape: (2401866, 768)
+query embedding shape: (479, 768)
+{'total': 0.23936796188354492, 'data': 479, 'per_query': 0.0004997243463122023}
+passage embedding shape: (2401866, 768)
+query embedding shape: (479, 768)
+{'total': 0.24042797088623047, 'data': 479, 'per_query': 0.0005019373087395209}
+passage embedding shape: (2401865, 768)
+query embedding shape: (479, 768)
+{'total': 0.2379162311553955, 'data': 479, 'per_query': 0.0004966935932262954}
+passage embedding shape: (2401865, 768)
+query embedding shape: (479, 768)
+{'total': 0.25513744354248047, 'data': 479, 'per_query': 0.0005326460199216711}
+passage embedding shape: (2401865, 768)
+query embedding shape: (479, 768)
+{'total': 0.23665714263916016, 'data': 479, 'per_query': 0.0004940650159481422}
+passage embedding shape: (2401865, 768)
+query embedding shape: (479, 768)
+{'total': 0.237898588180542, 'data': 479, 'per_query': 0.0004966567602934071}
+passage embedding shape: (2401864, 768)
+query embedding shape: (479, 768)
+{'total': 0.25049710273742676, 'data': 479, 'per_query': 0.0005229584608297009}
+passage embedding shape: (2401865, 768)
+query embedding shape: (479, 768)
+{'total': 0.23701810836791992, 'data': 479, 'per_query': 0.0004948185978453443}
+passage embedding shape: (2401865, 768)
+query embedding shape: (479, 768)
+{'total': 0.24463367462158203, 'data': 479, 'per_query': 0.0005107174835523633}
+passage embedding shape: (2401865, 768)
+query embedding shape: (479, 768)
+{'total': 0.2377173900604248, 'data': 479, 'per_query': 0.000496278476117797}
+passage embedding shape: (2401864, 768)
+query embedding shape: (479, 768)
+{'total': 0.23936057090759277, 'data': 479, 'per_query': 0.0004997089162997761}
+[[ 955092 9455797 2244936 ... 3517239 3526239 1122727]
+ [2377543 8397743 1165156 ... 5278195 5991347 3500491]
+ [3571250 4646791 9449900 ... 3588931 5870823 2364631]
+ ...
+ [4664597 4074144 9403709 ... 1870823 1079215 6800591]
+ [7466809 2302952 6999792 ... 2525867 6549891 4013671]
+ [4599978 4620379 8835232 ... 3004363 2930231 3959399]]
+bad passage
+bad passage
+bad passage
+bad passage
+bad passage
+bad passage
+bad passage
+bad passage

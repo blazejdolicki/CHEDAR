@@ -1,0 +1,92 @@
+10/20/2021 10:44:13 - WARNING - __main__ -   device: cuda, n_gpu: 1
+10/20/2021 10:44:16 - INFO - __main__ -   Building index
+10/20/2021 10:44:18 - INFO - transformers.configuration_utils -   loading configuration file checkpoints/convdr-multi-cast19-4/config.json
+10/20/2021 10:44:18 - INFO - transformers.configuration_utils -   Model config {
+  "_num_labels": 2,
+  "architectures": [
+    "RobertaDot_NLL_LN"
+  ],
+  "attention_probs_dropout_prob": 0.1,
+  "bad_words_ids": null,
+  "bos_token_id": 0,
+  "decoder_start_token_id": null,
+  "do_sample": false,
+  "early_stopping": false,
+  "eos_token_id": 2,
+  "eos_token_ids": 0,
+  "finetuning_task": "MSMarco",
+  "hidden_act": "gelu",
+  "hidden_dropout_prob": 0.1,
+  "hidden_size": 768,
+  "id2label": {
+    "0": "LABEL_0",
+    "1": "LABEL_1"
+  },
+  "initializer_range": 0.02,
+  "intermediate_size": 3072,
+  "is_decoder": false,
+  "is_encoder_decoder": false,
+  "label2id": {
+    "LABEL_0": 0,
+    "LABEL_1": 1
+  },
+  "layer_norm_eps": 1e-05,
+  "length_penalty": 1.0,
+  "max_length": 20,
+  "max_position_embeddings": 514,
+  "min_length": 0,
+  "model_type": "roberta",
+  "no_repeat_ngram_size": 0,
+  "num_attention_heads": 12,
+  "num_beams": 1,
+  "num_hidden_layers": 12,
+  "num_labels": 2,
+  "num_return_sequences": 1,
+  "output_attentions": false,
+  "output_hidden_states": false,
+  "output_past": true,
+  "pad_token_id": 1,
+  "prefix": null,
+  "pruned_heads": {},
+  "repetition_penalty": 1.0,
+  "task_specific_params": null,
+  "temperature": 1.0,
+  "top_k": 50,
+  "top_p": 1.0,
+  "torchscript": false,
+  "type_vocab_size": 1,
+  "use_bfloat16": false,
+  "vocab_size": 50265
+}
+
+10/20/2021 10:44:18 - INFO - transformers.tokenization_utils -   Model name 'checkpoints/convdr-multi-cast19-4' not found in model shortcut name list (roberta-base, roberta-large, roberta-large-mnli, distilroberta-base, roberta-base-openai-detector, roberta-large-openai-detector). Assuming 'checkpoints/convdr-multi-cast19-4' is a path or url to a directory containing tokenizer files.
+10/20/2021 10:44:18 - INFO - transformers.tokenization_utils -   loading file checkpoints/convdr-multi-cast19-4/vocab.json
+10/20/2021 10:44:18 - INFO - transformers.tokenization_utils -   loading file checkpoints/convdr-multi-cast19-4/merges.txt
+10/20/2021 10:44:18 - INFO - transformers.tokenization_utils -   loading file checkpoints/convdr-multi-cast19-4/added_tokens.json
+10/20/2021 10:44:18 - INFO - transformers.tokenization_utils -   loading file checkpoints/convdr-multi-cast19-4/special_tokens_map.json
+10/20/2021 10:44:18 - INFO - transformers.tokenization_utils -   loading file checkpoints/convdr-multi-cast19-4/tokenizer_config.json
+10/20/2021 10:44:19 - INFO - transformers.modeling_utils -   loading weights file checkpoints/convdr-multi-cast19-4/pytorch_model.bin
+10/20/2021 10:44:32 - INFO - __main__ -   Training/evaluation parameters Namespace(ann_data_dir='/project/gpuuva006/CAST19_ANCE_embeddings', cache_dir='../ann_cache_dir', cross_validate=False, device=device(type='cuda'), eval_file='datasets/cast-19/eval_topics.jsonl', fold=-1, max_concat_length=256, max_query_length=64, model_path='checkpoints/convdr-multi-cast19-4', model_type='rdot_nll', n_gpu=1, no_cuda=False, output_file='results/cast-19/multi.jsonl', output_query_type='raw', output_trec_file='results/cast-19/multi.trec', per_gpu_eval_batch_size=8, processed_data_dir='/project/gpuuva006/team3/cast-tokenized/', qrels='datasets/cast-19/qrels.tsv', query='no_res', raw_data_dir='datasets/cast-19', seed=42, top_n=100, use_gpu=True)
+10/20/2021 10:44:32 - INFO - __main__ -   ***** Running evaluation *****
+10/20/2021 10:44:32 - INFO - __main__ -     Num examples = 479
+10/20/2021 10:44:32 - INFO - __main__ -     Instantaneous batch size per GPU = 8
+10/20/2021 10:44:36 - INFO - __main__ -   Loading passage reps - block 0 part 0
+10/20/2021 10:44:48 - INFO - __main__ -   Loading passage reps - block 0 part 1
+10/20/2021 10:45:04 - INFO - __main__ -   Loading passage reps - block 0 part 2
+10/20/2021 10:45:20 - INFO - __main__ -   Loading passage reps - block 0 part 3
+10/20/2021 10:45:38 - INFO - __main__ -   Loading passage reps - block 1 part 0
+10/20/2021 10:45:54 - INFO - __main__ -   Loading passage reps - block 1 part 1
+10/20/2021 10:46:12 - INFO - __main__ -   Loading passage reps - block 1 part 2
+10/20/2021 10:46:29 - INFO - __main__ -   Loading passage reps - block 1 part 3
+10/20/2021 10:46:47 - INFO - __main__ -   Loading passage reps - block 2 part 0
+10/20/2021 10:47:04 - INFO - __main__ -   Loading passage reps - block 2 part 1
+10/20/2021 10:47:21 - INFO - __main__ -   Loading passage reps - block 2 part 2
+10/20/2021 10:47:39 - INFO - __main__ -   Loading passage reps - block 2 part 3
+10/20/2021 10:47:56 - INFO - __main__ -   Loading passage reps - block 3 part 0
+10/20/2021 10:48:14 - INFO - __main__ -   Loading passage reps - block 3 part 1
+10/20/2021 10:48:31 - INFO - __main__ -   Loading passage reps - block 3 part 2
+10/20/2021 10:48:48 - INFO - __main__ -   Loading passage reps - block 3 part 3
+10/20/2021 10:49:05 - INFO - __main__ -   start EvalDevQuery...
+10/20/2021 10:49:05 - INFO - __main__ -   Reading queries and passages...
+/var/spool/slurm/slurmd/job8263675/slurm_script: line 42: 13576 Killed                  python drivers/run_convdr_inference.py --model_path=checkpoints/convdr-multi-cast19-4 --eval_file=datasets/cast-19/eval_topics.jsonl --query=no_res --per_gpu_eval_batch_size=8 --cache_dir=../ann_cache_dir --ann_data_dir=/project/gpuuva006/CAST19_ANCE_embeddings --qrels=datasets/cast-19/qrels.tsv --processed_data_dir=/project/gpuuva006/team3/cast-tokenized/ --raw_data_dir=datasets/cast-19 --output_file=results/cast-19/multi.jsonl --output_trec_file=results/cast-19/multi.trec --model_type=rdot_nll --output_query_type=raw --use_gpu
+slurmstepd: error: Detected 1 oom-kill event(s) in step 8263675.batch cgroup. Some of your processes may have been killed by the cgroup out-of-memory handler.
