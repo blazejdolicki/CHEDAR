@@ -7,7 +7,7 @@ from tensorboardX import SummaryWriter
 
 from utils.util import pad_input_ids_with_mask, getattr_recursive
 
-from torch.utils.data import DataLoader, RandomSampler
+from torch.utils.data import DataLoader, RandomSampler, SequentialSampler
 from tqdm import tqdm, trange
 from transformers import get_linear_schedule_with_warmup
 from torch import nn
@@ -49,7 +49,8 @@ def train(args,
           loss_fn_2=None,
           tokenizer=None):
     args.train_batch_size = args.per_gpu_train_batch_size * max(1, args.n_gpu)
-    train_sampler = RandomSampler(train_dataset)
+    #train_sampler = RandomSampler(train_dataset)
+    train_sampler = SequentialSampler(train_dataset) #TODO
     train_dataloader = DataLoader(train_dataset,
                                   sampler=train_sampler,
                                   batch_size=args.train_batch_size,
@@ -64,18 +65,20 @@ def train(args,
         t_total = len(
             train_dataloader
         ) // args.gradient_accumulation_steps * args.num_train_epochs
-
+    
+    history_encoder = HistoryEncoder(args)
+    history_encoder.to(args.device)
     # Prepare optimizer and schedule (linear warmup and decay)
-    optimizer = get_optimizer(args, model, weight_decay=args.weight_decay)
-
+   # optimizer = get_optimizer(args, model, weight_decay=args.weight_decay)
+    optimizer = get_optimizer(args, history_encoder, weight_decay=args.weight_decay)
     scheduler = get_linear_schedule_with_warmup(
         optimizer,
         num_warmup_steps=args.warmup_steps,
         num_training_steps=t_total)
 
-    # multi-gpu training (should be after apex fp16 initialization)
+    # multi-gpu training (should be after apex fp16 initialization) 
     if args.n_gpu > 1:
-        model = torch.nn.DataParallel(model)
+        model = torch.nn.DataParallel(model) 
 
     # Train!
     logger.info("***** Running training *****")
@@ -92,15 +95,17 @@ def train(args,
     global_step = 0
     tr_loss, logging_loss = 0.0, 0.0
     tr_loss1, tr_loss2 = 0.0, 0.0
-    model.zero_grad()
+    
+    
+    history_encoder.zero_grad()
+    #model.zero_grad()
     train_iterator = trange(int(args.num_train_epochs), desc="Epoch")
     set_seed(
         args)  # Added here for reproducibility (even between python 2 and 3)
-    history_encoder = HistoryEncoder(args)
-    history_encoder.to(args.device)
-    history_emb = torch.zeros((1,768),device= args.device)    
+    
     for _ in train_iterator:
         epoch_iterator = tqdm(train_dataloader, desc="Iteration")
+        history_emb = torch.zeros((1,768),device= args.device)    
         for step, batch in enumerate(epoch_iterator):
             concat_ids, concat_id_mask, target_ids, target_id_mask = (ele.to(args.device) for ele in [batch["concat_ids"], batch["concat_id_mask"], batch["target_ids"], batch["target_id_mask"]
                 ])
@@ -110,7 +115,7 @@ def train(args,
             teacher_model.eval()
             history_encoder.train()
             with torch.no_grad(): #CHEDAR: dont train convdr model
-              embs = model(concat_ids, concat_id_mask)
+              embs = model(concat_ids, concat_id_mask).detach()
               
             #CHEDAR:
             if qid.split('_')[-1] == '1':
@@ -187,7 +192,7 @@ def train(args,
             if args.gradient_accumulation_steps > 1:
                 loss = loss / args.gradient_accumulation_steps
 
-            loss.backward()
+            loss.backward(retain_graph=True)
             tr_loss += loss.item()
             if not args.no_mse:
                 tr_loss1 += loss1.item()

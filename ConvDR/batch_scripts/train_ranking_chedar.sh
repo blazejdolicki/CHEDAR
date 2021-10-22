@@ -28,12 +28,12 @@ source activate convdr
 
 python drivers/run_chedar_train.py  --output_dir=checkpoints/convdr-multi-cast19-chedar  \
                                     --model_name_or_path=checkpoints/ad-hoc-ance-msmarco  \
-                                    --train_file=datasets/cast-19/eval_topics.rank.jsonl  \
+                                    --train_file=datasets/cast-19/SORTED_eval_topics.rank.jsonl  \
                                     --query=no_res  \
                                     --per_gpu_train_batch_size=1  \
                                     --learning_rate=1e-5 \
                                     --log_dir=logs/convdr_multi_cast19_chedar  \
-                                    --num_train_epochs=1  \
+                                    --num_train_epochs=8  \
                                     --model_type=rdot_nll  \
                                     --cross_validate  \
                                     --ranking_task
