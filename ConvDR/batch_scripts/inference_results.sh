@@ -26,7 +26,7 @@ export PYTHONPATH=${PYTHONPATH}:`pwd`
 # Activate your environment
 source activate convdr
 
-python drivers/run_convdr_inference.py  --model_path=checkpoints/convdr-multi-cast19-4 \
+python drivers/run_convdr_inference.py  --model_path=checkpoints/convdr-multi-cast19 \
                                         --eval_file=datasets/cast-19/eval_topics.jsonl \
                                         --query=no_res \
                                         --per_gpu_eval_batch_size=8 \
@@ -39,4 +39,5 @@ python drivers/run_convdr_inference.py  --model_path=checkpoints/convdr-multi-ca
                                         --output_trec_file=results/cast-19/multi.trec \
                                         --model_type=rdot_nll \
                                         --output_query_type=raw \
+                                        --cross_validate \
                                         --use_gpu
