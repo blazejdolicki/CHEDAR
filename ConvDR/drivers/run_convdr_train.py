@@ -7,7 +7,7 @@ from tensorboardX import SummaryWriter
 
 from utils.util import pad_input_ids_with_mask, getattr_recursive
 
-from torch.utils.data import DataLoader, RandomSampler
+from torch.utils.data import DataLoader, RandomSampler, SequentialSampler
 from tqdm import tqdm, trange
 from transformers import get_linear_schedule_with_warmup
 from torch import nn
@@ -49,7 +49,7 @@ def train(args,
           loss_fn_2=None,
           tokenizer=None):
     args.train_batch_size = args.per_gpu_train_batch_size * max(1, args.n_gpu)
-    train_sampler = RandomSampler(train_dataset)
+    train_sampler = SequentialSampler(train_dataset)#RandomSampler(train_dataset)
     train_dataloader = DataLoader(train_dataset,
                                   sampler=train_sampler,
                                   batch_size=args.train_batch_size,
