@@ -47,7 +47,8 @@ def train(args,
           writer: SummaryWriter,
           cross_validate_id=-1,
           loss_fn_2=None,
-          tokenizer=None):
+          tokenizer=None,
+          history_encoder = None):
     args.train_batch_size = args.per_gpu_train_batch_size * max(1, args.n_gpu)
     #train_sampler = RandomSampler(train_dataset)
     train_sampler = SequentialSampler(train_dataset) #TODO
@@ -66,8 +67,7 @@ def train(args,
             train_dataloader
         ) // args.gradient_accumulation_steps * args.num_train_epochs
     
-    history_encoder = HistoryEncoder(args)
-    history_encoder.to(args.device)
+    
     # Prepare optimizer and schedule (linear warmup and decay)
    # optimizer = get_optimizer(args, model, weight_decay=args.weight_decay)
     optimizer = get_optimizer(args, history_encoder, weight_decay=args.weight_decay)
@@ -239,11 +239,17 @@ def train(args,
                             os.makedirs(output_dir)
                         model_to_save = model.module if hasattr(
                             model, 'module') else model
+                        
                         model_to_save.save_pretrained(output_dir)
                         torch.save(
                             args, os.path.join(output_dir,
                                                'training_args.bin'))
+                        history_encoder_path = os.path.join(output_dir,'history_encoder.pt')                                                        
+                        logger.info("Loop:  Saving history encoder to %s", history_encoder_path)
+                        #logger.info("Loop:  Saving history encoder to %s", history_encoder.state_dict())
+                        torch.save(history_encoder.state_dict(), history_encoder_path)
                     else:
+                        raise NotImplementedError #Not in Chedar
                         if not os.path.exists(output_dir):
                             os.makedirs(output_dir)
                         _save_checkpoint(args, model, output_dir, optimizer,
@@ -511,7 +517,8 @@ def main():
             args.max_concat_length = tokenizer.max_len_single_sentence
         args.max_concat_length = min(args.max_concat_length,
                                      tokenizer.max_len_single_sentence)
-
+        history_encoder = HistoryEncoder(args)
+        history_encoder.to(args.device)
         # Training
         logger.info("Training/evaluation parameters %s", args)
         train_dataset = ChedarSearchDataset([args.train_file],
@@ -527,7 +534,8 @@ def main():
                                      tb_writer,
                                      cross_validate_id=0,
                                      loss_fn_2=loss_fn_2,
-                                     tokenizer=tokenizer)
+                                     tokenizer=tokenizer,
+                                     history_encoder = history_encoder)
         logger.info(" global_step = %s, average loss = %s", global_step,
                     tr_loss)
 
@@ -543,6 +551,9 @@ def main():
             tokenizer.save_pretrained(args.output_dir)
             torch.save(args, os.path.join(args.output_dir,
                                           'training_args.bin'))
+            history_encoder_path = os.path.join(output_dir,'history_encoder.pt')                                                        
+            logger.info("Saving history encoder to %s", history_encoder_path)
+            torch.save(history_encoder.state_dict(), history_encoder_path)
 
     else:
         # K-Fold Cross Validation
@@ -551,6 +562,8 @@ def main():
             suffix = ('-' + str(i)) if args.init_from_multiple_models else ''
             config, tokenizer, model = load_model(
                 args, args.model_name_or_path + suffix)
+            history_encoder = HistoryEncoder(args)
+            history_encoder.to(args.device)
             if args.query in ["man_can", "auto_can"]:
                 tokenizer.add_tokens(["<response>"])
                 model.resize_token_embeddings(len(tokenizer))
@@ -579,21 +592,26 @@ def main():
                                          tb_writer,
                                          cross_validate_id=i,
                                          loss_fn_2=loss_fn_2,
-                                         tokenizer=tokenizer)
+                                         tokenizer=tokenizer,
+                                         history_encoder = history_encoder)
             logger.info(" global_step = %s, average loss = %s", global_step,
                         tr_loss)
 
-            if args.model_type == "rdot_nll":
+            if args.model_type == "rdot_nll": #TODO: Properly save checkpoint
                 output_dir = args.output_dir + '-' + str(i)
                 if not os.path.exists(output_dir):
                     os.makedirs(output_dir)
-
+                
                 logger.info("Saving model checkpoint to %s", output_dir)
                 model_to_save = model.module if hasattr(model,
                                                         'module') else model
+                
                 model_to_save.save_pretrained(output_dir)
                 tokenizer.save_pretrained(output_dir)
                 torch.save(args, os.path.join(output_dir, 'training_args.bin'))
+                history_encoder_path = os.path.join(output_dir,'history_encoder.pt')                                                        
+                logger.info("Saving history encoder to %s", history_encoder_path)
+                torch.save(history_encoder.state_dict(), history_encoder_path)
 
             del model
             torch.cuda.empty_cache()

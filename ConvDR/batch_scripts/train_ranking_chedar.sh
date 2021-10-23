@@ -2,7 +2,7 @@
 
 #SBATCH --partition=gpu_shared_course
 #SBATCH --gres=gpu:1
-#SBATCH --job-name=convdr
+#SBATCH --job-name=chedar_train
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=3
 #SBATCH --time=10:00:00
