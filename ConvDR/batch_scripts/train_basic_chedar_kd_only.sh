@@ -28,12 +28,12 @@ pwd
 source activate convdr
 #conda list
 
-python drivers/run_convdr_train.py  --output_dir=checkpoints/convdr-kd-cast19  \
+python drivers/run_convdr_train.py  --output_dir=checkpoints/chedar-kd-cast19  \
                                     --model_name_or_path=checkpoints/ad-hoc-ance-msmarco  \
-                                    --train_file=datasets/cast-19/eval_topics.jsonl  \
-                                    --query=no_res  --per_gpu_train_batch_size=4  \
+                                    --train_file=datasets/cast-19/SORTED_eval_topics.rank.jsonl  \
+                                    --query=no_res  --per_gpu_train_batch_size=1  \
                                     --learning_rate=1e-5 \
-                                    --log_dir=logs/convdr_kd_cast19  \
+                                    --log_dir=logs/chedar_kd_cast19  \
                                     --num_train_epochs=8  \
                                     --model_type=rdot_nll \
                                     --cross_validate \
