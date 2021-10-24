@@ -17,7 +17,7 @@ from utils.util import ChedarSearchDataset,  NUM_FOLD, set_seed, load_model
 from utils.dpr_utils import CheckpointState, get_model_obj, get_optimizer
 
 logger = logging.getLogger(__name__)
-
+import wandb
 
 def _save_checkpoint(args,
                      model,
@@ -186,16 +186,21 @@ def train(args,
                 labels = torch.zeros(bs, dtype=torch.long).to(args.device)
                 loss2 = loss_fn_2(logits, labels)
                 loss = loss1 + loss2 if loss1 != None else loss2
-
+                
+                
             if args.n_gpu > 1:
                 loss = loss.mean()
             if args.gradient_accumulation_steps > 1:
                 loss = loss / args.gradient_accumulation_steps
-
-            #loss.backward(retain_graph=True)
-            loss.backwards()
-            history_emb.detach()
+                
+            wandb.log({"loss1": loss1})
+            if loss1 != None:
+                  wandb.log({"loss2": loss2})
+            loss.backward(retain_graph=True)
+            #loss.backwards()
+            #history_emb.detach()
             tr_loss += loss.item()
+            wandb.log({"tr_loss": tr_loss})
             if not args.no_mse:
                 tr_loss1 += loss1.item()
             if args.ranking_task:
@@ -279,6 +284,7 @@ def train(args,
 
 
 def main():
+    wandb.init(project='history_encoder', entity='ir2')
     parser = argparse.ArgumentParser()
 
     parser.add_argument(
@@ -473,7 +479,7 @@ def main():
     )
     
     args = parser.parse_args()
-
+    wandb.config.update(args)
     tb_writer = SummaryWriter(log_dir=args.log_dir)
 
     if os.path.exists(args.output_dir) and os.listdir(
@@ -521,6 +527,8 @@ def main():
                                      tokenizer.max_len_single_sentence)
         history_encoder = HistoryEncoder(args)
         history_encoder.to(args.device)
+        wandb.watch(history_encoder)
+        wandb.watch(model)    
         # Training
         logger.info("Training/evaluation parameters %s", args)
         train_dataset = ChedarSearchDataset([args.train_file],
@@ -565,6 +573,8 @@ def main():
             config, tokenizer, model = load_model(
                 args, args.model_name_or_path + suffix)
             history_encoder = HistoryEncoder(args)
+            wandb.watch(history_encoder)
+            wandb.watch(model)
             history_encoder.to(args.device)
             if args.query in ["man_can", "auto_can"]:
                 tokenizer.add_tokens(["<response>"])
