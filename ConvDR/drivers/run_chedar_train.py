@@ -192,7 +192,9 @@ def train(args,
             if args.gradient_accumulation_steps > 1:
                 loss = loss / args.gradient_accumulation_steps
 
-            loss.backward(retain_graph=True)
+            #loss.backward(retain_graph=True)
+            loss.backwards()
+            history_emb.detach()
             tr_loss += loss.item()
             if not args.no_mse:
                 tr_loss1 += loss1.item()
