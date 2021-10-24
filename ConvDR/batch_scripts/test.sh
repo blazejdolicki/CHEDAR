@@ -19,9 +19,11 @@ module load Miniconda3
 cd $HOME/CHEDAR/ConvDR
 
 export PYTHONPATH=${PYTHONPATH}:`pwd`
-pwd
+
 
 # Activate your environment
 source activate convdr
-conda info
-conda list
+
+echo "Echo something"
+ARG='some_argument'
+python print_arg.py --arg=sfasdfas/$ARG
