@@ -12,7 +12,7 @@ import torch
 import numpy as np
 from torch.utils.data.sampler import SequentialSampler
 from torch.utils.data import DataLoader
-
+import wandb
 from utils.util import ChedarSearchDataset, NUM_FOLD, set_seed, load_model, load_collection
 
 logger = logging.getLogger(__name__)
@@ -260,6 +260,7 @@ def search_one_by_one(ann_data_dir, gpu_index, query_embedding, topN):
 
 
 def main():
+    wandb.init(project='chedar_inference', entity='ir2')
     parser = argparse.ArgumentParser()
     parser.add_argument("--model_path", type=str, help="The model checkpoint.")
     parser.add_argument("--eval_file",
@@ -349,6 +350,9 @@ def main():
     
     args = parser.parse_args()
 
+    wandb.config.update(args)
+    wandb.save(args.output_trec_file) 
+    wandb.save(args.output_file) 
     device = torch.device(
         "cuda" if torch.cuda.is_available() and not args.no_cuda else "cpu")
     args.n_gpu = 1

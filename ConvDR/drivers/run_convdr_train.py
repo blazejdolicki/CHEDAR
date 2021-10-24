@@ -18,7 +18,7 @@ from utils.dpr_utils import CheckpointState, get_model_obj, get_optimizer
 
 logger = logging.getLogger(__name__)
 
-
+import wandb
 def _save_checkpoint(args,
                      model,
                      output_dir,
@@ -174,9 +174,16 @@ def train(args,
                 loss = loss.mean()
             if args.gradient_accumulation_steps > 1:
                 loss = loss / args.gradient_accumulation_steps
-
+            
+            
+            wandb.log({"loss1": loss1})
+            wandb.log({'Epoch':_})
+            wandb.log({'Fold':cross_validate_id})
+            if loss1 != None:
+                  wandb.log({"loss2": loss2})
             loss.backward()
             tr_loss += loss.item()
+            wandb.log({"tr_loss": tr_loss})
             if not args.no_mse:
                 tr_loss1 += loss1.item()
             if args.ranking_task:
@@ -254,7 +261,7 @@ def train(args,
 
 def main():
     parser = argparse.ArgumentParser()
-
+    wandb.init(project='chedar', entity='ir2')
     parser.add_argument(
         "--output_dir",
         default=None,
@@ -433,7 +440,8 @@ def main():
         help="Input query format."
     )
     args = parser.parse_args()
-
+    
+    wandb.config.update(args)
     tb_writer = SummaryWriter(log_dir=args.log_dir)
 
     if os.path.exists(args.output_dir) and os.listdir(

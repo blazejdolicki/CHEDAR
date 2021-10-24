@@ -110,7 +110,7 @@ def train(args,
             concat_ids, concat_id_mask, target_ids, target_id_mask = (ele.to(args.device) for ele in [batch["concat_ids"], batch["concat_id_mask"], batch["target_ids"], batch["target_id_mask"]
                 ])
             qid = batch["qid"][0]
-            print("Conversation id and Query id:",qid)
+            #print("Conversation id and Query id:",qid)
             model.eval()
             teacher_model.eval()
             history_encoder.train()
@@ -194,11 +194,13 @@ def train(args,
                 loss = loss / args.gradient_accumulation_steps
                 
             wandb.log({"loss1": loss1})
+            wand.log({'Epoch':_})
+            wand.log({'Fold':cross_validate_id})
             if loss1 != None:
                   wandb.log({"loss2": loss2})
             loss.backward(retain_graph=True)
-            #loss.backwards()
-            #history_emb.detach()
+            #loss.backward()
+            #history_emb = history_emb.detach()
             tr_loss += loss.item()
             wandb.log({"tr_loss": tr_loss})
             if not args.no_mse:
@@ -284,7 +286,7 @@ def train(args,
 
 
 def main():
-    wandb.init(project='history_encoder', entity='ir2')
+    wandb.init(project='chedar', entity='ir2')
     parser = argparse.ArgumentParser()
 
     parser.add_argument(
@@ -572,6 +574,7 @@ def main():
             suffix = ('-' + str(i)) if args.init_from_multiple_models else ''
             config, tokenizer, model = load_model(
                 args, args.model_name_or_path + suffix)
+            wandb.log
             history_encoder = HistoryEncoder(args)
             wandb.watch(history_encoder)
             wandb.watch(model)
@@ -584,7 +587,8 @@ def main():
                 args.max_concat_length = tokenizer.max_len_single_sentence
             args.max_concat_length = min(args.max_concat_length,
                                          tokenizer.max_len_single_sentence)
-
+            
+            
             logger.info("Training/evaluation parameters %s", args)
             train_files = [
                 "%s.%d" % (args.train_file, j) for j in range(NUM_FOLD)
