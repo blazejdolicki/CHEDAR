@@ -21,4 +21,4 @@ module load Anaconda3/2018.12
 # Your job starts in the directory where you call sbatch
 cd $HOME/trec_eval
 
-./trec_eval -m all_trec ../CHEDAR/ConvDR/datasets/cast-19/qrels.tsv ../CHEDAR/ConvDR/results/cast-19/multi_no_cv.trec > ../CHEDAR/ConvDR/results/cast-19/multi_results_no_cv.txt
+./trec_eval -m ndcg_cut.3 -m recip_rank ../CHEDAR/ConvDR/datasets/cast-19/qrels.tsv ../CHEDAR/ConvDR/results/cast-19/multi.trec > ../CHEDAR/ConvDR/results/cast-19/multi_results.txt
