@@ -139,3 +139,5 @@ ConvDR/Passage-ANCE(FirstP)-Checkpoint/
 ConvDR/preprocessed/
 ConvDR/ad-hoc-ance-orquac.cp
 ConvDR/results/
+ConvDR/job_logs/
+ConvDR/logs/
