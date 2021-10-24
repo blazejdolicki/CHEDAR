@@ -36,5 +36,6 @@ python drivers/run_chedar_train.py  --output_dir=checkpoints/convdr-multi-cast19
                                     --num_train_epochs=8  \
                                     --model_type=rdot_nll  \
                                     --cross_validate  \
-                                    --ranking_task
+                                    --ranking_task \
+                                    --overwrite_output_dir 
 

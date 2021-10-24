@@ -103,7 +103,7 @@ def train(args,
     set_seed(
         args)  # Added here for reproducibility (even between python 2 and 3)
     
-    for _ in train_iterator:
+    for epoch_number_id in train_iterator:
         epoch_iterator = tqdm(train_dataloader, desc="Iteration")
         history_emb = torch.zeros((1,768),device= args.device)    
         for step, batch in enumerate(epoch_iterator):
@@ -111,11 +111,11 @@ def train(args,
                 ])
             qid = batch["qid"][0]
             #print("Conversation id and Query id:",qid)
-            model.eval()
+            model.train()
             teacher_model.eval()
             history_encoder.train()
-            with torch.no_grad(): #CHEDAR: dont train convdr model
-              embs = model(concat_ids, concat_id_mask).detach()
+            #with torch.no_grad(): #CHEDAR: dont train convdr model
+            embs = model(concat_ids, concat_id_mask)#.detach()
               
             #CHEDAR:
             if qid.split('_')[-1] == '1':
@@ -194,13 +194,13 @@ def train(args,
                 loss = loss / args.gradient_accumulation_steps
                 
             wandb.log({"loss1": loss1})
-            wand.log({'Epoch':_})
-            wand.log({'Fold':cross_validate_id})
+            wandb.log({'Epoch':epoch_number_id})
+            wandb.log({'Fold':cross_validate_id})
             if loss1 != None:
                   wandb.log({"loss2": loss2})
-            loss.backward(retain_graph=True)
-            #loss.backward()
-            #history_emb = history_emb.detach()
+            #loss.backward(retain_graph=True)
+            loss.backward()
+            history_emb = history_emb.detach()
             tr_loss += loss.item()
             wandb.log({"tr_loss": tr_loss})
             if not args.no_mse:
@@ -211,11 +211,13 @@ def train(args,
             torch.cuda.empty_cache()
 
             if (step + 1) % args.gradient_accumulation_steps == 0:
+                torch.nn.utils.clip_grad_norm_(model.parameters(),
+                                               args.max_grad_norm)
                 torch.nn.utils.clip_grad_norm_(history_encoder.parameters(),
                                                args.max_grad_norm)
                 optimizer.step()
                 scheduler.step()  # Update learning rate schedule
-                #model.zero_grad()
+                model.zero_grad()
                 history_encoder.zero_grad()
                 global_step += 1
 
@@ -476,7 +478,7 @@ def main():
     parser.add_argument(
         "--history_hidden",
         type=int,
-        default=768,
+        default=1024,
         help="Size of embeddings used. Default is Roberta size, used in history encoder."
     )
     

@@ -157,7 +157,7 @@ def evaluate(args, eval_dataset, model, logger, history_encoder=None):
             history_emb = torch.zeros((embs.shape),device= args.device)
           
           history_emb = history_encoder(embs,history_emb)
-        
+        #history_emb = embs #TODO!!! DELETE THIS!! TEST ONLY !!! IF YOU SEE IT DELETE THIS LINE# 
         history_emb_detached =  history_emb.detach().cpu().numpy()
         embedding.append(history_emb_detached)
         for qid in qids:
