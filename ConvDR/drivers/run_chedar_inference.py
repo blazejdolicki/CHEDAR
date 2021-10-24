@@ -484,7 +484,7 @@ def main():
             logger.info("Training/evaluation parameters %s", args)
             if args.evaluate_on_train_folds:
                 eval_files = [
-                "%s.%d" % (args.train_file, j) for j in range(NUM_FOLD)
+                "%s.%d" % (args.eval_file, j) for j in range(NUM_FOLD)
                 if j != i]
                 eval_files = "%s.%d" % (args.eval_file, i)
                 logger.info("Evaluation on training folds")
