@@ -344,7 +344,7 @@ def main():
     parser.add_argument(
         "--history_hidden",
         type=int,
-        default=768,
+        default=1024,
         help="Size of embeddings used. Default is Roberta size, used in history encoder."
     )
     

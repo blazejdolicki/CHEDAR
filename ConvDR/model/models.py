@@ -266,7 +266,7 @@ class BiEncoder(nn.Module):
 # --------------------------------------------------
 
 class HistoryEncoder(nn.Module):
-    """ Bi-Encoder model component. Encapsulates query/question and context/passage encoders.
+    """ History encoder.
     """
     def __init__(self, args):
         super(HistoryEncoder, self).__init__()
@@ -277,7 +277,8 @@ class HistoryEncoder(nn.Module):
                       #nn.ReLu(),
                       nn.Linear(args.history_hidden, args.emb_size))
         
-    def forward(self, history_emb, query_emb):    
+    def forward(self, query_emb, history_emb):    
+        #return query_emb
         return self.encoder(torch.cat((history_emb, query_emb),1))
       
 
