@@ -486,7 +486,7 @@ def main():
                 eval_files = [
                 "%s.%d" % (args.eval_file, j) for j in range(NUM_FOLD)
                 if j != i]
-                eval_files = "%s.%d" % (args.eval_file, i)
+                #eval_files = "%s.%d" % (args.eval_file, i)
                 logger.info("Evaluation on training folds")
                 logger.info("eval_files: {}".format(eval_files))
                 eval_dataset = ChedarSearchDataset(eval_files,
