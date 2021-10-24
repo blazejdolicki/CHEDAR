@@ -148,16 +148,16 @@ def evaluate(args, eval_dataset, model, logger, history_encoder=None):
         history_encoder.eval()
         with torch.no_grad():
             embs = model(ids, id_mask)
-        
+
         #CHEDAR:
         qid = batch["qid"][0]
         with torch.no_grad():
           if qid.split('_')[-1] == '1':
             #Create new history embedding
             history_emb = torch.zeros((embs.shape),device= args.device)
-          
+
           history_emb = history_encoder(embs,history_emb)
-        #history_emb = embs #TODO!!! DELETE THIS!! TEST ONLY !!! IF YOU SEE IT DELETE THIS LINE# 
+        #history_emb = embs #TODO!!! DELETE THIS!! TEST ONLY !!! IF YOU SEE IT DELETE THIS LINE#
         history_emb_detached =  history_emb.detach().cpu().numpy()
         embedding.append(history_emb_detached)
         for qid in qids:
@@ -347,12 +347,17 @@ def main():
         default=1024,
         help="Size of embeddings used. Default is Roberta size, used in history encoder."
     )
-    
+    parser.add_argument(
+        "--evaluate_on_train_folds",
+        action="store_true",
+        help="Evaluate the model on folds that it was trained."
+    )
+
     args = parser.parse_args()
 
     wandb.config.update(args)
-    wandb.save(args.output_trec_file) 
-    wandb.save(args.output_file) 
+    wandb.save(args.output_trec_file)
+    wandb.save(args.output_file)
     device = torch.device(
         "cuda" if torch.cuda.is_available() and not args.no_cuda else "cpu")
     args.n_gpu = 1
@@ -430,7 +435,7 @@ def main():
         history_encoder = HistoryEncoder(args)
         history_encoder_path = os.path.join(args.model_path,'history_encoder.pt')
         history_encoder.load_state_dict(torch.load(history_encoder_path))
-        
+
         history_encoder.to(args.device)
         history_encoder.eval()
         if args.max_concat_length <= 0:
@@ -468,7 +473,7 @@ def main():
             history_encoder = HistoryEncoder(args)
             history_encoder_path = os.path.join(args.model_path,'history_encoder.pt')
             history_encoder.load_state_dict(torch.load(history_encoder_path))
-            
+
             history_encoder.to(args.device)
             history_encoder.eval()
             if args.max_concat_length <= 0:
@@ -477,12 +482,24 @@ def main():
                                          tokenizer.max_len_single_sentence)
 
             logger.info("Training/evaluation parameters %s", args)
-            eval_file = "%s.%d" % (args.eval_file, i)
-            logger.info("eval_file: {}".format(eval_file))
-            eval_dataset = ChedarSearchDataset([eval_file],
-                                             tokenizer,
-                                             args,
-                                             mode="inference")
+            if args.evaluate_on_train_folds:
+                eval_files = [
+                "%s.%d" % (args.train_file, j) for j in range(NUM_FOLD)
+                if j != i]
+                eval_files = "%s.%d" % (args.eval_file, i)
+                logger.info("Evaluation on training folds")
+                logger.info("eval_files: {}".format(eval_files))
+                eval_dataset = ChedarSearchDataset(eval_files,
+                                                tokenizer,
+                                                args,
+                                                mode="inference")
+            else:
+                eval_file = "%s.%d" % (args.eval_file, i)
+                logger.info("eval_file: {}".format(eval_file))
+                eval_dataset = ChedarSearchDataset([eval_file],
+                                                tokenizer,
+                                                args,
+                                                mode="inference")
             embedding, embedding2id, raw_sequences = evaluate(
                 args, eval_dataset, model, logger, history_encoder=history_encoder)
             total_embedding.append(embedding)
