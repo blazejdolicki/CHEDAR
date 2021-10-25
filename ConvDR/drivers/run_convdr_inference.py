@@ -159,6 +159,7 @@ def evaluate(args, eval_dataset, model, logger):
 def search_one_by_one(ann_data_dir, gpu_index, query_embedding, topN):
     merged_candidate_matrix = None
     for block_id in range(4):
+        block_sum = 0
         for part_id in range(4):
             logger.info("Loading passage reps - block {} part {}".format(block_id, part_id))
             passage_embedding = None
@@ -176,11 +177,14 @@ def search_one_by_one(ann_data_dir, gpu_index, query_embedding, topN):
                     'rb') as handle:
                 passage_embedding2id = pickle.load(handle)
                 # map ids because we split the collection in 4 parts due to RAM limits
-                passage_embedding2id += int((part_id)*38429844/4)
+                passage_embedding2id += block_sum
+                block_sum += passage_embedding2id.shape[0]*4
 
 
             print('passage embedding shape: ' + str(passage_embedding.shape))
             print("query embedding shape: " + str(query_embedding.shape))
+            logger.info(str(("first 10 passage_embedding2id", list(passage_embedding2id[:10]))))
+            logger.info(str(("last 10 passage_embedding2id", list(passage_embedding2id[-10:]))))
             gpu_index.add(passage_embedding)
             ts = time.time()
             D, I = gpu_index.search(query_embedding, topN)
