@@ -19,9 +19,6 @@ module load Miniconda3
 cd $HOME/CHEDAR/ConvDR
 
 export PYTHONPATH=${PYTHONPATH}:`pwd`
-pwd
 
-# Activate your environment
-source activate convdr
-conda info
-conda list
+python test.py
+python test2.py

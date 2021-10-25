@@ -25,8 +25,8 @@ export PYTHONPATH=${PYTHONPATH}:`pwd`
 
 # Activate your environment
 source activate convdr
-
-python drivers/run_chedar_train.py  --output_dir=checkpoints/chedar-kd-cast19  \
+NAME="checkpoints/chedar-kd-cast19"
+python drivers/run_chedar_train.py  --output_dir=$NAME  \
                                     --model_name_or_path=checkpoints/ad-hoc-ance-msmarco  \
                                     --train_file=datasets/cast-19/SORTED_eval_topics.jsonl  \
                                     --query=no_res  \

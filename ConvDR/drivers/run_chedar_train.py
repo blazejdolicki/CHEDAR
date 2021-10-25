@@ -105,25 +105,28 @@ def train(args,
     
     for epoch_number_id in train_iterator:
         epoch_iterator = tqdm(train_dataloader, desc="Iteration")
-        history_emb = torch.zeros((1,768),device= args.device)    
+        #history_emb = torch.zeros((1,768),device= args.device)    
+        history_emb = history_encoder.init_hidden()
         for step, batch in enumerate(epoch_iterator):
             concat_ids, concat_id_mask, target_ids, target_id_mask = (ele.to(args.device) for ele in [batch["concat_ids"], batch["concat_id_mask"], batch["target_ids"], batch["target_id_mask"]
                 ])
-            qid = batch["qid"][0]
+            qid = batch["qid"][0] 
             #print("Conversation id and Query id:",qid)
-            model.train()
+            model.eval()
             teacher_model.eval()
             history_encoder.train()
-            #with torch.no_grad(): #CHEDAR: dont train convdr model
-            embs = model(concat_ids, concat_id_mask)#.detach()
-              
+            with torch.no_grad(): #CHEDAR: dont train convdr model
+              embs = model(concat_ids, concat_id_mask).detach()
+               
             #CHEDAR:
             if qid.split('_')[-1] == '1':
               #Create new history embedding
-              history_emb = torch.zeros((embs.shape),device= args.device)
+              #history_emb = torch.zeros((embs.shape),device= args.device)
+              history_emb = history_encoder.init_hidden()
             
-            history_emb = history_encoder(embs,history_emb)
-            
+            history_emb, history_state = history_encoder(embs,history_emb)
+            if args.history_encoder_type != 5:
+              history_state = history_emb
             with torch.no_grad():
                 teacher_embs = teacher_model(target_ids,
                                              target_id_mask).detach()
@@ -200,7 +203,7 @@ def train(args,
                   wandb.log({"loss2": loss2})
             #loss.backward(retain_graph=True)
             loss.backward()
-            history_emb = history_emb.detach()
+            history_emb = history_emb.detach()#.cpu().numpy()
             tr_loss += loss.item()
             wandb.log({"tr_loss": tr_loss})
             if not args.no_mse:
@@ -211,13 +214,13 @@ def train(args,
             torch.cuda.empty_cache()
 
             if (step + 1) % args.gradient_accumulation_steps == 0:
-                torch.nn.utils.clip_grad_norm_(model.parameters(),
-                                               args.max_grad_norm)
+                #torch.nn.utils.clip_grad_norm_(model.parameters(),
+                                              # args.max_grad_norm)
                 torch.nn.utils.clip_grad_norm_(history_encoder.parameters(),
                                                args.max_grad_norm)
                 optimizer.step()
                 scheduler.step()  # Update learning rate schedule
-                model.zero_grad()
+                #model.zero_grad()
                 history_encoder.zero_grad()
                 global_step += 1
 
@@ -481,6 +484,12 @@ def main():
         default=1024,
         help="Size of embeddings used. Default is Roberta size, used in history encoder."
     )
+    parser.add_argument(
+        "--history_encoder_type",
+        type=int,
+        default=1,
+        help="select type of encoder from 1 to 5, base, sigmoid, extra layer, residual*, gru" #I know is ugly but im tired is 5am. *not sure if its right naming
+    )
     
     args = parser.parse_args()
     wandb.config.update(args)
@@ -635,6 +644,7 @@ def main():
             torch.cuda.empty_cache()
 
     tb_writer.close()
+    wandb.finish()
 
 
 if __name__ == "__main__":

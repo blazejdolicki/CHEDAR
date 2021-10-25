@@ -138,10 +138,10 @@ def evaluate(args, eval_dataset, model, logger, history_encoder=None):
     raw_sequences = []
     epoch_iterator = eval_dataloader
     with torch.no_grad():
-      history_emb = torch.zeros((1,768),device= args.device)
+      history_emb = history_encoder.init_hidden()
     for batch in epoch_iterator:
         qids = batch["qid"]
-        ids, id_mask = (
+        ids, id_mask = ( 
             ele.to(args.device)
             for ele in [batch["concat_ids"], batch["concat_id_mask"]])
         model.eval()
@@ -150,15 +150,18 @@ def evaluate(args, eval_dataset, model, logger, history_encoder=None):
             embs = model(ids, id_mask)
 
         #CHEDAR:
-        qid = batch["qid"][0]
+        qid_chedar = batch["qid"][0]
         with torch.no_grad():
-          if qid.split('_')[-1] == '1':
+          if qid_chedar.split('_')[-1] == '1':
             #Create new history embedding
-            history_emb = torch.zeros((embs.shape),device= args.device)
+            history_emb = history_encoder.init_hidden()
 
-          history_emb = history_encoder(embs,history_emb)
+          history_emb, history_state = history_encoder(embs,history_emb)
+          if args.history_encoder_type != 5: 
+              history_state = history_emb
         #history_emb = embs #TODO!!! DELETE THIS!! TEST ONLY !!! IF YOU SEE IT DELETE THIS LINE#
         history_emb_detached =  history_emb.detach().cpu().numpy()
+        #history_state = history_state.detach().cpu().numpy()
         embedding.append(history_emb_detached)
         for qid in qids:
             embedding2id.append(qid)
@@ -172,7 +175,10 @@ def evaluate(args, eval_dataset, model, logger, history_encoder=None):
 
 def search_one_by_one(ann_data_dir, gpu_index, query_embedding, topN):
     merged_candidate_matrix = None
+    
+    block_id_count_passages = 0
     for block_id in range(4):
+        part_id_count_passages = 0
         for part_id in range(4):
             logger.info("Loading passage reps - block {} part {}".format(block_id, part_id))
             passage_embedding = None
@@ -190,8 +196,12 @@ def search_one_by_one(ann_data_dir, gpu_index, query_embedding, topN):
                     'rb') as handle:
                 passage_embedding2id = pickle.load(handle)
                 # map ids because we split the collection in 4 parts due to RAM limits
-                passage_embedding2id += int((part_id)*38429844/4)
-
+                #part_size = passage_embedding.shape[0]
+                #passage_embedding2id += int(block_id_count_passages)
+                
+                passage_embedding2id += int(((part_id)*38429844/4)) #if part_id == 0 else int(3+((part_id)*38429844/4))
+            part_id_count_passages += int(passage_embedding.shape[0])
+            block_id_count_passages += int(passage_embedding.shape[0])
             print('passage embedding shape: ' + str(passage_embedding.shape))
             print("query embedding shape: " + str(query_embedding.shape))
             gpu_index.add(passage_embedding)
@@ -204,6 +214,8 @@ def search_one_by_one(ann_data_dir, gpu_index, query_embedding, topN):
                 "data": query_embedding.shape[0],
                 "per_query": elapsed_time / query_embedding.shape[0]
             })
+            print("passage_embedding2id first 10 elements", passage_embedding2id[:10])
+            print("passage_embedding2id last 10 elements", passage_embedding2id[-10:])
             candidate_id_matrix = passage_embedding2id[
                 I]  # passage_idx -> passage_id
             D = D.tolist()
@@ -352,6 +364,13 @@ def main():
         action="store_true",
         help="Evaluate the model on folds that it was trained."
     )
+    parser.add_argument(
+        "--history_encoder_type",
+        type=int,
+        default=1,
+        help="select type of encoder from 1 to 5, base, sigmoid, extra layer, residual*, gru" #I know is ugly but im tired is 5am. *not sure if its right naming
+    )
+    
 
     args = parser.parse_args()
 
@@ -529,3 +548,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    wandb.finish()
