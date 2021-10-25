@@ -2,10 +2,10 @@
 
 #SBATCH --partition=gpu_shared_course
 #SBATCH --gres=gpu:1
-#SBATCH --job-name=chedar_train
+#SBATCH --job-name=chedar_inference
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=3
-#SBATCH --time=10:00:00
+#SBATCH --time=1:00:00
 #SBATCH --mem=60000M
 #SBATCH --output=job_logs/slurm_output_%A.out
 
@@ -25,23 +25,8 @@ export PYTHONPATH=${PYTHONPATH}:`pwd`
 
 # Activate your environment
 source activate convdr
-NAME="checkpoints/chedar-kd-cast19"
-python drivers/run_chedar_train.py  --output_dir=$NAME  \
-                                    --model_name_or_path=checkpoints/ad-hoc-ance-msmarco  \
-                                    --train_file=datasets/cast-19/SORTED_eval_topics.jsonl  \
-                                    --query=no_res  \
-                                    --per_gpu_train_batch_size=1  \
-                                    --learning_rate=1e-5 \
-                                    --log_dir=logs/chedar-kd-cast19   \
-                                    --num_train_epochs=8  \
-                                    --model_type=rdot_nll  \
-                                    --cross_validate  \
-                                    --overwrite_output_dir
 
-
-echo "Running Inference Step"
-
-python drivers/run_chedar_inference.py  --model_path=checkpoints/chedar-kd-cast19 \
+python drivers/run_chedar_inference.py  --model_path=checkpoints/chedar-kd-cast19  \
                                         --eval_file=datasets/cast-19/SORTED_eval_topics.jsonl \
                                         --query=no_res \
                                         --per_gpu_eval_batch_size=1 \
@@ -50,13 +35,10 @@ python drivers/run_chedar_inference.py  --model_path=checkpoints/chedar-kd-cast1
                                         --qrels=datasets/cast-19/qrels.tsv \
                                         --processed_data_dir=/project/gpuuva006/team3/cast-tokenized/ \
                                         --raw_data_dir=datasets/cast-19 \
-                                        --output_file=results/cast-19/chedar-kd-cast19.jsonl \
-                                        --output_trec_file=results/cast-19/chedar-kd-cast19.trec \
+                                        --output_file=results/cast-19/kd_chedar-train_folds.jsonl \
+                                        --output_trec_file=results/cast-19/kd_chedar-train_folds.trec \
                                         --model_type=rdot_nll \
                                         --output_query_type=raw \
                                         --cross_validate \
-                                        --use_gpu
-
-cd $HOME/trec_eval
-
-./trec_eval -m ndcg_cut.3 -m recip_rank ../CHEDAR/ConvDR/datasets/cast-19/qrels.tsv ../CHEDAR/ConvDR/results/cast-19/chedar-kd-cast19.trec > ../CHEDAR/ConvDR/results/cast-19/chedar-kd-cast19.txt
+                                        --use_gpu \
+                                        --evaluate_on_train_folds 
