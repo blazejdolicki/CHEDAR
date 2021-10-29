@@ -169,8 +169,8 @@ Here each batch script has the 3 steps of the pipeline and each of them correspo
 
 Note: modify the path of the arguments in the batch scripts to match the files that were generated during the CONVDR steps. 
 
-#### CONVDR
-In the same there is also a script `all_convdr_kd_sequential.sh` that will do training, inference and compute results for our replication of CONVDR.
+#### ConvDR
+In the same there is also a script `all_convdr_kd_sequential.sh` that will do training, inference and compute results for our replication of ConvDR.
 
 ## Scripts Structure
 
@@ -222,7 +222,7 @@ python drivers/run_chedar_inference.py  --model_path=checkpoints/chedar-kd-cast1
 
 #### Results
 
-If you followed the steps of CONVDR, you should now have a clone of the trec_eval repository, from there you can call the follow command to compute the proper NDCG@3 and MRR.
+If you followed the steps of ConvDR, you should now have a clone of the trec_eval repository, from there you can call the follow command to compute the proper NDCG@3 and MRR.
 ```
 ./trec_eval -m ndcg_cut.3 -m recip_rank ../CHEDAR/ConvDR/datasets/cast-19/qrels.tsv ../CHEDAR/ConvDR/results/cast-19/kd_chedar-train_folds-m1.trec > ../CHEDAR/ConvDR/results/cast-19/kd_chedar-train_folds-m1.txt
 ```
