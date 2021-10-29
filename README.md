@@ -25,7 +25,7 @@ We recommend set `PYTHONPATH` before running the code:
 export PYTHONPATH=${PYTHONPATH}:`pwd`
 ```
 
-To train ConvDR, we need trained ad hoc dense retrievers. We use [ANCE](https://github.com/microsoft/ANCE) for both tasks. Please downloads those checkpoints here: [TREC CAsT](https://webdatamltrainingdiag842.blob.core.windows.net/semistructstore/OpenSource/Passage_ANCE_FirstP_Checkpoint.zip) and [OR-QuAC](https://data.thunlp.org/convdr/ad-hoc-ance-orquac.cp). For TREC CAsT, we directly use the official model trained on MS MARCO Passage Retrieval task. For OR-QuAC, we initialize the retriever from the official model trained on NQ and TriviaQA, and continue training on OR-QuAC with manually reformulated questions using the ANCE codebase.
+To train ConvDR, we need trained ad hoc dense retrievers. We use [ANCE](https://github.com/microsoft/ANCE) for both tasks. Please download those checkpoints here: [TREC CAsT](https://webdatamltrainingdiag842.blob.core.windows.net/semistructstore/OpenSource/Passage_ANCE_FirstP_Checkpoint.zip). For TREC CAsT, we directly use the official model trained on MS MARCO Passage Retrieval task. 
 
 The following code downloads those checkpoints and store them in `./checkpoints`.
 
@@ -50,7 +50,7 @@ mkdir datasets/raw
 
 #### CAsT shared files download
 
-Use the following commands to download the document collection for CAsT-19 & CAsT-20 as well as the MARCO duplicate file:
+Use the following commands to download the document collection for CAsT-19 as well as the MARCO duplicate file:
 
 ```bash
 cd datasets/raw
@@ -112,37 +112,13 @@ python -m torch.distributed.launch --nproc_per_node=$gpu_no python drivers/gen_p
 Note that we follow the ANCE implementation and this step takes up a lot of memory. To generate all 38M CAsT document embeddings safely, the machine should have at least 200GB memory. It's possible to save memory by generating a part at a time, and we may update the implementation in the future.
 
 ## ConvDR Training
-
+### KD loss
 Now we are all prepared: we have downloaded & preprocessed data, and we have obtained document embeddings. Simply run `./drivers/run_convdr_train.py` to train a ConvDR using KD (MSE) loss (batch script: `train_basic.sh`):
 
 ```bash
 # CAsT-19, KD loss only, five-fold cross-validation
 python drivers/run_convdr_train.py  --output_dir=checkpoints/convdr-kd-cast19  --model_name_or_path=checkpoints/ad-hoc-ance-msmarco  --train_file=datasets/cast-19/eval_topics.jsonl  --query=no_res  --per_gpu_train_batch_size=4  --learning_rate=1e-5   --log_dir=logs/convdr_kd_cast19  --num_train_epochs=8  --model_type=rdot_nll  --cross_validate
 ```
-
-To use ranking loss, we need to find negative documents for each query. We use top retrieved negatives documents from the ranking results of **manual** queries. So we need to first perform retrieval using the manual queries (batch script: `find_negative_docs.sh`):
-
-```bash
-# CAsT-19
-mkdir results/cast-19
-python drivers/run_convdr_inference.py  --model_path=checkpoints/ad-hoc-ance-msmarco  --eval_file=datasets/cast-19/eval_topics.jsonl  --query=target  --per_gpu_eval_batch_size=8  --ann_data_dir=datasets/cast-19/embeddings  --qrels=datasets/cast-19/qrels.tsv  --processed_data_dir=datasets/cast-19/tokenized  --raw_data_dir=datasets/cast-19   --output_file=results/cast-19/manual_ance.jsonl  --output_trec_file=results/cast-19/manual_ance.trec  --model_type=rdot_nll  --output_query_type=manual  --use_gpu
-```
-
-After the retrieval finishes, we can select negative documents from manual runs and supplement the original training files with them (batch script: `select_neg_docs.sh`):
-
-```bash
-# CAsT-19
-python data/gen_ranking_data.py  --train=datasets/cast-19/eval_topics.jsonl  --run=results/cast-19/manual_ance.trec  --output=datasets/cast-19/eval_topics.rank.jsonl  --qrels=datasets/cast-19/qrels.tsv  --collection=datasets/cast-shared/collection.tsv  --cast
-```
-
-Now we are able to use the ranking loss, with the `--ranking_task` flag on (batch script: `train_ranking.sh`):
-
-```bash
-# CAsT-19, Multi-task
-python drivers/run_convdr_train.py  --output_dir=checkpoints/convdr-multi-cast19  --model_name_or_path=checkpoints/ad-hoc-ance-msmarco  --train_file=datasets/cast-19/eval_topics.rank.jsonl  --query=no_res  --per_gpu_train_batch_size=4  --learning_rate=1e-5   --log_dir=logs/convdr_multi_cast19  --num_train_epochs=8  --model_type=rdot_nll  --cross_validate  --ranking_task
-```
-
-To disable the KD loss, simply set the `--no_mse` flag.
 
 ## ConvDR Inference
 
@@ -168,7 +144,7 @@ make
 ### Run evaluation
 Run the following command (batch script: `trec_results.sh`)
 ```
-./trec_eval -m ndcg_cut.3 -m recip_rank ../CHEDAR/ConvDR/datasets/cast-19/qrels.tsv ../CHEDAR/ConvDR/results/cast-19/multi.trec > ../CHEDAR/ConvDR/results/cast-19/multi_results.txt
+./trec_eval -m ndcg_cut.3 -m recip_rank ../CHEDAR/ConvDR/datasets/cast-19/qrels.tsv ../CHEDAR/ConvDR/results/cast-19/kd.trec > ../CHEDAR/ConvDR/results/cast-19/kd_results.txt
 ```
 
 
