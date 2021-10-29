@@ -1,7 +1,7 @@
 # CHEDAR
 
 This repository contains the code for the paper CHEDAR: Conversation History Embedding for Dense Answer Retrieval.
-Our research is built on top of the [CONVDR paper](https://arxiv.org/pdf/2105.04166.pdf) and therefore we use their [respository](https://github.com/thunlp/ConvDR) as base for our approach.
+Our research is built on top of the [ConvDR paper](https://arxiv.org/pdf/2105.04166.pdf) and therefore we use their [respository](https://github.com/thunlp/ConvDR) as base for our approach.
 We use the instructions provided by them to attempt to reproduce their results and we provide below their steps along with our modifications. (Some of their commands didn't match the code or missed steps)
 
 
