@@ -25,41 +25,40 @@ export PYTHONPATH=${PYTHONPATH}:`pwd`
 
 # Activate your environment
 source activate convdr
-NAME="checkpoints/chedar-kd-cast19-m7"
-python drivers/run_chedar_train.py  --output_dir=$NAME  \
+NAME="checkpoints/chedar-kd-cast19-m8"
+python drivers/run_chedar_train_GRU.py  --output_dir=$NAME  \
                                     --model_name_or_path=checkpoints/ad-hoc-ance-msmarco  \
                                     --train_file=datasets/cast-19/SORTED_eval_topics.jsonl  \
                                     --query=no_res  \
                                     --per_gpu_train_batch_size=1  \
                                     --learning_rate=1e-5 \
-                                    --log_dir=logs/chedar-kd-cast19-m7   \
+                                    --log_dir=logs/chedar-kd-cast19-m8   \
                                     --num_train_epochs=16  \
                                     --model_type=rdot_nll  \
                                     --cross_validate  \
                                     --overwrite_output_dir \
-                                    --history_encoder_type 7
+                                    --history_encoder_type 8 
 
 
 echo "Running Inference Step"
 
-python drivers/run_chedar_inference.py  --model_path=checkpoints/chedar-kd-cast19-m7 \
+python drivers/run_chedar_inference_GRU.py  --model_path=checkpoints/chedar-kd-cast19-m8 \
                                         --eval_file=datasets/cast-19/SORTED_eval_topics.jsonl \
                                         --query=no_res \
                                         --per_gpu_eval_batch_size=1 \
                                         --cache_dir=../ann_cache_dir \
                                         --ann_data_dir=/project/gpuuva006/CAST19_ANCE_embeddings \
                                         --qrels=datasets/cast-19/qrels.tsv \
-                                        --processed_data_dir=/project/gpuuva006/team3/cast-tokenized-old/ \
+                                        --processed_data_dir=/project/gpuuva006/team3/cast-tokenized/ \
                                         --raw_data_dir=datasets/cast-19 \
-                                        --output_file=results/cast-19/kd_chedar-train_folds-m7.jsonl \
-                                        --output_trec_file=results/cast-19/kd_chedar-train_folds-m7.trec \
+                                        --output_file=results/cast-19/kd_chedar-train_folds-m8.jsonl \
+                                        --output_trec_file=results/cast-19/kd_chedar-train_folds-m8.trec \
                                         --model_type=rdot_nll \
                                         --output_query_type=raw \
                                         --cross_validate \
                                         --use_gpu \
-                                        --evaluate_on_train_folds  \
-                                        --history_encoder_type 7
+                                        --history_encoder_type 8
 
 cd $HOME/trec_eval
 
-./trec_eval -m ndcg_cut.3 -m recip_rank ../CHEDAR/ConvDR/datasets/cast-19/qrels.tsv ../CHEDAR/ConvDR/results/cast-19/kd_chedar-train_folds-m7.trec > ../CHEDAR/ConvDR/results/cast-19/kd_chedar-train_folds-m7.txt
+./trec_eval -m ndcg_cut.3 -m recip_rank ../CHEDAR/ConvDR/datasets/cast-19/qrels.tsv ../CHEDAR/ConvDR/results/cast-19/kd_chedar-train_folds-m8.trec > ../CHEDAR/ConvDR/results/cast-19/kd_chedar-train_folds-m8.txt

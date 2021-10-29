@@ -57,7 +57,6 @@ python drivers/run_chedar_inference.py  --model_path=checkpoints/chedar-kd-cast1
                                         --output_query_type=raw \
                                         --cross_validate \
                                         --use_gpu \
-                                        --evaluate_on_train_folds  \
                                         --history_encoder_type 6
 
 cd $HOME/trec_eval
