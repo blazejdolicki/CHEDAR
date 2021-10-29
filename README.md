@@ -14,8 +14,8 @@ We use the instructions provided by them to attempt to reproduce their results a
 Install dependencies:
 
 ```bash
-git clone https://github.com/thunlp/ConvDR.git
-cd ConvDR
+git clone https://github.com/blazejdolicki/CHEDAR.git
+cd CHEDAR/ConvDR
 pip install -r requirements.txt
 ```
 
