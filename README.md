@@ -171,17 +171,6 @@ Run the following command (batch script: `trec_results.sh`)
 ./trec_eval -m ndcg_cut.3 -m recip_rank ../CHEDAR/ConvDR/datasets/cast-19/qrels.tsv ../CHEDAR/ConvDR/results/cast-19/multi.trec > ../CHEDAR/ConvDR/results/cast-19/multi_results.txt
 ```
 
-## Download Trained Models
-
-Three trained models can be downloaded with the following link: [CAsT19-KD-CV-Fold1](https://data.thunlp.org/convdr/convdr-kd-cast19-1.zip)
-
-## Results
-
-[Download ConvDR and baseline runs on CAsT](https://drive.google.com/file/d/1F0RwA9sZscUAyE0IyQ7PMrgzNVqDnho5/view?usp=sharing)
-
-## Contact
-
-Please send email to ~~yus17@mails.tsinghua.edu.cn~~ yushi17@foxmail.com.
 
 # CHEDAR 
 
