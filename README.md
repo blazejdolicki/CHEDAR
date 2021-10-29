@@ -176,6 +176,14 @@ In the same there is also a script `all_convdr_kd_sequential.sh` that will do tr
 
 It is also possible to run the steps to reproduce CHEDAR without the LISA cluster, for that we outline the commands required to do training, inference and compute the results (NDCG@3 and MRR).
 
+#### Download sorted files
+Please download sorted data files using one of the following links:
+* public link that expires on 29.11.2021 - https://amsuni-my.sharepoint.com/:u:/g/personal/rodrigo_alejandro_chavez_mulsa_student_uva_nl/EVtVXKZ1aYtPvJM6RVk2SqoBr0883AbaDJ58GnUgCnZ-1A?e=CzkU5K
+* link with no expiration, but requires an UvA account - https://amsuni-my.sharepoint.com/:u:/g/personal/rodrigo_alejandro_chavez_mulsa_student_uva_nl/EVtVXKZ1aYtPvJM6RVk2SqoBakL8haBpcqtQWDZl3FJd8A?e=Y2Jqn4 
+
+In case you cannot access data with either link, please sent an email to this address: blazej.dol@gmail.com
+
+After downloading, unzip the files and put them into datasets/cast-19/ directory.
 
 #### Train
 To train a chedar model you can run the `run_chedar_train.py` script with the arguments defined below. 
