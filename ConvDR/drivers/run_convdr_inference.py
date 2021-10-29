@@ -17,7 +17,7 @@ from utils.util import ConvSearchDataset, NUM_FOLD, set_seed, load_model, load_c
 
 logger = logging.getLogger(__name__)
 
-
+import wandb 
 def EvalDevQuery(query_embedding2id,
                  merged_D,
                  dev_query_positive_id,
@@ -136,6 +136,8 @@ def evaluate(args, eval_dataset, model, logger):
     embedding2id = []
     raw_sequences = []
     epoch_iterator = eval_dataloader
+    ts = time.time()
+    amountabc = 0
     for batch in epoch_iterator:
         qids = batch["qid"]
         ids, id_mask = (
@@ -148,10 +150,18 @@ def evaluate(args, eval_dataset, model, logger):
         embedding.append(embs)
         for qid in qids:
             embedding2id.append(qid)
+            amountabc += 1
 
         sequences = batch["history_utterances"]
         raw_sequences.extend(sequences)
-
+    te = time.time()
+    elapsed_time = te - ts
+    wandb.log({"time estimate": elapsed_time})
+    wandb.log({"time estimate/ query amount": elapsed_time/amountabc})    
+    wandb.log({"query amount": amountabc})
+    print({"time estimate": elapsed_time})
+    print({"time estimate/ query amount": elapsed_time/amountabc})    
+    print({"query amount": amountabc})
     embedding = np.concatenate(embedding, axis=0)
     return embedding, embedding2id, raw_sequences
 
@@ -248,6 +258,7 @@ def search_one_by_one(ann_data_dir, gpu_index, query_embedding, topN):
 
 def main():
     parser = argparse.ArgumentParser()
+    wandb.init(project='convdr_inference', entity='ir2')
     parser.add_argument("--model_path", type=str, help="The model checkpoint.")
     parser.add_argument("--eval_file",
                         type=str,
@@ -322,7 +333,9 @@ def main():
                         type=int,
                         help="Number of retrieved documents for each query.")
     args = parser.parse_args()
-
+    wandb.config.update(args)
+    wandb.save(args.output_trec_file)
+    wandb.save(args.output_file)
     device = torch.device(
         "cuda" if torch.cuda.is_available() and not args.no_cuda else "cpu")
     args.n_gpu = 1
@@ -473,3 +486,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
+    wandb.finish()

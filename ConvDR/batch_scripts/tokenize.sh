@@ -27,4 +27,4 @@ export PYTHONPATH=${PYTHONPATH}:`pwd`
 source activate convdr
 
 # Tokenize CAST-19
-python data/tokenizing.py  --collection=datasets/cast-shared/collection.tsv  --out_data_dir=/project/gpuuva006/team3/cast-tokenized/  --model_name_or_path=checkpoints/ad-hoc-ance-msmarco --model_type=rdot_nll
+python data/tokenizing.py  --collection=datasets/cast-shared/collection.tsv  --out_data_dir=/project/gpuuva006/team3/cast-tokenized-no_model_type/  --model_name_or_path=checkpoints/ad-hoc-ance-msmarco --model_type=rdot_nll

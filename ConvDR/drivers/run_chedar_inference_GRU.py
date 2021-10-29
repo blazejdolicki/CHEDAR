@@ -139,47 +139,56 @@ def evaluate(args, eval_dataset, model, logger, history_encoder=None):
     epoch_iterator = eval_dataloader
     with torch.no_grad():
       history_emb = history_encoder.init_hidden()
-    ts = time.time()
-    amountabc = 0
+    embs_list, teacher_embs_list = [], []
+    qids = []
     for batch in epoch_iterator:
-        qids = batch["qid"]
         ids, id_mask = ( 
             ele.to(args.device)
             for ele in [batch["concat_ids"], batch["concat_id_mask"]])
         model.eval()
         history_encoder.eval()
-        with torch.no_grad():
-            embs = model(ids, id_mask)
-
-        #CHEDAR:
-        qid_chedar = batch["qid"][0]
-        with torch.no_grad():
-          if qid_chedar.split('_')[-1] == '1':
-            #Create new history embedding
-            history_emb = history_encoder.init_hidden()
-
-          history_emb, history_state = history_encoder(embs,history_emb)
-          if args.history_encoder_type != 5: 
-              history_state = history_emb
-        #history_emb = embs #TODO!!! DELETE THIS!! TEST ONLY !!! IF YOU SEE IT DELETE THIS LINE#
-        history_emb_detached =  history_emb.detach().cpu().numpy()
-        #history_state = history_state.detach().cpu().numpy()
-        embedding.append(history_emb_detached)
-        for qid in qids:
-            embedding2id.append(qid)
-            amountabc += 1
-
         sequences = batch["history_utterances"]
         raw_sequences.extend(sequences)
-        
-    te = time.time()
-    elapsed_time = te - ts
-    wandb.log({"time estimate": elapsed_time})
-    wandb.log({"time estimate/ query amount": elapsed_time/amountabc})    
-    wandb.log({"query amount": amountabc})
-    print({"time estimate": elapsed_time})
-    print({"time estimate/ query amount": elapsed_time/amountabc})    
-    print({"query amount": amountabc})
+        qid_chedar = batch["qid"][0]
+        if qid_chedar.split('_')[-1] != '1':          
+            
+            qids.append(qid_chedar)
+            with torch.no_grad(): #CHEDAR: dont train convdr model
+                embs = model(ids, id_mask).detach()
+                #teacher_embs = teacher_model(target_ids, target_id_mask).detach()
+                embs_list.append(embs)
+                #teacher_embs_list.append(teacher_embs)
+            continue
+        else:
+            if len(embs_list) == 0:#first iteration of the loop is empty, we dont want to run backwards till the next conversation
+                with torch.no_grad(): #CHEDAR: dont train convdr model
+                    embs = model(ids, id_mask).detach()
+                    embs_list = [embs]                    
+                qids.append(qid_chedar)
+                continue       
+        #CHEDAR:
+            with torch.no_grad():
+                history_emb = history_encoder.init_hidden()
+                embs_list = torch.stack((embs_list))                
+                history_emb, history_state = history_encoder(embs_list,history_emb)
+                if args.history_encoder_type != 5: 
+                    history_state = history_emb
+                    
+            history_emb_detached =  history_emb.detach().cpu().numpy()
+            history_emb_detached = np.split(history_emb_detached,1)
+            for e in history_emb_detached[0]:              
+              embedding.append(e.reshape(1,-1))
+            for qid in qids:
+                embedding2id.append(qid)
+            ############################ Create new conversation arrays
+            with torch.no_grad(): #CHEDAR: dont train convdr model
+                    embs = model(ids, id_mask).detach()
+                    embs_list = [embs]   
+                    qids = [qid_chedar]
+            ################################
+
+            
+
     embedding = np.concatenate(embedding, axis=0)
     return embedding, embedding2id, raw_sequences
 

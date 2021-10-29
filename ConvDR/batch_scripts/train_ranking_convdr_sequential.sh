@@ -26,15 +26,37 @@ export PYTHONPATH=${PYTHONPATH}:`pwd`
 # Activate your environment
 source activate convdr
 
-python drivers/run_convdr_train.py  --output_dir=checkpoints/convdr-multi-cast19-convdr-sequential  \
+python drivers/run_convdr_train.py  --output_dir=checkpoints/convdr-kd-cast19-convdr-sequential-all  \
                                     --model_name_or_path=checkpoints/ad-hoc-ance-msmarco  \
                                     --train_file=datasets/cast-19/SORTED_eval_topics.rank.jsonl  \
                                     --query=no_res  \
                                     --per_gpu_train_batch_size=1  \
                                     --learning_rate=1e-5 \
-                                    --log_dir=logs/convdr_multi_cast19_convdr_sequential  \
+                                    --log_dir=logs/convdr-kd-cast19-convdr-sequential-all  \
                                     --num_train_epochs=8  \
                                     --model_type=rdot_nll  \
                                     --cross_validate  \
-                                    --ranking_task
+                                    --overwrite_output_dir \
 
+
+echo "Running Inference Step"
+
+python drivers/run_convdr_inference.py  --model_path=checkpoints/convdr-kd-cast19-convdr-sequential-all \
+                                        --eval_file=datasets/cast-19/SORTED_eval_topics.jsonl \
+                                        --query=no_res \
+                                        --per_gpu_eval_batch_size=1 \
+                                        --cache_dir=../ann_cache_dir \
+                                        --ann_data_dir=/project/gpuuva006/CAST19_ANCE_embeddings \
+                                        --qrels=datasets/cast-19/qrels.tsv \
+                                        --processed_data_dir=/project/gpuuva006/team3/cast-tokenized/ \
+                                        --raw_data_dir=datasets/cast-19 \
+                                        --output_file=results/cast-19/convdr-kd-cast19-convdr-sequential-all.jsonl \
+                                        --output_trec_file=results/cast-19/convdr-kd-cast19-convdr-sequential-all.trec \
+                                        --model_type=rdot_nll \
+                                        --output_query_type=raw \
+                                        --cross_validate \
+                                        --use_gpu 
+
+cd $HOME/trec_eval
+
+./trec_eval -m ndcg_cut.3 -m recip_rank ../CHEDAR/ConvDR/datasets/cast-19/qrels.tsv ../CHEDAR/ConvDR/results/cast-19/convdr-kd-cast19-convdr-sequential-all.trec > ../CHEDAR/ConvDR/results/cast-19/convdr-kd-cast19-convdr-sequential-all.txt
