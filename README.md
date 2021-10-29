@@ -88,12 +88,13 @@ python data/preprocess_cast19.py  --car_cbor=datasets/raw/dedup.articles-paragra
 
 ### Generate Document Embeddings
 
-Our code is based on ANCE and we have a similar embedding inference pipeline, where the documents are first tokenized and converted to token ids and then the token ids are used for embedding inference. We create sub-directories `tokenized` and `embeddings` inside `./datasets/cast-shared` and `./datasets/or-quac` to store the tokenized documents and document embeddings, respectively:
+Our code is based on ANCE and we have a similar embedding inference pipeline, where the documents are first tokenized and converted to token ids and then the token ids are used for embedding inference. You can create sub-directories `tokenized` and `embeddings` inside `./datasets/cast-shared` to store the tokenized documents and document embeddings, respectively:
 
 ```bash
 mkdir datasets/cast-shared/tokenized
 mkdir datasets/cast-shared/embeddings
 ```
+Note that we used embeddings and tokenized data from a shared folder on Lisa (`/project/gpuuva006/CAST19_ANCE_embeddings` and `/project/gpuuva006/team3/cast-tokenized/`), so you can use those directories if you have access to the cluster. If not, then use the folders `datasets/cast-shared/embeddings` and  `datasets/cast-shared/tokenized` as mentioned above but bear in mind that you need to change the directories in batch scripts.
 
 Run `./data/tokenizing.py` to tokenize documents in parallel:
 
