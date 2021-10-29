@@ -9,8 +9,6 @@ We use the instructions provided by them to attempt to reproduce their results a
 
 ## ConvDR
 
-This repo contains code and data for SIGIR 2021 paper ["Few-Shot Conversational Dense Retrieval"](https://arxiv.org/pdf/2105.04166.pdf).
-
 ## Prerequisites
 
 Install dependencies:
