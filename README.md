@@ -5,7 +5,7 @@ Our research is built on top of the [CONVDR paper](https://arxiv.org/pdf/2105.04
 We use the instructions provided by them to attempt to reproduce their results and we provide below their steps along with our modifications. (Some of their commands didn't match the code or missed steps)
 
 
-*Commands to CHEDAR are at the end of the README.
+*Commands to run CHEDAR are at the end of the README.
 
 ## ConvDR
 
@@ -211,7 +211,8 @@ Note: modify the path of the arguments in the batch scripts to match the files t
 To train a chedar model you can run the `run_chedar_train.py` script with the arguments defined below. 
 The CHEDAR variation can be selected using the argument `--history_encoder_type=1` where the number corresponds to the model described in the list above.
 Make sure that the files in the paths of arguments `model_name_or_path` and `train_file` match your directory.
-'''
+
+```
 python drivers/run_chedar_train.py  --output_dir=checkpoints/chedar-kd-cast19-m1  \
                                     --model_name_or_path=checkpoints/ad-hoc-ance-msmarco  \
                                     --train_file=datasets/cast-19/SORTED_eval_topics.jsonl  \
@@ -225,7 +226,7 @@ python drivers/run_chedar_train.py  --output_dir=checkpoints/chedar-kd-cast19-m1
                                     --overwrite_output_dir \
                                     --history_encoder_type 1
 
-'''
+```
 
 #### Inference  
 Similarly as in training the model variation can be defined with the argument `--history_encoder_type=1` and the files at paths from the arguments should match your directory
