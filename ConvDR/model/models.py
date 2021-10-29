@@ -296,36 +296,84 @@ class HistoryEncoder(nn.Module):
                             nn.Linear(args.emb_size,args.emb_size//2),
                             nn.ReLU(), 
                             nn.Linear(args.emb_size//2, args.emb_size))
-        elif model_type == 4: #add emb with torch.max
+        elif model_type == 4: #add emb with torch.max Residual
           self.encoder = nn.Sequential(
                         nn.Linear(args.emb_size*2, args.history_hidden),
                         nn.ReLU(),
                         nn.Linear(args.history_hidden, args.emb_size))
-        elif model_type == 5: #GRU
+        elif model_type == 5: #GRU 
+          self.n_layers = 2
+          self.hidden_dim = args.emb_size
+          self.encoder = nn.GRU(input_size = args.emb_size, hidden_size = self.hidden_dim , num_layers = self.n_layers, batch_first = False)
+        elif model_type == 6: # nn.Dropout(0.25)
+          self.encoder = nn.Sequential(
+                        nn.Linear(args.emb_size*2, args.history_hidden),
+                        nn.ReLU(),
+                        nn.Dropout(0.25),
+                        nn.Linear(args.history_hidden, args.emb_size))
+        elif model_type == 7: # Deeper add emb with torch.max
+          self.encoder1 = nn.Sequential(
+                            nn.Linear(args.emb_size*2,args.emb_size),
+                            nn.ReLU())
+          self.encoder2 = nn.Sequential(
+                            nn.Linear(args.emb_size,args.emb_size//2),
+                            nn.ReLU(),
+                            nn.Linear(args.emb_size//2, args.emb_size))       
+        elif model_type == 8: #LSTM 
           self.n_layers = 1
           self.hidden_dim = args.emb_size
-          self.encoder = nn.GRU(input_size = args.emb_size, hidden_size = self.hidden_dim , num_layers = self.n_layers, batch_first = True)
-          
+          self.encoder = nn.LSTM(input_size = args.emb_size, hidden_size = self.hidden_dim , num_layers = self.n_layers, batch_first = False)     
+        elif model_type == 9: #Residual addition instead of max 
+          self.encoder = nn.Sequential(
+                        nn.Linear(args.emb_size*2, args.history_hidden),
+                        nn.ReLU(),
+                        nn.Linear(args.history_hidden, args.emb_size))   
+        elif model_type == 10: #Deeper add emb with torch.max
+         self.encoder = nn.Sequential(
+                            nn.Linear(args.emb_size*2,args.emb_size),
+                            nn.ReLU(),
+                            nn.Linear(args.emb_size,args.emb_size//2),
+                            nn.ReLU(),
+                            nn.Linear(args.emb_size//2, args.emb_size))              
     def forward(self, query_emb, history_emb):    
         #return query_emb
-        if self.model_type == 4:
+        if self.model_type == 4 or self.model_type == 10:
           
           out =  self.encoder(torch.cat((history_emb, query_emb),1))
           out = torch.maximum(out,query_emb)
-          return out,out 
-          
+          return out,out #Twice to match the GRU format 
+        elif self.model_type == 9:          
+          out =  self.encoder(torch.cat((history_emb, query_emb),1))
+          out = torch.stack([out,query_emb], dim=0).sum(dim=0)
+          return out, out #Twice to match the GRU format   
         elif self.model_type==5:
-          out, h =  self.encoder(query_emb.reshape((1,1,-1)), history_emb)
-          return out.reshape((1,-1)), h
+          out, h =  self.encoder(query_emb, history_emb)
+          return out , h
+        elif self.model_type==8:
+          out, h =  self.encoder(query_emb, history_emb)
+          return out , h
+        elif self.model_type==7:
+          out =  self.encoder1(torch.cat((history_emb, query_emb),1))
+          out = torch.maximum(out,query_emb)
+          out =  self.encoder2(out)
+          out = torch.maximum(out,query_emb)
+          return out,out #Twice to match the GRU format 
+        
         else:
           out =  self.encoder(torch.cat((history_emb, query_emb),1))
           return out, out #Twice to match the GRU format 
+          
       
     def init_hidden(self, batch_size=1): 
         if self.model_type==5:
           weight = next(self.parameters()).data
           hidden = weight.new(self.n_layers, batch_size, self.hidden_dim).zero_().to(self.device)
           return hidden.data
+        elif self.model_type==8:
+          self.directions_count = 1
+          return (torch.randn(self.n_layers * self.directions_count, batch_size, self.hidden_dim).to(self.device),
+                torch.randn(self.n_layers * self.directions_count, batch_size, self.hidden_dim).to(self.device))
+  
         else:
           return torch.zeros((1,self.emb_size),device= self.device)
 
