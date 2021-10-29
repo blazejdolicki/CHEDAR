@@ -185,9 +185,9 @@ Three trained models can be downloaded with the following link: [CAsT19-KD-CV-Fo
 
 Please send email to ~~yus17@mails.tsinghua.edu.cn~~ yushi17@foxmail.com.
 
-## CHEDAR 
+# CHEDAR 
 
-### LISA
+## LISA
 
 In order to replicate the CHEDAR results, we have provided a list of batch scripts that run the training, inference and compute the trec results in the lisa cluster. These scripts can be found in `CHEDAR/ConvDR/batch_scripts/all_models/`. 
 Here each batch script has the 3 steps of the pipeline and each of them correspond to a different model from the following list:
@@ -196,16 +196,23 @@ Here each batch script has the 3 steps of the pipeline and each of them correspo
 - m2:  2 linear layers + Sigmoid
 - m3: 3 linear layers + ReLU
 - m4: 2 linear layers + Relu + Residual (max)
-- m5: GRU - not yet
+- m5: GRU - 1 layer
 - m6:  2 linear layers + Relu + Dropout
 - m7:  3 (linear layers+residual) structure:  linear layer + Relu + Residual (max) + linear + relu+ linear + residual
-- m8: LSTM - not yet
+- m8: LSTM - 1 layer
 - m9:  2 linear layers + Relu + Residual (addition)
 - m10:   3 linear layers + Relu + Residual (max)
 
+
 Note: modify the path of the arguments in the batch scripts to match the files that were generated during the CONVDR steps. 
 
-### Scripts Structure
+#### CONVDR
+In the same there is also a script `all_convdr_kd_sequential.sh` that will do training, inference and compute results for our replication of CONVDR.
+
+## Scripts Structure
+
+It is also possible to run the steps to reproduce CHEDAR without the LISA cluster, for that we outline the commands required to do training, inference and compute the results (NDCG@3 and MRR).
+
 
 #### Train
 To train a chedar model you can run the `run_chedar_train.py` script with the arguments defined below. 
