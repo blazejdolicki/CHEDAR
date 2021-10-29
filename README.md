@@ -5,7 +5,7 @@ Our research is built on top of the [CONVDR paper](https://arxiv.org/pdf/2105.04
 We use the instructions provided by them to attempt to reproduce their results and we provide below their steps along with our modifications. (Some of their commands didn't match the code or missed steps)
 
 
-
+*Commands to CHEDAR are at the end of the README.
 
 ## ConvDR
 
@@ -184,3 +184,74 @@ Three trained models can be downloaded with the following link: [CAsT19-KD-CV-Fo
 ## Contact
 
 Please send email to ~~yus17@mails.tsinghua.edu.cn~~ yushi17@foxmail.com.
+
+## CHEDAR 
+
+### LISA
+
+In order to replicate the CHEDAR results, we have provided a list of batch scripts that run the training, inference and compute the trec results in the lisa cluster. These scripts can be found in `CHEDAR/ConvDR/batch_scripts/all_models/`. 
+Here each batch script has the 3 steps of the pipeline and each of them correspond to a different model from the following list:
+
+- m1: 2 linear layers + Relu
+- m2:  2 linear layers + Sigmoid
+- m3: 3 linear layers + ReLU
+- m4: 2 linear layers + Relu + Residual (max)
+- m5: GRU - not yet
+- m6:  2 linear layers + Relu + Dropout
+- m7:  3 (linear layers+residual) structure:  linear layer + Relu + Residual (max) + linear + relu+ linear + residual
+- m8: LSTM - not yet
+- m9:  2 linear layers + Relu + Residual (addition)
+- m10:   3 linear layers + Relu + Residual (max)
+
+Note: modify the path of the arguments in the batch scripts to match the files that were generated during the CONVDR steps. 
+
+### Scripts Structure
+
+#### Train
+To train a chedar model you can run the `run_chedar_train.py` script with the arguments defined below. 
+The CHEDAR variation can be selected using the argument `--history_encoder_type=1` where the number corresponds to the model described in the list above.
+Make sure that the files in the paths of arguments `model_name_or_path` and `train_file` match your directory.
+'''
+python drivers/run_chedar_train.py  --output_dir=checkpoints/chedar-kd-cast19-m1  \
+                                    --model_name_or_path=checkpoints/ad-hoc-ance-msmarco  \
+                                    --train_file=datasets/cast-19/SORTED_eval_topics.jsonl  \
+                                    --query=no_res  \
+                                    --per_gpu_train_batch_size=1  \
+                                    --learning_rate=1e-5 \
+                                    --log_dir=logs/chedar-kd-cast19-m1   \
+                                    --num_train_epochs=8  \
+                                    --model_type=rdot_nll  \
+                                    --cross_validate  \
+                                    --overwrite_output_dir \
+                                    --history_encoder_type 1
+
+'''
+
+#### Inference  
+Similarly as in training the model variation can be defined with the argument `--history_encoder_type=1` and the files at paths from the arguments should match your directory
+```
+python drivers/run_chedar_inference.py  --model_path=checkpoints/chedar-kd-cast19-m1 \
+                                        --eval_file=datasets/cast-19/SORTED_eval_topics.jsonl \
+                                        --query=no_res \
+                                        --per_gpu_eval_batch_size=1 \
+                                        --cache_dir=../ann_cache_dir \
+                                        --ann_data_dir=/project/gpuuva006/CAST19_ANCE_embeddings \
+                                        --qrels=datasets/cast-19/qrels.tsv \
+                                        --processed_data_dir=/project/gpuuva006/team3/cast-tokenized/ \
+                                        --raw_data_dir=datasets/cast-19 \
+                                        --output_file=results/cast-19/kd_chedar-train_folds-m1.jsonl \
+                                        --output_trec_file=results/cast-19/kd_chedar-train_folds-m1.trec \
+                                        --model_type=rdot_nll \
+                                        --output_query_type=raw \
+                                        --cross_validate \
+                                        --use_gpu \
+                                        --evaluate_on_train_folds  \
+                                        --history_encoder_type 1
+```
+
+#### Results
+
+If you followed the steps of CONVDR, you should now have a clone of the trec_eval repository, from there you can call the follow command to compute the proper NDCG@3 and MRR.
+```
+./trec_eval -m ndcg_cut.3 -m recip_rank ../CHEDAR/ConvDR/datasets/cast-19/qrels.tsv ../CHEDAR/ConvDR/results/cast-19/kd_chedar-train_folds-m1.trec > ../CHEDAR/ConvDR/results/cast-19/kd_chedar-train_folds-m1.txt
+```
